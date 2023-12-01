@@ -27,9 +27,5 @@ struct medicamento
     tipoMedicamento tipo;
 };
 
-void pruebaMedicamento()
-{
-    cout << "Importando Medicamento\n";
-}
 
 #endif // MEDICAMENTO_H

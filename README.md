@@ -13,7 +13,6 @@ PharmaControl System es un sistema de gestión de farmacia desarrollado en C++ u
 - **`CompraVenta.h` y `CompraVenta.cpp`**: Procesos de compra y venta, generación de recibos y facturas.
 - **`Consultas.h` y `Consultas.cpp`**: Ventana de consultas para realizar búsquedas específicas.
 - **`InterfazUsuario.h` y `InterfazUsuario.cpp`**: Lógica de la interfaz de usuario.
-- **`Tests.h` y `Tests.cpp`**: Pruebas unitarias y de integración.
 
 ## División de Tareas
 

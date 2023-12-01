@@ -49,8 +49,14 @@ void eliminarMedicamento()
 {
 }
 
-void crearMedicamento()
+int crearMedicamento(Medicamento* &farmacos, int tamanoMedicamento)
 {
+    for(int i=0; i<tam; i++){
+        if(farmacos[i].codigoMedicamento == 0 && farmacos[i].nombreMedicamento.empty() && farmacos[i].stockMinimo == 0 && farmacos[i].unidadesExistentes && farmacos[i].tipo == def){
+            return i;
+        }
+    }
+    return 10;
 }
 
 void readMedicamento()

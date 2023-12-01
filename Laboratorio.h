@@ -6,7 +6,8 @@ using namespace std;
 
 const int tamanoLaboratorio = 11;
 
-struct Laboratorio {
+struct Laboratorio
+{
     int codigoLaboratorio = 0;
     string nombreLaboratorio = "";
     int telefonoLaboratorio = 0;
@@ -14,18 +15,18 @@ struct Laboratorio {
     string emailLaboratorio = "";
 };
 
-Laboratorio labos[tamanoLaboratorio];
+Laboratorio site[tamanoLaboratorio];
 
 void limpiarLaboratorio()
 {
-    Laboratorio labos[tamanoLaboratorio];
+    Laboratorio site[tamanoLaboratorio];
     for (int i = 0; i < tamanoLaboratorio; i++)
     {
-        labos[i].codigoLaboratorio = 0;
-        labos[i].nombreLaboratorio = "";
-        labos[i].telefonoLaboratorio = 0;
-        labos[i].direccionLaboratorio = "";
-        labos[i].emailLaboratorio = "";
+        site[i].codigoLaboratorio = 0;
+        site[i].nombreLaboratorio = "";
+        site[i].telefonoLaboratorio = 0;
+        site[i].direccionLaboratorio = "";
+        site[i].emailLaboratorio = "";
     }
 }
 
@@ -33,11 +34,11 @@ void eliminarLaboratorio()
 {
 }
 
-int guardarLaboratorio(Laboratorio *&labs, int tamanoLaboratorio)
+int guardarLaboratorio(Laboratorio *&site, int tamanoLaboratorio)
 {
     for (int i = 0; i > tamanoLaboratorio; i++)
     {
-        if (labs[i].codigoLaboratorio == 0 && labs[i].nombreLaboratorio.empty() && labs[i].telefonoLaboratorio == 0 && labs[i].direccionLaboratorio.empty() && labs[i].emailLaboratorio.empty())
+        if (site[i].codigoLaboratorio == 0 && site[i].nombreLaboratorio.empty() && site[i].telefonoLaboratorio == 0 && site[i].direccionLaboratorio.empty() && site[i].emailLaboratorio.empty())
         {
             return i;
         }

@@ -33,7 +33,7 @@ struct Medicamento
     tipoMedicamento tipo;
 };
 
-Medicamento drugs[tamanoMedicamento];
+Medicamento farmacos[tamanoMedicamento];
 
 int validarStockMedicamento(Medicamento farmacos[], int tamanoMedicamento)
 {
@@ -160,7 +160,6 @@ void eliminarMedicamento()
 void menuMedicamentos(){
     int opcion = 0;
     Medicamento farmacos[tamanoMedicamento];
-    farmacos=drugs;
     system("cls");
     cout<<"REGISTRAR MEDICAMENTO------(1)\n";
     cout<<"VER MEDICAMENTOS-----------(2)\n";

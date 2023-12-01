@@ -84,7 +84,6 @@ void verMedicamentos(Medicamento farmacos[], int tamanoMedicamento){
             break; // Break para romper fors esta brutal.
         }
     }
-    cin.get();
 }
 
 void crearMedicamento(Medicamento farmacos[], int tamanoMedicamento){
@@ -100,11 +99,8 @@ void crearMedicamento(Medicamento farmacos[], int tamanoMedicamento){
         cin>>nombre;
         primeraLetraMayus=toupper(nombre[0]);
         nombre[0]=primeraLetraMayus;
-        cout<<"nomre:"<<nombre<<"\n";
         cout<<"INGRESE EL CODIGO DEL MEDICAMENTO-->";
         cin>>codigo;
-        bool f=validarMedicamento(farmacos,tamanoMedicamento,codigo);
-        cout<<"validadr medicamento reotnoa:"<<f<<"\n";
         if(!validarMedicamento(farmacos,tamanoMedicamento,codigo)){
             farmacos[dato].codigoMedicamento = codigo;
             farmacos[dato].nombreMedicamento = nombre;
@@ -130,16 +126,13 @@ void crearMedicamento(Medicamento farmacos[], int tamanoMedicamento){
             return;
         }
         cout<<"SE HA REGISTRADO EL MEDICAMENTO\n";
-        cin.ignore();
-        for(int i=0;i<tamanoMedicamento;i++){
-            cout<<farmacos[i].codigoMedicamento<<" - "<<farmacos[i].nombreMedicamento<<"\n";
-        }
+        system("pause");
     }
 }
 
+Medicamento farmacos[tamanoMedicamento];
 void menuMedicamentos(){
     int opcion = 0;
-    Medicamento farmacos[tamanoMedicamento];
     do{
     system("cls");
     cout<<"REGISTRAR MEDICAMENTO------(1)\n";
@@ -169,7 +162,6 @@ void menuMedicamentos(){
 
 void limpiarMedicamentos()
 {
-    Medicamento farmacos[tamanoMedicamento];
     for (int i = 0; i < tamanoMedicamento; i++)
     {
         farmacos[i].codigoMedicamento = 0;
@@ -184,10 +176,7 @@ void eliminarMedicamento()
 {
 }
 
-
-
 void administrarMedicamentos(){
-    limpiarMedicamentos();
     menuMedicamentos();
     cin.ignore();
 }

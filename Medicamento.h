@@ -24,7 +24,7 @@ struct medicamento
     string nombreMedicamento = 0;
     int stockMin = 0;
     int unidadesExistentes = 0;
-    tipoMedicamento tipo = 0;
+    tipoMedicamento tipo;
 };
 
 void eliminarMedicamento(){

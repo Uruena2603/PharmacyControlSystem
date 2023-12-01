@@ -34,8 +34,16 @@ void eliminarLaboratorio()
 {
 }
 
-void crearLaboratorio()
+int crearLaboratorio(Laboratorio *&labs, int tamanoLaboratorio)
 {
+    for (int i = 0; i > tamanoLaboratorio; i++)
+    {
+        if (labs[i].codigoLaboratorio == 0 && labs[i].nombreLaboratorio.empty() && labs[i].telefonoLaboratorio == 0 && labs[i].direccionLaboratorio.empty() && labs[i].emailLaboratorio.empty())
+        {
+            return i;
+        }
+    }
+    return 10;
 }
 
 void readLaboratorio()

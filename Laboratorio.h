@@ -44,12 +44,10 @@ void crearLaboratorio(Laboratorio site[], int tamanoLaboratorio)
 {
     system("cls");
     cout<<"COMPLETE EL FORMULARIO PARA REGISTRAR UN LABORATORIO\n";
+    cin.ignore();
     int dato = validarEspacioLaboratorio(site, tamanoLaboratorio);
     int codigo = 0;
     string nombre = "";
-    int telefono = 0;
-    string direccion = "";
-    string email = "";
     if (dato >= 0 && dato < tamanoLaboratorio)
     {
         cout<<"INGRESE EL NOMBRE DEL LABORATORIO-->";
@@ -60,6 +58,9 @@ void crearLaboratorio(Laboratorio site[], int tamanoLaboratorio)
         {
             site[dato].codigoLaboratorio = codigo;
             site[dato].nombreLaboratorio = nombre;
+            int telefono = 0;
+            string direccion = "";
+            string email = "";
             cout<<"INGRESE EL TELEFONO DEL LABORATORIO-->";
             cin>>telefono;
             cout<<"INGRESE LA DIRECCION DEL LABORATORIO-->";

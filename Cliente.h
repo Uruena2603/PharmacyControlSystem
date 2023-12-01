@@ -8,44 +8,54 @@ const int tamanoCliente = 11;
 
 struct Cliente
 {
-    long cedula = 0;
-    string nombre = "";
-    int telefono = 0;
-    string direccion = "";
-    int celular = 0;
-    string fechaNacimiento = "";
+    long cedulaCliente = 0;
+    string nombreCliente = "";
+    string direccionCliente = "";
+    int celularCliente = 0;
+    string fechaNacimientoCliente = "";
+    string emailCliente = "";
 };
 
 Cliente client[tamanoCliente];
+
+int validarEspacioCliente(Cliente client[], int tamanoCliente){
+    for (int i = 0; i < tamanoCliente; i++)
+    {
+        if (client[i].cedulaCliente == 0 && client[i].nombreCliente.empty() && client[i].direccionCliente.empty() && client[i].celularCliente == 0 && client[i].fechaNacimientoCliente.empty() && client[i].emailCliente.empty())
+        {
+            return i;
+        } 
+    }
+    return 11;
+}
+
+bool validarCliente(Cliente client[], int tamanoCliente, int cedulaCliente){
+    for (int i = 0; i < tamanoCliente; i++)
+    {
+        if (client[i].cedulaCliente == cedulaCliente)
+        {
+            return true;
+        }
+    }
+    return false;
+}
 
 void limpiarCliente()
 {
     Cliente client[tamanoCliente];
     for (int i = 0; i < tamanoCliente; i++)
     {
-        client[i].cedula = 0;
-        client[i].nombre = "";
-        client[i].telefono = 0;
-        client[i].direccion = "";
-        client[i].celular = 0;
-        client[i].fechaNacimiento = "";
+        client[i].cedulaCliente = 0;
+        client[i].nombreCliente = "";
+        client[i].direccionCliente = "";
+        client[i].celularCliente = 0;
+        client[i].fechaNacimientoCliente = "";
+        client[i].emailCliente = "";
     }
 }
 
 void eliminarCliente()
 {
-}
-
-int guardarCliente(Cliente* &client, int tamanoCliente)
-{
-    for (int i = 0; i < tamanoCliente; i++)
-    {
-        if (client[i].cedula == 0 && client[i].nombre.empty() && client[i].telefono == 0 && client[i].direccion.empty() && client[i].celular == 0 && client[i].fechaNacimiento.empty())
-        {
-            return i;
-        }
-    }
-    return 10;
 }
 
 void readCliente()

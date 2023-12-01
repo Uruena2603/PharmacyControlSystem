@@ -12,7 +12,7 @@ void limpiarDatos()
 
 void menu()
 {
-    int menu = 0;
+    int opcion = 0;
     do
     {
         system("cls");
@@ -24,15 +24,72 @@ void menu()
         cout << "VENDER MEDICAMENTOS------------>(5)\n";
         cout << "HISTORIAL FACTURAS------------->(6)\n";
         cout << "CONSULTAS---------------------->(7)\n";
-        cout << "CERRAR PROGRMAMA--------------->(7)\n";
+        cout << "CERRAR PROGRMAMA--------------->(8)\n";
 
-        cin >> menu;
+        cin >> opcion;
 
-        switch (menu)
+        switch (opcion)
         {
+        case 1:
+        {
+            system("cls");
+            system("pause");
+            break;
+        }
+        case 2:
+        {
+            system("cls");
+            system("pause");
+            break;
+        }
+        case 3:
+        {
+            system("cls");
+            system("pause");
+            break;
+        }
+        case 4:
+        {
+            system("cls");
+            system("pause");
+            break;
+        }
+        case 5:
+        {
+            system("cls");
+            system("pause");
+            break;
+        }
+        case 6:
+        {
+            system("cls");
+            system("pause");
+            break;
+        }
+        case 7:
+        {
+            system("cls");
+            system("pause");
+            break;
+        }
+        case 8:
+        {
+            system("cls");
+            system("pause");
+            break;
+        }
+        default:
+        {
+            system("cls");
+            cout << "NINGUNA OPCION DISPONIBLE FUE SELECCIONADA.\n";
+            system("pause");
+            cin.ignore();
+            menu();
+            break;
+        }
         }
 
-    } while (menu >= 1 && menu <= 8);
+    } while (opcion >= 1 && opcion <= 7);
 }
 
 int main()

@@ -1,11 +1,14 @@
 // Medicamento.h
 #include <iostream>
+#include <cstdlib> // Para la función rand
+#include <ctime>   // Para la función time
 #ifndef MEDICAMENTO_H
 #define MEDICAMENTO_H
 using namespace std;
 
+// Varibles globales
 const int tamanoMedicamento = 11;
-
+bool flag = false;
 enum tipoMedicamento
 {
     def,
@@ -82,8 +85,17 @@ tipoMedicamento enumToString(string medicamento){
     return def;
 }
 
-void crearMedicamento(Medicamento* &farmacos, int tamanoMedicamento){
+bool createMedicamento(){
+    Medicamento farmacos[tamanoMedicamento];
+    if(flag){
+        crearMedicamento(farmacos, tamanoMedicamento);
+    }
+    cout<<"NO SE PUEDE CREAR\n";
+    return false;
+}
+void crearMedicamento(Medicamento* farmacos, int tamanoMedicamento){
     system("cls");
+    srand(time(0));
     cout<<"COMPLETE EL FORMULARIO PARA REGISTRAR UN MEDICAMENTO\n";
     int dato = validarStockMedicamento(farmacos,tamanoMedicamento);
     int codigo = 0;

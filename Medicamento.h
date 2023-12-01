@@ -49,7 +49,7 @@ void eliminarMedicamento()
 {
 }
 
-int crearMedicamento(Medicamento* &farmacos, int tamanoMedicamento)
+int guardarMedicamento(Medicamento* &farmacos, int tamanoMedicamento)
 {
     for(int i=0; i< tamanoMedicamento; i++){
         if(farmacos[i].codigoMedicamento == 0 && farmacos[i].nombreMedicamento.empty() && farmacos[i].stockMinimo == 0 && farmacos[i].unidadesExistentes && farmacos[i].tipo == def){
@@ -57,6 +57,11 @@ int crearMedicamento(Medicamento* &farmacos, int tamanoMedicamento)
         }
     }
     return 10;
+}
+
+void crearMedicamento(Medicamento* &farmacos, int tamanoMedicamento){
+    system("cls");
+    
 }
 
 void readMedicamento()

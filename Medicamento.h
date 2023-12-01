@@ -4,10 +4,11 @@
 #define MEDICAMENTO_H
 using namespace std;
 
-int tamanoMedicamento = 10;
+const int tamanoMedicamento = 11;
 
 enum tipoMedicamento
 {
+    def,
     Sertralina,
     Fluoxetina,
     Escitalopram,
@@ -31,14 +32,16 @@ struct Medicamento
 
 Medicamento farmacos[tamanoMedicamento];
 
-void limpiarMedicamentos(){
+void limpiarMedicamentos()
+{
     Medicamento farmacos[tamanoMedicamento];
-    for(int i=0; i<tamanoMedicamento; i++){
+    for (int i = 0; i < tamanoMedicamento; i++)
+    {
         farmacos[i].codigoMedicamento = 0;
         farmacos[i].nombreMedicamento = "";
         farmacos[i].stockMinimo = 0;
         farmacos[i].unidadesExistentes = 0;
-        farmacos[i].tipoMedicamento = null;
+        farmacos[i].tipo = def;
     }
 }
 

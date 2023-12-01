@@ -25,7 +25,7 @@ void menu()
         cout << "HISTORIAL FACTURAS------------->(6)\n";
         cout << "CONSULTAS---------------------->(7)\n";
         cout << "CERRAR PROGRMAMA--------------->(8)\n";
-        cout << "DIGITE UNA OPCION`\n";
+        cout << "DIGITE UNA OPCION-------------->";
 
         cin >> opcion;
 

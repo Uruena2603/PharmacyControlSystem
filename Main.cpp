@@ -27,7 +27,7 @@ void menu()
         cout << "VENDER MEDICAMENTOS------------>(5)\n";
         cout << "HISTORIAL FACTURAS------------->(6)\n";
         cout << "CONSULTAS---------------------->(7)\n";
-        cout << "CERRAR PROGRMAMA--------------->(8)\n";
+        cout << "CERRAR PROGRMAMA--------------->(8)\n\n";
         cout << "DIGITE UNA OPCION-------------->";
         cin >> opcion;
 
@@ -43,6 +43,7 @@ void menu()
         case 2:
         {
             system("cls");
+            administrarLaboratorios();
             system("pause");
             break;
         }

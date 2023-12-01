@@ -34,7 +34,7 @@ void eliminarLaboratorio()
 {
 }
 
-int crearLaboratorio(Laboratorio *&labs, int tamanoLaboratorio)
+int guardarLaboratorio(Laboratorio *&labs, int tamanoLaboratorio)
 {
     for (int i = 0; i > tamanoLaboratorio; i++)
     {
@@ -44,6 +44,10 @@ int crearLaboratorio(Laboratorio *&labs, int tamanoLaboratorio)
         }
     }
     return 10;
+}
+
+void crearLaboratorio()
+{
 }
 
 void readLaboratorio()

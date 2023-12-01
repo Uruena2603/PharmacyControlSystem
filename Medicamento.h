@@ -33,10 +33,12 @@ struct Medicamento
     tipoMedicamento tipo;
 };
 
+Medicamento drugs[tamanoMedicamento];
+
 int validarStockMedicamento(Medicamento farmacos[], int tamanoMedicamento)
 {
     for(int i=0; i<tamanoMedicamento; i++){
-        if(farmacos[i].codigoMedicamento == 0 && farmacos[i].nombreMedicamento.empty() && farmacos[i].stockMinimo == 0 && farmacos[i].unidadesExistentes && farmacos[i].tipo == def){
+        if(farmacos[i].codigoMedicamento == 0 && farmacos[i].nombreMedicamento.empty() && farmacos[i].stockMinimo == 0 && farmacos[i].unidadesExistentes == 0 && farmacos[i].tipo == def){
             return i;
         }
     }
@@ -66,10 +68,34 @@ tipoMedicamento enumToString(string medicamento){
     return def;
 }
 
+void verMedicamentos(Medicamento farmacos[], int tamanoMedicamento){
+    system("cls");
+    cout<<"MEDICAMENTOS GUARDADOS\n";
+    for(int i=0; i<tamanoMedicamento; i++){
+        int codigoMedicamento = 0;
+        codigoMedicamento = farmacos[i].codigoMedicamento;
+        if (codigoMedicamento != 0){
+            cout<<"\nFARMACO #"<<tamanoCliente+1<<"\n";
+            cout<<"CODIGO   MEDICAMENTO-->"<<farmacos[i].codigoMedicamento<<"\n";
+            cout<<"NOMBRE   MEDICAMENTO-->"<<farmacos[i].nombreMedicamento<<"\n";
+            cout<<"STOCK    MINIMO------->"<<farmacos[i].stockMinimo<<"\n";
+            cout<<"UNIDADES ESISTENTES--->"<<farmacos[i].unidadesExistentes<<"\n";
+            cout<<"TIPO     MEDICAMENTO-->"<<farmacos[i].tipo<<"\n";
+
+        }
+        else{
+            cout << "\nINGRESE MAS MEDICAMENTOS. ( # DE ESPACIOS DISPONIBLES :" << tamanoMedicamento-i << ")\n";
+            break; // Break para romper fors esta brutal.
+        }
+    }
+    cin.get();
+}
+
 void crearMedicamento(Medicamento farmacos[], int tamanoMedicamento){
     system("cls");
     srand(time(0));
     cout<<"COMPLETE EL FORMULARIO PARA REGISTRAR UN MEDICAMENTO\n";
+    cin.ignore();
     int dato = validarStockMedicamento(farmacos,tamanoMedicamento);
     int codigo = 0;
     string nombre = "";
@@ -82,6 +108,8 @@ void crearMedicamento(Medicamento farmacos[], int tamanoMedicamento){
         cout<<"nomre:"<<nombre<<"\n";
         cout<<"INGRESE EL CODIGO DEL MEDICAMENTO-->";
         cin>>codigo;
+        bool f=validarMedicamento(farmacos,tamanoMedicamento,codigo);
+        cout<<"validadr medicamento reotnoa:"<<f<<"\n";
         if(!validarMedicamento(farmacos,tamanoMedicamento,codigo)){
             farmacos[dato].codigoMedicamento = codigo;
             farmacos[dato].nombreMedicamento = nombre;
@@ -107,11 +135,14 @@ void crearMedicamento(Medicamento farmacos[], int tamanoMedicamento){
             return;
         }
         cout<<"SE HA REGISTRADO EL MEDICAMENTO\n";
+        for(int i=0;i<tamanoMedicamento;i++){
+            cout<<farmacos[i].codigoMedicamento<<" - "<<farmacos[i].nombreMedicamento<<"\n";
+        }
     }
 }
 void limpiarMedicamentos()
 {
-    Medicamento farmacos[tamanoMedicamento];
+
     for (int i = 0; i < tamanoMedicamento; i++)
     {
         farmacos[i].codigoMedicamento = 0;
@@ -126,32 +157,10 @@ void eliminarMedicamento()
 {
 }
 
-void verMedicamentos(Medicamento farmacos[], int tamanoMedicamento){
-    system("cls");
-    cout<<"MEDICAMENTOS GUARDADOS\n";
-    for(int i=0; i<tamanoMedicamento; i++){
-        int codigoMedicamento = 0;
-        codigoMedicamento = farmacos[i].codigoMedicamento;
-        if (codigoMedicamento != 0){
-            cout<<"\nFARMACO #"<<tamanoCliente+1<<"\n";
-            cout<<"CODIGO   MEDICAMENTO-->"<<farmacos[i].codigoMedicamento<<"\n";
-            cout<<"NOMBRE   MEDICAMENTO-->"<<farmacos[i].nombreMedicamento<<"\n";
-            cout<<"STOCK    MINIMO------->"<<farmacos[i].stockMinimo<<"\n";
-            cout<<"UNIDADES ESISTENTES--->"<<farmacos[i].unidadesExistentes<<"\n";
-            cout<<"TIPO     MEDICAMENTO-->"<<farmacos[i].tipo<<"\n";
-
-        }
-        else{
-            cout << "\nINGRESE MAS MEDICAMENTOS. ( # DE ESPACIOS DISPONIBLES :" << tamanoMedicamento-i << ")\n";
-            break; // Break para romper fors esta brutal.
-        }
-    }
-    cin.get();
-}
-
 void menuMedicamentos(){
     int opcion = 0;
     Medicamento farmacos[tamanoMedicamento];
+    farmacos=drugs;
     system("cls");
     cout<<"REGISTRAR MEDICAMENTO------(1)\n";
     cout<<"VER MEDICAMENTOS-----------(2)\n";

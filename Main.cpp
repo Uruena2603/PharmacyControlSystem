@@ -8,6 +8,7 @@ using namespace std;
 
 void limpiarDatos()
 {
+    limpiarMedicamentos();
 }
 
 void menu()

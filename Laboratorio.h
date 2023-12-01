@@ -4,6 +4,8 @@
 #define LABORATORIO_H
 using namespace std;
 
+const int tamanoLaboratorio = 10;
+
 struct Laboratorio
 {
     int codigoLaboratorio = 0;
@@ -12,6 +14,21 @@ struct Laboratorio
     string direccionLaboratorio = "";
     string emailLaboratorio = "";
 };
+
+Laboratorio labs[tamanoLaboratorio];
+
+void limpiarLaboratorio()
+{
+    Laboratorio labs[tamanoLaboratorio];
+    for (int i = 0; i < tamanoLaboratorio; i++)
+    {
+        labs[i].codigoLaboratorio = 0;
+        labs[i].nombreLaboratorio = "";
+        labs[i].telefonoLaboratorio = 0;
+        labs[i].direccionLaboratorio = "";
+        labs[i].emailLaboratorio = "";
+    }
+}
 
 void eliminarLaboratorio()
 {

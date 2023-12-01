@@ -34,7 +34,7 @@ void eliminarLaboratorio()
 {
 }
 
-int guardarLaboratorio(Laboratorio *&site, int tamanoLaboratorio)
+int guardarLaboratorio(Laboratorio* &site, int tamanoLaboratorio)
 {
     for (int i = 0; i > tamanoLaboratorio; i++)
     {

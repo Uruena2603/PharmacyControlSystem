@@ -9,6 +9,8 @@ using namespace std;
 void limpiarDatos()
 {
     limpiarMedicamentos();
+    limpiarLaboratorio();
+    limpiarCliente();
 }
 
 void menu()
@@ -35,6 +37,7 @@ void menu()
         case 1:
         {
             system("cls");
+            crearMedicamento();
             system("pause");
             break;
         }

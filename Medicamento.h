@@ -21,27 +21,26 @@ enum tipoMedicamento
 struct medicamento
 {
     int codigoMedicamento = 0;
-    string nombreMedicamento = 0;
+    string nombreMedicamento = "";
     int stockMin = 0;
     int unidadesExistentes = 0;
     tipoMedicamento tipo;
 };
 
-void eliminarMedicamento(){
-
+void eliminarMedicamento()
+{
 }
 
-void crearMedicamento(){
-
+void crearMedicamento()
+{
 }
 
-void readMedicamente(){
-
+void readMedicamente()
+{
 }
 
-void actualizarMedicamento(){
-
+void actualizarMedicamento()
+{
 }
-
 
 #endif // MEDICAMENTO_H

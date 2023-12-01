@@ -13,20 +13,35 @@ enum tipoMedicamento
     Paroxetina,
     Duloxetina,
     Citalopram,
-    Bupropión,
+    Bupropion,
     Mirtazapina,
     Tranilcipromina
 };
 
 struct medicamento
 {
-    int codigoMedicamento;
-    string nombreMedicamento;
-    int stockMin;
-    int unidadesExistentes;
-    tipoMedicamento tipo;
+    int codigoMedicamento = 0;
+    string nombreMedicamento = 0;
+    int stockMin = 0;
+    int unidadesExistentes = 0;
+    tipoMedicamento tipo = 0;
 };
 
+void eliminarMedicamento(){
+
+}
+
+void crearMedicamento(){
+
+}
+
+void readMedicamente(){
+
+}
+
+void actualizarMedicamento(){
+
+}
 
 
 #endif // MEDICAMENTO_H

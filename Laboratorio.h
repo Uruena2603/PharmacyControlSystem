@@ -1,10 +1,11 @@
 // funciones.h
-#ifndef FUNCIONES_H
-#define FUNCIONES_H
+#include <iostream>
+#ifndef LABORATORIO_H
+#define LABORATORIO_H
 using namespace std;
-void prueba(){
-    cout<<"Probando importacion";
+void pruebaLaboratorio()
+{
+    cout << "Importando Laboratorio\n";
 }
 
-
-#endif // FUNCIONES_H
+#endif // LABORATORIO_H

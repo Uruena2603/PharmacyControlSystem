@@ -4,7 +4,7 @@
 #define LABORATORIO_H
 using namespace std;
 
-struct laboratorio
+struct Laboratorio
 {
     int codigoLaboratorio = 0;
     string nombreLaboratorio = "";

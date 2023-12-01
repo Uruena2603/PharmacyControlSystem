@@ -4,6 +4,8 @@
 #define MEDICAMENTO_H
 using namespace std;
 
+int tamanoMedicamento = 10;
+
 enum tipoMedicamento
 {
     Sertralina,
@@ -18,14 +20,27 @@ enum tipoMedicamento
     Tranilcipromina
 };
 
-struct medicamento
+struct Medicamento
 {
     int codigoMedicamento = 0;
     string nombreMedicamento = "";
-    int stockMin = 0;
+    int stockMinimo = 0;
     int unidadesExistentes = 0;
     tipoMedicamento tipo;
 };
+
+Medicamento farmacos[tamanoMedicamento];
+
+void limpiarMedicamentos(){
+    Medicamento farmacos[tamanoMedicamento];
+    for(int i=0; i<tamanoMedicamento; i++){
+        farmacos[i].codigoMedicamento = 0;
+        farmacos[i].nombreMedicamento = "";
+        farmacos[i].stockMinimo = 0;
+        farmacos[i].unidadesExistentes = 0;
+        farmacos[i].tipoMedicamento = null;
+    }
+}
 
 void eliminarMedicamento()
 {
@@ -35,7 +50,7 @@ void crearMedicamento()
 {
 }
 
-void readMedicamente()
+void readMedicamento()
 {
 }
 

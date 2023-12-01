@@ -101,14 +101,14 @@ void eliminarLaboratorio()
 
 void verLaboratorios(Laboratorio site[], int tamanoLaboratorio){
     system("cls");
-    cout<<"MLABORATORIOS GUARDADOS\n";
+    cout<<"LABORATORIOS GUARDADOS\n";
     for (int i = 0; i < tamanoLaboratorio; i++)
     {
         int codigoLaboratorio = 0;
         codigoLaboratorio = site[i].codigoLaboratorio;
         if (codigoLaboratorio != 0)
         {
-            cout<<"\nLABORATORIO #"<<tamanoCliente+1<<"\n";
+            cout<<"\nLABORATORIO #"<<tamanoLaboratorio+1<<"\n";
             cout<<"CODIGO    LABORATORIO-->"<<site[i].codigoLaboratorio<<"\n";
             cout<<"NOMBRE    LABORATORIO-->"<<site[i].nombreLaboratorio<<"\n";
             cout<<"TELEFONO  LABORATORIO-->"<<site[i].telefonoLaboratorio<<"\n";

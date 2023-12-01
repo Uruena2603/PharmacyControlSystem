@@ -37,7 +37,7 @@ void menu()
         case 1:
         {
             system("cls");
-            createMedicamento();
+            administrarMedicamentos();
             system("pause");
             break;
         }

@@ -89,7 +89,7 @@ void crearLaboratorio(Laboratorio site[], int tamanoLaboratorio)
             string email = "";
             cout << "INGRESE EL TELEFONO DEL LABORATORIO-->";
             cin >> telefono;
-            site[dato].codigoLaboratorio = telefono;
+            site[dato].telefonoLaboratorio = telefono;
             cin.ignore();
             cout << "INGRESE LA DIRECCION DEL LABORATORIO-->";
             cin >> direccion;
@@ -120,7 +120,6 @@ void eliminarLaboratorio(Laboratorio site[], int tamanoLaboratorio)
 {
     system("cls");
     cout << "COMPLETE EL FORMULARIO PARA ELIMINAR UN LABORATORIO\n";
-    // int dato = validarGuardado(site, tamanoLaboratorio);
     int codigo = 0;
     cout << "INGRESE EL CODIGO DEL LABORATORIO-->";
     cin >> codigo;
@@ -128,11 +127,8 @@ void eliminarLaboratorio(Laboratorio site[], int tamanoLaboratorio)
     {
         if (codigo == site[i].codigoLaboratorio)
         {
-            site[i].codigoLaboratorio = 0;
-            site[i].nombreLaboratorio = "";
-            site[i].telefonoLaboratorio = 0;
-            site[i].direccionLaboratorio = "";
-            site[i].emailLaboratorio = "";
+            site[i] = site[i + 1];
+            tamanoLaboratorio = tamanoLaboratorio - 1;
         }
     }
 }
@@ -171,7 +167,7 @@ void crudLaboratorios()
         }
         case 4:
         {
-            // eliminarLaboratorio();
+            eliminarLaboratorio(site, tamanoLaboratorio);
             break;
         }
         default:

@@ -11,7 +11,7 @@ struct Cliente
     long cedulaCliente = 0;
     string nombreCliente = "";
     string direccionCliente = "";
-    int celularCliente = 0;
+    long celularCliente = 0;
     string fechaNacimientoCliente = "";
     string emailCliente = "";
 };
@@ -53,15 +53,13 @@ void verClientes(Cliente client[], int tamanoCliente)
             cout << "\nCLIENTE #" << i + 1 << "\n";
             cout << "CEDULA    CLIENTE-->" << client[i].cedulaCliente << "\n";
             cout << "NOMBRE    CLIENTE-->" << client[i].nombreCliente << "\n";
-            cout << "DIRECCION CLIENTE-->" << client[i].nombreCliente << "\n";
+            cout << "DIRECCION CLIENTE-->" << client[i].direccionCliente << "\n";
             cout << "CELULAR   CLIENTE-->" << client[i].celularCliente << "\n";
             cout << "EMAIL     CLIENTE-->" << client[i].emailCliente << "\n";
-            system("pause");
-            break;
         }
         else
         {
-            cout << "INGRESE MAS CLIENTES. (# DE ESPACIOS DISPONIBLES:" << tamanoCliente - i << ")\n";
+            cout << "\nINGRESE MAS CLIENTES. (# DE ESPACIOS DISPONIBLES:" << tamanoCliente - i << ")\n";
             system("pause");
             break;
         }
@@ -74,48 +72,41 @@ void crearCliente(Cliente client[], int tamanoCliente)
     system("cls");
     cout << "COMPLETE EL FORMULARIO PARA REGISTRAR UN CLIENTE\n";
     int dato = validarGuardado(client, tamanoCliente);
-    int cedula = 0;
+    long cedula = 0;
     string nombre = "";
     if (dato >= 0 && dato < tamanoCliente)
     {
-        cout << "INGRESE LA CEDULA DEL CLIENTE-->";
-        cin >> cedula;
         cout << "INGRESE EL NOMBRE DEL CLIENTE-->";
         cin >> nombre;
+        cout << "INGRESE LA CEDULA DEL CLIENTE-->";
+        cin >> cedula;
         if (!validarCliente(client, tamanoCliente, cedula))
         {
-            client[dato].cedulaCliente = cedula;
             client[dato].nombreCliente = nombre;
-            string direccion = "";
-            cout << "INGRESE LA DIRECCION DEL CLIENTE-->";
-            cin >> direccion;
-            client[dato].direccionCliente = direccion;
-            int celular = 0;
-            cout << "INGRESE EL CELULAR DEL CLIENTE-->";
-            cin >> celular;
-            client[dato].celularCliente = celular;
-            string email = "";
-            cin.ignore();
+            client[dato].cedulaCliente = cedula;
             cout << "INGRESE EL EMAIL DEL CLIENTE-->";
-            cin >> email;
-            client[dato].emailCliente = email;
+            cin >> client[dato].emailCliente;
+            cout << "INGRESE LA DIRECCION DEL CLIENTE-->";
+            cin >> client[dato].direccionCliente;
+            cout << "INGRESE EL CELULAR DEL CLIENTE-->";
+            cin >> client[dato].celularCliente;
         }
-    }
-    else
-    {
-        for (int i = 0; i < tamanoCliente; i++)
+        else
         {
-            if (client[i].cedulaCliente == cedula)
+            for (int i = 0; i < tamanoCliente; i++)
             {
-                cout << "EL CLIENTE->" << client[i].nombreCliente << "CON CEDULA->" << client[i].cedulaCliente << " YA ESTA REGISTRADO\n";
-                cin.ignore();
-                break;
+                if (client[i].cedulaCliente == cedula)
+                {
+                    cout << "EL CLIENTE->" << client[i].nombreCliente << "CON CEDULA->" << client[i].cedulaCliente << " YA ESTA REGISTRADO\n";
+                    cin.ignore();
+                    break;
+                }
             }
+            return;
         }
-        return;
+        cout << "SE HA REGISTRADO EL CLIENTE\n";
+        system("pause");
     }
-    cout << "SE HA REGISTRADO EL CLIENTE\n";
-    system("pause");
 }
 
 Cliente client[tamanoCliente];
@@ -165,7 +156,7 @@ void crudCliente()
             cin.ignore();
             break;
         }
-    } while (opcion >= 1 && opcion < 4);
+    } while (opcion >= 1 && opcion < 5);
 }
 
 void limpiarCliente()

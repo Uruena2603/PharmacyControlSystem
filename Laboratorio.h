@@ -15,11 +15,9 @@ struct Laboratorio
     string emailLaboratorio = "";
 };
 
-Laboratorio site[tamanoLaboratorio];
-
-int validarEspacioLaboratorio(Laboratorio site[], int tamanoLaboratorio)
+int validarGuardado(Laboratorio site[], int tamanoLaboratorio)
 {
-    for (int i = 0; i > tamanoLaboratorio; i++)
+    for (int i = 0; i < tamanoLaboratorio; i++)
     {
         if (site[i].codigoLaboratorio == 0 && site[i].nombreLaboratorio.empty() && site[i].telefonoLaboratorio == 0 && site[i].direccionLaboratorio.empty() && site[i].emailLaboratorio.empty())
         {
@@ -40,12 +38,34 @@ bool validarLaboratorio(Laboratorio site[], int tamanoLaboratorio, int codigoLab
     return false;
 }
 
+void verLaboratorios(Laboratorio site[], int tamanoLaboratorio){
+    system("cls");
+    cout<<"LABORATORIOS GUARDADOS\n";
+    for (int i = 0; i < tamanoLaboratorio; i++)
+    {
+        int codigoLaboratorio = 0;
+        codigoLaboratorio = site[i].codigoLaboratorio;
+        if (codigoLaboratorio != 0)
+        {
+            cout<<"\nLABORATORIO #"<<i+1<<"\n";
+            cout<<"CODIGO    LABORATORIO-->"<<site[i].codigoLaboratorio<<"\n";
+            cout<<"NOMBRE    LABORATORIO-->"<<site[i].nombreLaboratorio<<"\n";
+            cout<<"TELEFONO  LABORATORIO-->"<<site[i].telefonoLaboratorio<<"\n";
+            cout<<"DIRECCION LABORATORIO-->"<<site[i].direccionLaboratorio<<"\n";
+            cout<<"EMAIL     LABORATORIO-->"<<site[i].emailLaboratorio<<"\n";
+        }else{
+        cout<<"INGRESE MAS LABORATORIOS. (# DE ESPACIOS DISPONIBLES:" << tamanoLaboratorio-i << ")\n";
+        break;
+        }    
+    }
+    cin.get();    
+}
+
 void crearLaboratorio(Laboratorio site[], int tamanoLaboratorio)
 {
     system("cls");
     cout<<"COMPLETE EL FORMULARIO PARA REGISTRAR UN LABORATORIO\n";
-    cin.ignore();
-    int dato = validarEspacioLaboratorio(site, tamanoLaboratorio);
+    int dato = validarGuardado(site, tamanoLaboratorio);
     int codigo = 0;
     string nombre = "";
     if (dato >= 0 && dato < tamanoLaboratorio)
@@ -63,10 +83,14 @@ void crearLaboratorio(Laboratorio site[], int tamanoLaboratorio)
             string email = "";
             cout<<"INGRESE EL TELEFONO DEL LABORATORIO-->";
             cin>>telefono;
+            site[dato].codigoLaboratorio = telefono;
+            cin.ignore();
             cout<<"INGRESE LA DIRECCION DEL LABORATORIO-->";
             cin>>direccion;
+            site[dato].direccionLaboratorio = direccion;
             cout<<"INGRESE EL EMAIL DEL LABORATORIO-->";
             cin>>email;
+            site[dato].emailLaboratorio = email;
         }else{
             for (int i = 0; i < tamanoLaboratorio; i++)
             {
@@ -80,52 +104,14 @@ void crearLaboratorio(Laboratorio site[], int tamanoLaboratorio)
             return;
         }
         cout<<"SE HA REGISTRADO EL LABORATORIO\n";
+        system("pause");
     }
 }
 
-void limpiarLaboratorio()
-{
-    Laboratorio site[tamanoLaboratorio];
-    for (int i = 0; i < tamanoLaboratorio; i++)
-    {
-        site[i].codigoLaboratorio = 0;
-        site[i].nombreLaboratorio = "";
-        site[i].telefonoLaboratorio = 0;
-        site[i].direccionLaboratorio = "";
-        site[i].emailLaboratorio = "";
-    }
-}
-
-void eliminarLaboratorio()
-{
-}
-
-void verLaboratorios(Laboratorio site[], int tamanoLaboratorio){
-    system("cls");
-    cout<<"LABORATORIOS GUARDADOS\n";
-    for (int i = 0; i < tamanoLaboratorio; i++)
-    {
-        int codigoLaboratorio = 0;
-        codigoLaboratorio = site[i].codigoLaboratorio;
-        if (codigoLaboratorio != 0)
-        {
-            cout<<"\nLABORATORIO #"<<tamanoLaboratorio+1<<"\n";
-            cout<<"CODIGO    LABORATORIO-->"<<site[i].codigoLaboratorio<<"\n";
-            cout<<"NOMBRE    LABORATORIO-->"<<site[i].nombreLaboratorio<<"\n";
-            cout<<"TELEFONO  LABORATORIO-->"<<site[i].telefonoLaboratorio<<"\n";
-            cout<<"DIRECCION LABORATORIO-->"<<site[i].direccionLaboratorio<<"\n";
-            cout<<"EMAIL     LABORATORIO-->"<<site[i].emailLaboratorio<<"\n";
-        }else{
-        cout<<"INGRESE MAS LABORATORIOS. (# DE ESPACIOS DISPONIBLES:" << tamanoLaboratorio-i << ")\n";
-        break;
-        }    
-    }
-    cin.get();    
-}
-
+Laboratorio site[tamanoLaboratorio];
 void menuLaboratorios(){
     int opcion = 0;
-    Laboratorio site[tamanoLaboratorio];
+    do{
     system("cls");
     cout<<"REGISTRAR LABORATORIO------(1)\n";
     cout<<"VER LABORATORIOS-----------(2)\n";
@@ -150,10 +136,28 @@ void menuLaboratorios(){
     cin.ignore();
     break;
 }
+}while(opcion >= 1 && opcion < 2);
 }
 
+void limpiarLaboratorio()
+{
+    for (int i = 0; i < tamanoLaboratorio; i++)
+    {
+        site[i].codigoLaboratorio = 0;
+        site[i].nombreLaboratorio = "";
+        site[i].telefonoLaboratorio = 0;
+        site[i].direccionLaboratorio = "";
+        site[i].emailLaboratorio = "";
+    }
+}
+
+void eliminarLaboratorio()
+{
+}
+
+
+
 void administrarLaboratorios(){
-    limpiarLaboratorio();
     menuLaboratorios();
     cin.ignore();
 }

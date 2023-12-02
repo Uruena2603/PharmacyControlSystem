@@ -116,6 +116,27 @@ void crearLaboratorio(Laboratorio site[], int tamanoLaboratorio)
     }
 }
 
+void eliminarLaboratorio(Laboratorio site[], int tamanoLaboratorio)
+{
+    system("cls");
+    cout << "COMPLETE EL FORMULARIO PARA ELIMINAR UN LABORATORIO\n";
+    // int dato = validarGuardado(site, tamanoLaboratorio);
+    int codigo = 0;
+    cout << "INGRESE EL CODIGO DEL LABORATORIO-->";
+    cin >> codigo;
+    for (int i = 0; i < tamanoLaboratorio; i++)
+    {
+        if (codigo == site[i].codigoLaboratorio)
+        {
+            site[i].codigoLaboratorio = 0;
+            site[i].nombreLaboratorio = "";
+            site[i].telefonoLaboratorio = 0;
+            site[i].direccionLaboratorio = "";
+            site[i].emailLaboratorio = "";
+        }
+    }
+}
+
 Laboratorio site[tamanoLaboratorio];
 
 void crudLaboratorios()
@@ -176,10 +197,6 @@ void limpiarLaboratorio()
         site[i].direccionLaboratorio = "";
         site[i].emailLaboratorio = "";
     }
-}
-
-void eliminarLaboratorio()
-{
 }
 
 void actualizarLaboratorio()

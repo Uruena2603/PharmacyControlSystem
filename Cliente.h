@@ -72,7 +72,7 @@ void verClientes(Cliente client[], int tamanoCliente)
 void crearCliente(Cliente client[], int tamanoCliente)
 {
     system("cls");
-    cout << "COMPLETE EL FORMULARIO PARA REGISTRAR UN LABORATORIO\n";
+    cout << "COMPLETE EL FORMULARIO PARA REGISTRAR UN CLIENTE\n";
     int dato = validarGuardado(client, tamanoCliente);
     int cedula = 0;
     string nombre = "";
@@ -95,6 +95,7 @@ void crearCliente(Cliente client[], int tamanoCliente)
             cin >> celular;
             client[dato].celularCliente = celular;
             string email = "";
+            cin.ignore();
             cout << "INGRESE EL EMAIL DEL CLIENTE-->";
             cin >> email;
             client[dato].emailCliente = email;

@@ -50,6 +50,7 @@ void menu()
         case 3:
         {
             system("cls");
+            crudCliente();
             system("pause");
             break;
         }

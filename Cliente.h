@@ -18,18 +18,20 @@ struct Cliente
 
 Cliente client[tamanoCliente];
 
-int validarEspacioCliente(Cliente client[], int tamanoCliente){
+int validarEspacioCliente(Cliente client[], int tamanoCliente)
+{
     for (int i = 0; i < tamanoCliente; i++)
     {
         if (client[i].cedulaCliente == 0 && client[i].nombreCliente.empty() && client[i].direccionCliente.empty() && client[i].celularCliente == 0 && client[i].fechaNacimientoCliente.empty() && client[i].emailCliente.empty())
         {
             return i;
-        } 
+        }
     }
     return 11;
 }
 
-bool validarCliente(Cliente client[], int tamanoCliente, int cedulaCliente){
+bool validarCliente(Cliente client[], int tamanoCliente, int cedulaCliente)
+{
     for (int i = 0; i < tamanoCliente; i++)
     {
         if (client[i].cedulaCliente == cedulaCliente)
@@ -55,10 +57,6 @@ void limpiarCliente()
 }
 
 void eliminarCliente()
-{
-}
-
-void readCliente()
 {
 }
 

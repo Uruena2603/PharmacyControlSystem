@@ -36,14 +36,14 @@ void menu()
         case 1:
         {
             system("cls");
-            administrarMedicamentos();
+            crudMedicamentos();
             system("pause");
             break;
         }
         case 2:
         {
             system("cls");
-            administrarLaboratorios();
+            crudLaboratorios();
             system("pause");
             break;
         }

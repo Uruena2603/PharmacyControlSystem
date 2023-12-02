@@ -98,7 +98,6 @@ void verMedicamentos(Medicamento farmacos[], int tamanoMedicamento)
             cout << "STOCK    MINIMO------->" << farmacos[i].stockMinimo << "\n";
             cout << "UNIDADES ESISTENTES--->" << farmacos[i].unidadesExistentes << "\n";
             cout << "TIPO     MEDICAMENTO-->" << farmacos[i].tipo << "\n";
-            system("pause");
         }
         else
         {

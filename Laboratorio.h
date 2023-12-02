@@ -129,6 +129,13 @@ void eliminarLaboratorio(Laboratorio site[], int tamanoLaboratorio)
         {
             site[i] = site[i + 1];
             tamanoLaboratorio = tamanoLaboratorio - 1;
+            cout << "EL LABORATORIO HA SIDO ELIMINADO.\n";
+            break;
+        }
+        else
+        {
+            cout << "EL CODIGO INGRESADO NO HA SIDO ENCONTRADO.\n";
+            break;
         }
     }
 }

@@ -200,7 +200,6 @@ void crudMedicamentos()
         {
             system("cls");
             cout << "EXIT.\n";
-            cin.ignore();
             break;
         }
             cin.ignore();

@@ -1,108 +1,147 @@
 #include <iostream>
+#include <windows.h>
+#include <conio.h>
 #include "Laboratorio.h"
 #include "Cliente.h"
 #include "CompraVenta.h"
 #include "Consultas.h"
 #include "Medicamento.h"
+
 using namespace std;
 
-void limpiarDatos()
-{
+void color(int color) {
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
+}
+
+void gotos(int a, int b) {
+    COORD c;
+    c.X = a;
+    c.Y = b;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c);
+}
+
+void limpiarDatos() {
     limpiarMedicamentos();
     limpiarLaboratorio();
     limpiarCliente();
 }
 
-void menu()
-{
-    int opcion = 0;
-    do
-    {
-        system("cls");
-        cout << "BIENVENIDO PHARMACY CONTROL SYSTEM\n";
-        cout << "ADMINISTRAR MEDICAMENTOS------->(1)\n";
-        cout << "ADMINISTRAR LABORATORIOS------->(2)\n";
-        cout << "ADMINISTRAR CLIENTES----------->(3)\n";
-        cout << "COMPRAR MEDICAMENTOS----------->(4)\n";
-        cout << "VENDER MEDICAMENTOS------------>(5)\n";
-        cout << "HISTORIAL FACTURAS------------->(6)\n";
-        cout << "CONSULTAS---------------------->(7)\n";
-        cout << "CERRAR PROGRMAMA--------------->(8)\n\n";
-        cout << "DIGITE UNA OPCION-------------->";
-        cin >> opcion;
+void mostrarOpciones(int Set[], int numOpciones) {
+    gotos(0, 0);
+    cout << "BIENVENIDO PHARMACY CONTROL SYSTEM\n\n";
+    for (int i = 0; i < numOpciones; ++i) {
+        color(Set[i]);
+        switch (i + 1) {
+            case 1:
+                cout << "1. ADMINISTRAR MEDICAMENTOS\n";
+                break;
+            case 2:
+                cout << "2. ADMINISTRAR LABORATORIOS\n";
+                break;
+            case 3:
+                cout << "3. ADMINISTRAR CLIENTES\n";
+                break;
+            case 4:
+                cout << "4. COMPRAR MEDICAMENTOS\n";
+                break;
+            case 5:
+                cout << "5. VENDER MEDICAMENTOS\n";
+                break;
+            case 6:
+                cout << "6. HISTORIAL FACTURAS\n";
+                break;
+            case 7:
+                cout << "7. CONSULTAS\n";
+                break;
+            case 8:
+                cout << "8. CERRAR PROGRAMA\n";
+                break;
+        }
+    }
+    color(7);
+}
 
-        switch (opcion)
-        {
+void menu() {
+    int Set[] = {7, 7, 7, 7, 7, 7, 7, 7};
+    int counter = 1;
+    char llave;
+
+    do {
+        mostrarOpciones(Set, 8);
+
+        llave = _getch();
+        if (llave == 72 && counter > 1) {
+            Set[counter - 1] = 7;
+            counter--;
+        }
+        else if (llave == 80 && counter < 8) {
+            Set[counter - 1] = 7;
+            counter++;
+        }
+        else if (llave == '\r') {
+            break;
+        }
+        Set[counter - 1] = 12;
+    } while (true);
+    gotos(0, 9);
+    for (int i = 0; i < 20; ++i) {
+        cout << "                                         ";  // Espacios en blanco para borrar
+    }
+        switch (counter) {
         case 1:
         {
             system("cls");
             crudMedicamentos();
-            system("pause");
             break;
         }
         case 2:
         {
             system("cls");
             crudLaboratorios();
-            system("pause");
             break;
         }
         case 3:
         {
             system("cls");
             crudCliente();
-            system("pause");
             break;
         }
         case 4:
         {
             system("cls");
-            system("pause");
             break;
         }
         case 5:
         {
             system("cls");
-            system("pause");
             break;
         }
         case 6:
         {
             system("cls");
-            system("pause");
             break;
         }
         case 7:
         {
             system("cls");
-            system("pause");
             break;
         }
         case 8:
         {
             system("cls");
-            system("pause");
-            break;
+            cout<<"SALIENDO...\n";
+            exit(0);
         }
-        default:
-        {
-            system("cls");
-            cout << "NINGUNA OPCION DISPONIBLE FUE SELECCIONADA.\n";
-            system("pause");
-            cin.ignore();
-            menu();
-            break;
-        }
-        }
-
-    } while (opcion >= 1 && opcion <= 7);
+    }
+    cin.ignore();
 }
 
-int main()
-{
+int main() {
     system("cls");
     limpiarDatos();
-    menu();
+    do {
+        menu();
+    } while (true);
     cin.ignore();
     return 0;
 }

@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <limits>
+#include <cstdint> // Para guardar numero correctamente debido que int=2147483647  y un numero de celular tiene notacion 300000000+
 #ifndef LABORATORIO_H
 #define LABORATORIO_H
 using namespace std;
@@ -12,7 +13,7 @@ struct Laboratorio
 {
     int codigoLaboratorio = 0;
     string nombreLaboratorio = "";
-    int telefonoLaboratorio = 0;
+    string telefonoLaboratorio = "";
     string direccionLaboratorio = "";
     string emailLaboratorio = "";
 };
@@ -21,7 +22,7 @@ int validarGuardado(vector<Laboratorio> &site, int tamanoLaboratorio)
 {
     for (int i = 0; i < tamanoLaboratorio; i++)
     {
-        if (site[i].codigoLaboratorio == 0 && site[i].nombreLaboratorio.empty() && site[i].telefonoLaboratorio == 0 && site[i].direccionLaboratorio.empty() && site[i].emailLaboratorio.empty())
+        if (site[i].codigoLaboratorio == 0 && site[i].nombreLaboratorio.empty() && site[i].telefonoLaboratorio.empty() && site[i].direccionLaboratorio.empty() && site[i].emailLaboratorio.empty())
         {
             return i;
         }
@@ -85,13 +86,13 @@ void crearLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
         {
             site[dato].codigoLaboratorio = codigo;
             site[dato].nombreLaboratorio = nombre;
-            int telefono = 0;
+            string telefono = "";
             string direccion = "";
             string email = "";
             cout << "INGRESE EL TELEFONO DEL LABORATORIO-->";
-            scanf("%d",&telefono);
+            cin>>telefono;
             site[dato].telefonoLaboratorio = telefono;
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Validacion para tomar datos sin limites
             cout << "INGRESE LA DIRECCION DEL LABORATORIO-->";
             getline(cin,direccion);
             site[dato].direccionLaboratorio = direccion;
@@ -201,7 +202,7 @@ void limpiarLaboratorio()
     {
         site[i].codigoLaboratorio = 0;
         site[i].nombreLaboratorio = "";
-        site[i].telefonoLaboratorio = 0;
+        site[i].telefonoLaboratorio = "";
         site[i].direccionLaboratorio = "";
         site[i].emailLaboratorio = "";
     }

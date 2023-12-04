@@ -128,8 +128,7 @@ void eliminarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
     {
         if (codigo == site[i].codigoLaboratorio)
         {
-            site[i] = site[i + 1];
-            tamanoLaboratorio = tamanoLaboratorio - 1;
+            site.erase(site.begin() + i);
             cout << "EL LABORATORIO HA SIDO ELIMINADO.\n";
             break;
         }

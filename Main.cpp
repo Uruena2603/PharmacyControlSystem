@@ -9,17 +9,6 @@
 
 using namespace std;
 
-void color(int color) {
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
-}
-
-void gotos(int a, int b) {
-    COORD c;
-    c.X = a;
-    c.Y = b;
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c);
-}
-
 void limpiarDatos() {
     limpiarMedicamentos();
     limpiarLaboratorio();

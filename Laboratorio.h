@@ -2,7 +2,8 @@
 #include <iostream>
 #include <vector>
 #include <limits>
-#include <cstdint> // Para guardar numero correctamente debido que int=2147483647  y un numero de celular tiene notacion 300000000+
+#include <windows.h>
+#include <conio.h>
 #ifndef LABORATORIO_H
 #define LABORATORIO_H
 using namespace std;
@@ -17,6 +18,17 @@ struct Laboratorio
     string direccionLaboratorio = "";
     string emailLaboratorio = "";
 };
+
+void color(int color) {
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
+}
+
+void gotos(int a, int b) {
+    COORD c;
+    c.X = a;
+    c.Y = b;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c);
+}
 
 int validarGuardado(vector<Laboratorio> &site, int tamanoLaboratorio)
 {
@@ -147,52 +159,103 @@ void eliminarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
 }
 vector<Laboratorio> site(tamanoLaboratorio);
 
+void mostrarOpcionesLaboratorio(int Set[], int numOpciones) {
+    gotos(0, 0);
+    cout << "--MENU DE LABORATORIOS (CRUD)\n\n";
+    for (int i = 0; i < numOpciones; ++i) {
+        color(Set[i]);
+        switch (i + 1) {
+            case 1:
+                cout << "1. CREAR LABORATORIO\n";
+                break;
+            case 2:
+                cout << "2. VER LABORATORIOS\n";
+                break;
+            case 3:
+                cout << "3. ACTUALIZAR LABORATORIOS\n";
+                break;
+            case 4:
+                cout << "4. ELIMINAR LABORATORIOS\n";
+                break;
+            case 5:
+                cout << "5. SALIR\n";
+                break;
+        }
+    }
+    color(7);
+}
 void crudLaboratorios()
 {
-    int opcion = 0;
-    do
-    {
-        system("cls");
-        cout << "CREAR LABORATORIO--------->1\n";
-        cout << "VER LABORATORIOS---------->2\n";
-        cout << "ACTUALIZAR LABORATORIOS--->3\n";
-        cout << "ELIMINAR LABORATORIOS----->4\n";
-        cout << "SALIR--------------------->5\n";
-        cout << "DIGITE UNA OPCION--------->";
-        cin >> opcion;
-        switch (opcion)
-        {
-        case 1:
-        {
-            crearLaboratorio(site, tamanoLaboratorio);
+    bool flag=true;
+    do{
+    int Set[] = {7, 7, 7, 7, 7};
+    int counter = 1;
+    char llave;
+
+    do {
+        mostrarOpcionesLaboratorio(Set, 5);
+
+        llave = _getch();
+        if (llave == 72 && counter > 1) {
+            Set[counter - 1] = 7;
+            counter--;
+        }
+        else if (llave == 80 && counter < 5) {
+            Set[counter - 1] = 7;
+            counter++;
+        }
+        else if (llave == '\r') {
             break;
         }
-        case 2:
-        {
-            verLaboratorios(site, tamanoLaboratorio);
-            break;
+        Set[counter - 1] = 12;
+    } while (true);
+    gotos(0, 9);
+    for (int i = 0; i < 20; ++i) {
+        cout << "                                         ";  // Espacios en blanco para borrar
+    }
+        switch (counter) {
+            case 1:
+            {
+                crearLaboratorio(site, tamanoLaboratorio);
+                flag=false;
+                system("cls");
+                break;
+            }
+            case 2:
+            {
+                verLaboratorios(site, tamanoLaboratorio);
+                flag=false;
+                system("cls");
+                break;
+            }
+            case 3:
+            {
+                // actualizarLaboratorio();
+                system("cls");
+                break;
+            }
+            case 4:
+            {
+                eliminarLaboratorio(site, tamanoLaboratorio);
+                flag=false;
+                system("cls");
+                break;
+            }
+             case 5:
+            {
+                system("cls");
+                cout<<"SALIENDO DEL CRUD LABORATORIO...\n";
+                flag=true;
+                break;
+            }
+            default:
+            {
+                system("cls");
+                cout << "EXIT.\n";
+                break;
+            }
         }
-        case 3:
-        {
-            // actualizarLaboratorio();
-            break;
-        }
-        case 4:
-        {
-            eliminarLaboratorio(site, tamanoLaboratorio);
-            break;
-        }
-        default:
-        {
-            system("cls");
-            cout << "EXIT.\n";
-            cin.ignore();
-            break;
-        }
-            cin.ignore();
-            break;
-        }
-    } while (opcion >= 1 && opcion < 5);
+    }while(!flag);
 }
 
 void limpiarLaboratorio()

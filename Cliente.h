@@ -3,6 +3,9 @@
 #ifndef CLIENTE_H
 #define CLIENTE_H
 #include <vector>
+#include <string>
+#include <cctype>
+#include <algorithm>
 using namespace std;
 
 const int tamanoCliente = 11;
@@ -75,17 +78,93 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
     int dato = validarGuardado(client, tamanoCliente);
     long cedula = 0;
     string nombre = "";
+
     if (dato >= 0 && dato < tamanoCliente)
     {
+        // Validación del nombre
         cout << "INGRESE EL NOMBRE DEL CLIENTE-->";
-        cin >> nombre;
+        while (true)
+        {
+            cin >> nombre;
+
+            // Validación de la cédula como cadena de números
+            bool esNombreValido = true;
+
+            for (int i = 0; i < nombre.size(); i++)
+            {
+                if (nombre[i] < 'a' || nombre[i] > 'z')
+                {
+                    esNombreValido = false;
+                }
+            }
+
+            if (!esNombreValido)
+            {
+                system("cls");
+                cout << "NOMBRE NO VALIDADO, INGRESE SOLO LETRAS\n";
+                cedula = 0; // Reiniciar cedula
+            }
+            else
+            {
+                cout << "NOMBRE INGRESADO CORRECTAMENTE\n";
+                break;
+            }
+        }
+
         cout << "INGRESE LA CEDULA DEL CLIENTE-->";
-        cin >> cedula;
+        while (cedula <= 0)
+        {
+            cin >> cedula;
+
+            // Validación de la cédula como cadena de números
+            string clave = to_string(cedula);
+            bool esCedulaValida = true;
+
+            for (int i = 0; i < clave.size(); i++)
+            {
+                if (clave[i] < '0' || clave[i] > '9')
+                {
+                    esCedulaValida = false;
+                }
+            }
+
+            if (!esCedulaValida)
+            {
+                system("cls");
+                cout << "CEDULA NO VALIDA, INGRESE SOLO NUMEROS POSITIVOS\n";
+                cedula = 0; // Reiniciar cedula
+            }
+            else
+            {
+                cout << "CEDULA INGRESADA CORRECTAMENTE\n";
+                break;
+            }
+        }
+
         if (!validarCliente(client, tamanoCliente, cedula))
         {
             client[dato].nombreCliente = nombre;
             client[dato].cedulaCliente = cedula;
             cout << "INGRESE EL EMAIL DEL CLIENTE-->";
+            string email = "";
+            for (int i = 0; i < email.size(); i++)
+            {
+                if (email[i] == '@')
+                {
+                    string substr = email.substr(email[i], email.size() - 1);
+                    if (substr == "gmail" || substr == "hotmail" || substr == "yahoo" || substr == "email" || substr == "outlook")
+                    {
+                        cin >> client[dato].emailCliente;
+                        break;
+                    }
+                    else
+                    {
+                        system("cls");
+                        cout << "INGRESE UN CORREO VALIDO\n";
+                    }
+                }
+            }
+
             cin >> client[dato].emailCliente;
             cout << "INGRESE LA DIRECCION DEL CLIENTE-->";
             cin >> client[dato].direccionCliente;
@@ -101,11 +180,11 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
                     cout << "EL CLIENTE-> " << client[i].nombreCliente << " CON CEDULA->" << client[i].cedulaCliente << " YA ESTA REGISTRADO\n";
                     cin.ignore();
                     system("pause");
-                    break;
+                    return; // Salir de la función si la cédula ya está registrada
                 }
             }
-            return;
         }
+
         cout << "SE HA REGISTRADO EL CLIENTE\n";
         system("pause");
     }

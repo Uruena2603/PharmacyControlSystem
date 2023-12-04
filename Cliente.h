@@ -15,10 +15,10 @@ const int tamanoCliente = 11;
 
 struct Cliente
 {
-    long cedulaCliente = 0;
+    string cedulaCliente = "";
     string nombreCliente = "";
     string direccionCliente = "";
-    long celularCliente = 0;
+    string celularCliente = "";
     string fechaNacimientoCliente = "";
     string emailCliente = "";
 };
@@ -27,7 +27,7 @@ int validarGuardado(vector<Cliente> &client, int tamanoCliente)
 {
     for (int i = 0; i < tamanoCliente; i++)
     {
-        if (client[i].cedulaCliente == 0 && client[i].nombreCliente.empty() && client[i].direccionCliente.empty() && client[i].celularCliente == 0 && client[i].fechaNacimientoCliente.empty() && client[i].emailCliente.empty())
+        if (client[i].cedulaCliente.empty() && client[i].nombreCliente.empty() && client[i].direccionCliente.empty() && client[i].celularCliente.empty() && client[i].fechaNacimientoCliente.empty() && client[i].emailCliente.empty())
         {
             return i;
         }
@@ -35,7 +35,7 @@ int validarGuardado(vector<Cliente> &client, int tamanoCliente)
     return 11;
 }
 
-bool validarCliente(vector<Cliente> &client, int tamanoCliente, int cedulaCliente)
+bool validarCliente(vector<Cliente> &client, int tamanoCliente, string cedulaCliente)
 {
     for (int i = 0; i < tamanoCliente; i++)
     {
@@ -53,9 +53,9 @@ void verClientes(vector<Cliente> &client, int tamanoCliente)
     cout << "CLIENTES GUARDADOS\n";
     for (int i = 0; i < tamanoCliente; i++)
     {
-        int cedulaCliente = 0;
+        string cedulaCliente = "";
         cedulaCliente = client[i].cedulaCliente;
-        if (cedulaCliente != 0)
+        if (!cedulaCliente.empty())
         {
             cout << "\nCLIENTE #" << i + 1 << "\n";
             cout << "CEDULA    CLIENTE-->" << client[i].cedulaCliente << "\n";
@@ -79,7 +79,7 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
     system("cls");
     cout << "COMPLETE EL FORMULARIO PARA REGISTRAR UN CLIENTE\n";
     int dato = validarGuardado(client, tamanoCliente);
-    long cedula = 0;
+    string cedula = "";
     string nombre = "";
 
     if (dato >= 0 && dato < tamanoCliente)
@@ -88,20 +88,25 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
         cout << "INGRESE EL NOMBRE DEL CLIENTE-->";
         while (true)
         {
-            cin >> nombre;
+            cin.ignore();
+            getline(cin, client[dato].nombreCliente);
+            nombre = client[dato].nombreCliente;
+            bool nombreValido = true;
 
-            // Validación de la cédula como cadena de números
-            bool esNombreValido = true;
-
+            if (client[dato].nombreCliente.empty())
+            {
+                cout << "EL NOMBRE NO PUEDE ESTAR VACIO\n";
+                nombreValido = false;
+                continue;
+            }
             for (int i = 0; i < nombre.size(); i++)
             {
                 if (nombre[i] < 'a' || nombre[i] > 'z')
                 {
-                    esNombreValido = false;
+                    nombreValido = false;
                 }
             }
-
-            if (!esNombreValido)
+            if (!nombreValido)
             {
                 system("cls");
                 cout << "NOMBRE NO VALIDADO, INGRESE SOLO LETRAS\n";
@@ -114,23 +119,46 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
             }
         }
 
+        bool cedulaValida = false;
+        string cedula = "";
         cout << "INGRESE LA CEDULA DEL CLIENTE-->";
         do
         {
             cin >> cedula;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            bool digitosValidos = true;
 
-            if (cin.fail() || cedula < 0)
+            for (char c : cedula) // Verifica si el número de celular contiene solo dígitos
             {
-                cin.clear();                                         // Limpiar el flag de error
-                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Descartar la entrada incorrecta
-                cout << "ENTRADA INVALIDA. INGRESE SOLO NUMEROS POSITIVOS\n";
+                if (!isdigit(c))
+                {
+                    digitosValidos = false;
+                    cout << "LA CEDULA DEBE CONTENER SOLO DIGITOS\n";
+                    continue;
+                }
+            }
+
+            if (digitosValidos && cedula.length() == 10)
+            {
+                cout << "CEDULA INGRESADA CORRECTAMENTE\n";
+                cedulaValida = true;
+                break;
             }
             else
             {
-                cout << "CEDULA INGRESADA CORRECTAMENTE\n";
-                break;
+                if (!digitosValidos)
+                {
+                    cout << "LA CEDULA DEBE CONTENER SOLO DIGITOS\n";
+                    continue;
+                }
+                else
+                {
+                    cout << "LA CEDULA DEBE CONTENER 10 DIGITOS\n";
+                    continue;
+                }
             }
-        } while (true);
+
+        } while (!cedulaValida);
 
         if (!validarCliente(client, tamanoCliente, cedula))
         {
@@ -210,8 +238,7 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
                 if (digitosValidos && celular.length() == 10)
                 {
                     cout << "CELULAR INGRESADO CORRECTAMENTE\n";
-                    long celularNumerico = stoll(celular);
-                    client[dato].celularCliente = celularNumerico;
+                    client[dato].celularCliente = celular;
                     celularValido = true;
                 }
                 else
@@ -301,10 +328,10 @@ void limpiarCliente()
 {
     for (int i = 0; i < tamanoCliente; i++)
     {
-        client[i].cedulaCliente = 0;
+        client[i].cedulaCliente = "";
         client[i].nombreCliente = "";
         client[i].direccionCliente = "";
-        client[i].celularCliente = 0;
+        client[i].celularCliente = "";
         client[i].fechaNacimientoCliente = "";
         client[i].emailCliente = "";
     }

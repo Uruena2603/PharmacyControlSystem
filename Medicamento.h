@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cstdlib> // Para la función rand
 #include <ctime>   // Para la función time
+#include <vector>
 #ifndef MEDICAMENTO_H
 #define MEDICAMENTO_H
 using namespace std;
@@ -33,7 +34,7 @@ struct Medicamento
     tipoMedicamento tipo;
 };
 
-int validarGuardado(Medicamento farmacos[], int tamanoMedicamento)
+int validarGuardado(vector<Medicamento> &farmacos, int tamanoMedicamento)
 {
     for (int i = 0; i < tamanoMedicamento; i++)
     {
@@ -45,7 +46,7 @@ int validarGuardado(Medicamento farmacos[], int tamanoMedicamento)
     return 11;
 }
 
-bool validarMedicamento(Medicamento farmacos[], int tamanoMedicamento, int codigoMedicamento)
+bool validarMedicamento(vector<Medicamento> &farmacos, int tamanoMedicamento, int codigoMedicamento)
 {
     for (int i = 0; i < tamanoMedicamento; i++)
     {
@@ -82,7 +83,7 @@ tipoMedicamento enumToString(string medicamento)
     return def;
 }
 
-void verMedicamentos(Medicamento farmacos[], int tamanoMedicamento)
+void verMedicamentos(vector<Medicamento> &farmacos, int tamanoMedicamento)
 {
     system("cls");
     cout << "MEDICAMENTOS GUARDADOS\n";
@@ -96,7 +97,7 @@ void verMedicamentos(Medicamento farmacos[], int tamanoMedicamento)
             cout << "CODIGO   MEDICAMENTO-->" << farmacos[i].codigoMedicamento << "\n";
             cout << "NOMBRE   MEDICAMENTO-->" << farmacos[i].nombreMedicamento << "\n";
             cout << "STOCK    MINIMO------->" << farmacos[i].stockMinimo << "\n";
-            cout << "UNIDADES ESISTENTES--->" << farmacos[i].unidadesExistentes << "\n";
+            cout << "UNIDADES EXISTENTES--->" << farmacos[i].unidadesExistentes << "\n";
             cout << "TIPO     MEDICAMENTO-->" << farmacos[i].tipo << "\n";
         }
         else
@@ -108,7 +109,7 @@ void verMedicamentos(Medicamento farmacos[], int tamanoMedicamento)
     }
 }
 
-void crearMedicamento(Medicamento farmacos[], int tamanoMedicamento)
+void crearMedicamento(vector<Medicamento> &farmacos, int tamanoMedicamento)
 {
     system("cls");
     srand(time(0));
@@ -146,7 +147,7 @@ void crearMedicamento(Medicamento farmacos[], int tamanoMedicamento)
             {
                 if (farmacos[i].codigoMedicamento == codigo)
                 {
-                    cout << "EL MEDICAMENTO->" << farmacos[i].nombreMedicamento << " CON CODIGO->" << farmacos[i].codigoMedicamento << " YA ESTA REGISTRADO\n";
+                    cout << "EL MEDICAMENTO-> " << farmacos[i].nombreMedicamento << " CON CODIGO-> " << farmacos[i].codigoMedicamento << " YA ESTA REGISTRADO\n";
                     cin.ignore();
                     break;
                 }
@@ -158,7 +159,7 @@ void crearMedicamento(Medicamento farmacos[], int tamanoMedicamento)
     }
 }
 
-Medicamento farmacos[tamanoMedicamento];
+vector<Medicamento> farmacos(tamanoMedicamento);
 void crudMedicamentos()
 {
     int opcion = 0;

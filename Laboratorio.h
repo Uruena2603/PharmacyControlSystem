@@ -1,5 +1,6 @@
 // Laboratorio.h
 #include <iostream>
+#include <vector>
 #ifndef LABORATORIO_H
 #define LABORATORIO_H
 using namespace std;
@@ -15,7 +16,7 @@ struct Laboratorio
     string emailLaboratorio = "";
 };
 
-int validarGuardado(Laboratorio site[], int tamanoLaboratorio)
+int validarGuardado(vector<Laboratorio> &site, int tamanoLaboratorio)
 {
     for (int i = 0; i < tamanoLaboratorio; i++)
     {
@@ -27,7 +28,7 @@ int validarGuardado(Laboratorio site[], int tamanoLaboratorio)
     return 11;
 }
 
-bool validarLaboratorio(Laboratorio site[], int tamanoLaboratorio, int codigoLaboratorio)
+bool validarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio, int codigoLaboratorio)
 {
     for (int i = 0; i < tamanoLaboratorio; i++)
     {
@@ -39,7 +40,7 @@ bool validarLaboratorio(Laboratorio site[], int tamanoLaboratorio, int codigoLab
     return false;
 }
 
-void verLaboratorios(Laboratorio site[], int tamanoLaboratorio)
+void verLaboratorios(vector<Laboratorio> &site, int tamanoLaboratorio)
 {
     system("cls");
     cout << "LABORATORIOS GUARDADOS\n";
@@ -55,7 +56,6 @@ void verLaboratorios(Laboratorio site[], int tamanoLaboratorio)
             cout << "TELEFONO  LABORATORIO-->" << site[i].telefonoLaboratorio << "\n";
             cout << "DIRECCION LABORATORIO-->" << site[i].direccionLaboratorio << "\n";
             cout << "EMAIL     LABORATORIO-->" << site[i].emailLaboratorio << "\n";
-            system("pause");
         }
         else
         {
@@ -67,7 +67,7 @@ void verLaboratorios(Laboratorio site[], int tamanoLaboratorio)
     cin.get();
 }
 
-void crearLaboratorio(Laboratorio site[], int tamanoLaboratorio)
+void crearLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
 {
     system("cls");
     cout << "COMPLETE EL FORMULARIO PARA REGISTRAR UN LABORATORIO\n";
@@ -104,8 +104,9 @@ void crearLaboratorio(Laboratorio site[], int tamanoLaboratorio)
             {
                 if (site[i].codigoLaboratorio == codigo)
                 {
-                    cout << "EL LABORATORIO->" << site[i].nombreLaboratorio << " CON CODIGO->" << site[i].codigoLaboratorio << "YA ESTA REGISTRADO\n";
+                    cout << "EL LABORATORIO-> " << site[i].nombreLaboratorio << " CON CODIGO-> " << site[i].codigoLaboratorio << " YA ESTA REGISTRADO\n";
                     cin.ignore();
+                    system("pause");
                     break;
                 }
             }
@@ -116,7 +117,7 @@ void crearLaboratorio(Laboratorio site[], int tamanoLaboratorio)
     }
 }
 
-void eliminarLaboratorio(Laboratorio site[], int tamanoLaboratorio)
+void eliminarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
 {
     system("cls");
     cout << "COMPLETE EL FORMULARIO PARA ELIMINAR UN LABORATORIO\n";
@@ -140,7 +141,7 @@ void eliminarLaboratorio(Laboratorio site[], int tamanoLaboratorio)
     }
 }
 
-Laboratorio site[tamanoLaboratorio];
+vector<Laboratorio> site(tamanoLaboratorio);
 
 void crudLaboratorios()
 {

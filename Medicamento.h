@@ -149,6 +149,7 @@ void crearMedicamento(vector<Medicamento> &farmacos, int tamanoMedicamento)
                 {
                     cout << "EL MEDICAMENTO-> " << farmacos[i].nombreMedicamento << " CON CODIGO-> " << farmacos[i].codigoMedicamento << " YA ESTA REGISTRADO\n";
                     cin.ignore();
+                    system("pause");
                     break;
                 }
             }

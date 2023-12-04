@@ -16,7 +16,7 @@ struct Cliente
     string emailCliente = "";
 };
 
-int validarGuardado(Cliente client[], int tamanoCliente)
+int validarGuardado(vector<Cliente> &client, int tamanoCliente)
 {
     for (int i = 0; i < tamanoCliente; i++)
     {
@@ -28,7 +28,7 @@ int validarGuardado(Cliente client[], int tamanoCliente)
     return 11;
 }
 
-bool validarCliente(Cliente client[], int tamanoCliente, int cedulaCliente)
+bool validarCliente(vector<Cliente> &client, int tamanoCliente, int cedulaCliente)
 {
     for (int i = 0; i < tamanoCliente; i++)
     {
@@ -40,7 +40,7 @@ bool validarCliente(Cliente client[], int tamanoCliente, int cedulaCliente)
     return false;
 }
 
-void verClientes(Cliente client[], int tamanoCliente)
+void verClientes(vector<Cliente> &client, int tamanoCliente)
 {
     system("cls");
     cout << "CLIENTES GUARDADOS\n";
@@ -67,7 +67,7 @@ void verClientes(Cliente client[], int tamanoCliente)
     cin.get();
 }
 
-void crearCliente(Cliente client[], int tamanoCliente)
+void crearCliente(vector<Cliente> &client, int tamanoCliente)
 {
     system("cls");
     cout << "COMPLETE EL FORMULARIO PARA REGISTRAR UN CLIENTE\n";
@@ -97,8 +97,9 @@ void crearCliente(Cliente client[], int tamanoCliente)
             {
                 if (client[i].cedulaCliente == cedula)
                 {
-                    cout << "EL CLIENTE->" << client[i].nombreCliente << "CON CEDULA->" << client[i].cedulaCliente << " YA ESTA REGISTRADO\n";
+                    cout << "EL CLIENTE-> " << client[i].nombreCliente << " CON CEDULA->" << client[i].cedulaCliente << " YA ESTA REGISTRADO\n";
                     cin.ignore();
+                    system("pause");
                     break;
                 }
             }
@@ -109,7 +110,7 @@ void crearCliente(Cliente client[], int tamanoCliente)
     }
 }
 
-Cliente client[tamanoCliente];
+vector<Cliente> client(tamanoCliente);
 
 void crudCliente()
 {

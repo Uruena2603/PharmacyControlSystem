@@ -124,22 +124,26 @@ void eliminarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
     int codigo = 0;
     cout << "INGRESE EL CODIGO DEL LABORATORIO-->";
     cin >> codigo;
+
+    bool laboratorioEncontrado = false;
+
     for (int i = 0; i < tamanoLaboratorio; i++)
     {
         if (codigo == site[i].codigoLaboratorio)
         {
             site.erase(site.begin() + i);
             cout << "EL LABORATORIO HA SIDO ELIMINADO.\n";
-            break;
-        }
-        else
-        {
-            cout << "EL CODIGO INGRESADO NO HA SIDO ENCONTRADO.\n";
+            laboratorioEncontrado = true;
             break;
         }
     }
-}
 
+    if (!laboratorioEncontrado)
+    {
+        cout << "EL CODIGO INGRESADO NO HA SIDO ENCONTRADO.\n";
+    }
+    cin.ignore();
+}
 vector<Laboratorio> site(tamanoLaboratorio);
 
 void crudLaboratorios()

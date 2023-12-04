@@ -1,6 +1,7 @@
 // Laboratorio.h
 #include <iostream>
 #include <vector>
+#include <limits>
 #ifndef LABORATORIO_H
 #define LABORATORIO_H
 using namespace std;
@@ -59,7 +60,7 @@ void verLaboratorios(vector<Laboratorio> &site, int tamanoLaboratorio)
         }
         else
         {
-            cout << "INGRESE MAS LABORATORIOS. (# DE ESPACIOS DISPONIBLES:" << tamanoLaboratorio - i << ")\n";
+            cout << "\nINGRESE MAS LABORATORIOS. (# DE ESPACIOS DISPONIBLES:" << tamanoLaboratorio - i << ")\n";
             system("pause");
             break;
         }
@@ -88,11 +89,11 @@ void crearLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
             string direccion = "";
             string email = "";
             cout << "INGRESE EL TELEFONO DEL LABORATORIO-->";
-            cin >> telefono;
+            scanf("%d",&telefono);
             site[dato].telefonoLaboratorio = telefono;
-            cin.ignore();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "INGRESE LA DIRECCION DEL LABORATORIO-->";
-            cin >> direccion;
+            getline(cin,direccion);
             site[dato].direccionLaboratorio = direccion;
             cout << "INGRESE EL EMAIL DEL LABORATORIO-->";
             cin >> email;

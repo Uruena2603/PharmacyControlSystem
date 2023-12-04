@@ -139,12 +139,11 @@ void eliminarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
             break;
         }
     }
-
     if (!laboratorioEncontrado)
     {
         cout << "EL CODIGO INGRESADO NO HA SIDO ENCONTRADO.\n";
     }
-    cin.ignore();
+    system("pause");
 }
 vector<Laboratorio> site(tamanoLaboratorio);
 
@@ -193,7 +192,7 @@ void crudLaboratorios()
             cin.ignore();
             break;
         }
-    } while (opcion >= 1 && opcion < 4);
+    } while (opcion >= 1 && opcion < 5);
 }
 
 void limpiarLaboratorio()

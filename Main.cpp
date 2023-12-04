@@ -17,6 +17,7 @@ void limpiarDatos() {
 
 void mostrarOpciones(int Set[], int numOpciones) {
     gotos(0, 0);
+    color(15);
     cout << "BIENVENIDO PHARMACY CONTROL SYSTEM\n\n";
     for (int i = 0; i < numOpciones; ++i) {
         color(Set[i]);
@@ -51,8 +52,8 @@ void mostrarOpciones(int Set[], int numOpciones) {
 }
 
 void menu() {
-    int Set[] = {7, 7, 7, 7, 7, 7, 7, 7};
-    int counter = 1;
+    int Set[] = {15, 15, 15, 15, 15, 15, 15, 15};
+    int counter = 0;
     char llave;
 
     do {
@@ -60,11 +61,11 @@ void menu() {
 
         llave = _getch();
         if (llave == 72 && counter > 1) {
-            Set[counter - 1] = 7;
+            Set[counter - 1] = 15;
             counter--;
         }
         else if (llave == 80 && counter < 8) {
-            Set[counter - 1] = 7;
+            Set[counter - 1] = 15;
             counter++;
         }
         else if (llave == '\r') {

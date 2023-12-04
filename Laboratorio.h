@@ -161,6 +161,7 @@ vector<Laboratorio> site(tamanoLaboratorio);
 
 void mostrarOpcionesLaboratorio(int Set[], int numOpciones) {
     gotos(0, 0);
+    color(15);
     cout << "--MENU DE LABORATORIOS (CRUD)\n\n";
     for (int i = 0; i < numOpciones; ++i) {
         color(Set[i]);
@@ -188,8 +189,8 @@ void crudLaboratorios()
 {
     bool flag=true;
     do{
-    int Set[] = {7, 7, 7, 7, 7};
-    int counter = 1;
+    int Set[] = {15, 15, 15, 15, 15};
+    int counter = 0;
     char llave;
 
     do {
@@ -197,11 +198,11 @@ void crudLaboratorios()
 
         llave = _getch();
         if (llave == 72 && counter > 1) {
-            Set[counter - 1] = 7;
+            Set[counter - 1] = 15;
             counter--;
         }
         else if (llave == 80 && counter < 5) {
-            Set[counter - 1] = 7;
+            Set[counter - 1] = 15;
             counter++;
         }
         else if (llave == '\r') {
@@ -244,6 +245,7 @@ void crudLaboratorios()
              case 5:
             {
                 system("cls");
+                color(15);
                 cout<<"SALIENDO DEL CRUD LABORATORIO...\n";
                 flag=true;
                 break;
@@ -251,7 +253,8 @@ void crudLaboratorios()
             default:
             {
                 system("cls");
-                cout << "EXIT.\n";
+                color(15);
+                cout << "NINGUNA OPCION FUE SELECCIONADA.\n";
                 break;
             }
         }

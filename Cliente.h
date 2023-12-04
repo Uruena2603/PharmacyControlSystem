@@ -6,6 +6,9 @@
 #include <string>
 #include <cctype>
 #include <algorithm>
+#include <limits>
+#include <stdlib.h>
+
 using namespace std;
 
 const int tamanoCliente = 11;
@@ -102,7 +105,7 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
             {
                 system("cls");
                 cout << "NOMBRE NO VALIDADO, INGRESE SOLO LETRAS\n";
-                cedula = 0; // Reiniciar cedula
+                nombre = "";
             }
             else
             {
@@ -112,64 +115,118 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
         }
 
         cout << "INGRESE LA CEDULA DEL CLIENTE-->";
-        while (cedula <= 0)
+        do
         {
             cin >> cedula;
 
-            // Validación de la cédula como cadena de números
-            string clave = to_string(cedula);
-            bool esCedulaValida = true;
-
-            for (int i = 0; i < clave.size(); i++)
+            if (cin.fail() || cedula < 0)
             {
-                if (clave[i] < '0' || clave[i] > '9')
-                {
-                    esCedulaValida = false;
-                }
-            }
-
-            if (!esCedulaValida)
-            {
-                system("cls");
-                cout << "CEDULA NO VALIDA, INGRESE SOLO NUMEROS POSITIVOS\n";
-                cedula = 0; // Reiniciar cedula
+                cin.clear();                                         // Limpiar el flag de error
+                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Descartar la entrada incorrecta
+                cout << "ENTRADA INVALIDA. INGRESE SOLO NUMEROS POSITIVOS\n";
             }
             else
             {
                 cout << "CEDULA INGRESADA CORRECTAMENTE\n";
                 break;
             }
-        }
+        } while (true);
 
         if (!validarCliente(client, tamanoCliente, cedula))
         {
             client[dato].nombreCliente = nombre;
             client[dato].cedulaCliente = cedula;
+
             cout << "INGRESE EL EMAIL DEL CLIENTE-->";
             string email = "";
-            for (int i = 0; i < email.size(); i++)
+            bool emailValido = false;
+
+            do
             {
-                if (email[i] == '@')
+                cin >> email;
+                size_t posArroba = email.find('@');  // Busca la posición del '@' en el correo electrónico
+                if (email.find('@') == string::npos) // Verifica si el correo electrónico no contiene el símbolo '@'
                 {
-                    string substr = email.substr(email[i], email.size() - 1);
-                    if (substr == "gmail" || substr == "hotmail" || substr == "yahoo" || substr == "email" || substr == "outlook")
+                    cout << "EL CORREO ELECTRONICO DEBE CONTENER UN @\n";
+                    continue;
+                }
+                if (posArroba != string::npos) // Verifica si se encontró el símbolo '@' en el correo electrónico
+                {
+                    string dominio = email.substr(posArroba + 1); // Extrae el dominio del correo electrónico
+
+                    if (!dominio.empty() && (dominio == "gmail.com" || dominio == "hotmail.com" || dominio == "yahoo.com" || dominio == "email.com" || dominio == "outlook.com"))
                     {
-                        cin >> client[dato].emailCliente;
-                        break;
+                        client[dato].emailCliente = email;
+                        cout << "CORREO ELECTRONICO INGRESADO CORRECTAMENTE\n";
+                        emailValido = true;
                     }
                     else
                     {
-                        system("cls");
                         cout << "INGRESE UN CORREO VALIDO\n";
+                        cin.clear();                                                   // Limpiar el estado de error
+                        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignora entrada adicional en el buffer
                     }
                 }
-            }
+            } while (!emailValido);
 
-            cin >> client[dato].emailCliente;
+            bool direccionValida = false;
             cout << "INGRESE LA DIRECCION DEL CLIENTE-->";
-            cin >> client[dato].direccionCliente;
+            do
+            {
+                cin.ignore();
+                getline(cin, client[dato].direccionCliente); // Permite espacios en la dirección
+
+                if (client[dato].direccionCliente.empty())
+                {
+                    cout << "LA DIRECCION NO PUEDE ESTAR VACIA\n";
+                    continue;
+                }
+                else
+                {
+                    cout << "DIRECCION INGRESADA CORRECTAMENTE\n";
+                    direccionValida = true;
+                    break;
+                }
+            } while (!direccionValida);
+
+            bool celularValido = false;
+            string celular = "";
             cout << "INGRESE EL CELULAR DEL CLIENTE-->";
-            cin >> client[dato].celularCliente;
+            do
+            {
+                cin >> celular;
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                bool digitosValidos = true;
+
+                for (char c : celular) // Verifica si el número de celular contiene solo dígitos
+                {
+                    if (!isdigit(c))
+                    {
+                        digitosValidos = false;
+                        cout << "EL CELULAR DEBE CONTENER SOLO DIGITOS\n";
+                        continue;
+                    }
+                }
+                if (digitosValidos && celular.length() == 10)
+                {
+                    cout << "CELULAR INGRESADO CORRECTAMENTE\n";
+                    long celularNumerico = stoll(celular);
+                    client[dato].celularCliente = celularNumerico;
+                    celularValido = true;
+                }
+                else
+                {
+                    if (!digitosValidos)
+                    {
+                        cout << "EL CELULAR DEBE CONTENER SOLO DIGITOS\n";
+                    }
+                    else
+                    {
+                        cout << "EL CELULAR DEBE CONTENER 10 DIGITOS\n";
+                    }
+                }
+
+            } while (!celularValido);
         }
         else
         {

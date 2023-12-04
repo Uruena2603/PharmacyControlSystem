@@ -2,6 +2,7 @@
 #include <iostream>
 #ifndef CLIENTE_H
 #define CLIENTE_H
+#include <vector>
 using namespace std;
 
 const int tamanoCliente = 11;

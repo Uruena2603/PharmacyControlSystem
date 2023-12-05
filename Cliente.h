@@ -66,15 +66,15 @@ void verClientes(vector<Cliente> &client, int tamanoCliente)
         if (!cedulaCliente.empty())
         {
             cout << "| " << setw(2) << i + 1 << "  | " << setw(6) << client[i].cedulaCliente
-             << "  | " << setw(27) << client[i].nombreCliente
-             << "  | " << setw(19) << client[i].direccionCliente
-             << "  | " << setw(8) << client[i].celularCliente
-             << "  | " << setw(22) << client[i].emailCliente
-             << "  |\n";
+                 << "  | " << setw(27) << client[i].nombreCliente
+                 << "  | " << setw(19) << client[i].direccionCliente
+                 << "  | " << setw(8) << client[i].celularCliente
+                 << "  | " << setw(22) << client[i].emailCliente
+                 << "  |\n";
         }
         else
         {
-    cout << "+-----+-------------+------------------------------+----------------------+-------------+-------------------------+\n";
+            cout << "+-----+-------------+------------------------------+----------------------+-------------+-------------------------+\n";
             color(15);
             cout << "\nINGRESE MAS CLIENTES. (# DE ESPACIOS DISPONIBLES:" << tamanoCliente - i << ")\n";
             system("pause");
@@ -94,7 +94,8 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
     if (dato >= 0 && dato < tamanoCliente)
     {
         // Validación del nombre
-        cout << "INGRESE EL NOMBRE DEL CLIENTE-->";
+        cout << "INGRESE EL NOMBRE DEL CLIENTE\n";
+        cout << "~ ";
         while (true)
         {
             getline(cin, nombre);
@@ -105,6 +106,7 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
             {
                 system("cls");
                 cout << "EL NOMBRE NO PUEDE ESTAR VACIO\n";
+                cout << "~ ";
                 nombreValido = false;
                 continue;
             }
@@ -125,6 +127,7 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
             {
                 system("cls");
                 cout << "NOMBRE NO VALIDADO, INGRESE SOLO LETRAS\n";
+                cout << "~ ";
                 nombre = "";
             }
             else
@@ -135,7 +138,8 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
         }
 
         bool cedulaValida = false;
-        cout << "INGRESE LA CEDULA DEL CLIENTE-->";
+        cout << "INGRESE LA CEDULA DEL CLIENTE\n";
+        cout << "~ ";
         do
         {
             cin >> cedula;
@@ -147,7 +151,8 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
                 {
                     system("cls");
                     digitosValidos = false;
-                    cout << "LA CEDULA DEBE CONTENER 10 DIGITOS\n";
+                    cout << "LA CEDULA SOLO DEBE CONTENER DIGITOS\n";
+                    cout << "~ ";
                     break;
                 }
 
@@ -156,6 +161,7 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
                     system("cls");
                     digitosValidos = false;
                     cout << "LA CEDULA DEBE CONTENER 10 DIGITOS\n";
+                    cout << "~ ";
                     break;
                 }
             }
@@ -172,7 +178,8 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
             client[dato].nombreCliente = nombre;
             client[dato].cedulaCliente = cedula;
 
-            cout << "INGRESE EL EMAIL DEL CLIENTE-->";
+            cout << "INGRESE EL EMAIL DEL CLIENTE\n";
+            cout << "~ ";
             string email = "";
             bool emailValido = false;
 
@@ -184,6 +191,7 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
                 {
                     system("cls");
                     cout << "EL CORREO ELECTRONICO DEBE CONTENER UN @\n";
+                    cout << "~ ";
                     continue;
                 }
                 if (posArroba != string::npos) // Verifica si se encontró el símbolo '@' en el correo electrónico
@@ -200,6 +208,7 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
                     {
                         system("cls");
                         cout << "INGRESE UN CORREO VALIDO\n";
+                        cout << "~ ";
                         cin.clear();                                                   // Limpiar el estado de error
                         cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignora entrada adicional en el buffer
                     }
@@ -208,7 +217,8 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
 
             bool direccionValida = false;
             cin.get();
-            cout << "INGRESE LA DIRECCION DEL CLIENTE-->";
+            cout << "INGRESE LA DIRECCION DEL CLIENTE\n";
+            cout << "~ ";
             do
             {
                 // cin.ignore();
@@ -218,6 +228,7 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
                 {
                     system("cls");
                     cout << "LA DIRECCION NO PUEDE ESTAR VACIA\n";
+                    cout << "~ ";
                     continue;
                 }
                 else
@@ -230,7 +241,8 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
 
             bool celularValido = false;
             string celular = "";
-            cout << "INGRESE EL CELULAR DEL CLIENTE-->";
+            cout << "INGRESE EL CELULAR DEL CLIENTE\n";
+            cout << "~ ";
             do
             {
                 cin >> celular;
@@ -244,6 +256,7 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
                         system("cls");
                         digitosValidos = false;
                         cout << "EL CELULAR DEBE CONTENER SOLO DIGITOS\n";
+                        cout << "~ ";
                         continue;
                     }
                 }
@@ -259,11 +272,13 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
                     {
                         system("cls");
                         cout << "EL CELULAR DEBE CONTENER SOLO DIGITOS\n";
+                        cout << "~ ";
                     }
                     else
                     {
                         system("cls");
                         cout << "EL CELULAR DEBE CONTENER 10 DIGITOS\n";
+                        cout << "~ ";
                     }
                 }
 
@@ -315,6 +330,69 @@ void eliminarCliente(vector<Cliente> &client, int tamanoCliente)
     system("pause");
 }
 
+void actualizarCliente(vector<Cliente> &client, int tamanoCliente)
+{
+    system("cls");
+    cout << "COMPLETE EL FORMULARIO PARA ACTUALIZAR UN CLIENTE\n";
+    string cedula = "";
+    cout << "INGRESE LA CEDULA DEL CLIENTE\n";
+    cout << "~";
+    cin >> cedula;
+    bool clienteEncontrado = false;
+    for (int i = 0; i < tamanoCliente; i++)
+    {
+        if (cedula == client[i].cedulaCliente)
+        {
+            clienteEncontrado = true;
+            int opcion = 0;
+            do
+            {
+                system("cls");
+                cout << "ACTUALIZAR NOMBRE------>(1)\n";
+                cout << "ACTUALIZAR DIRECCION--->(2)\n";
+                cout << "ACTUALIZAR CELULAR----->(3)\n";
+                cout << "ACTUALIZAR EMAIL------->(4)\n";
+                cout << "ACTUALIZAR TODO-------->(5)\n";
+                color(12);
+                cout << "SALIR------------------>(6)\n";
+                color(7);
+                cout << "DIGITE UNA OPCION\n";
+                cout << "~ ";
+                cin >> opcion;
+
+                switch (opcion)
+                {
+                case 1:
+                {
+                    system("cls");
+                    break;
+                }
+                case 2:
+                {
+                    system("cls");
+                    break;
+                }
+                case 3:
+                {
+                    system("cls");
+                    break;
+                }
+                case 4:
+                {
+                    system("cls");
+                    break;
+                }
+                case 5:
+                {
+                    system("cls");
+                    break;
+                }
+                }
+
+            } while (opcion >= 1 && opcion <= 6);
+        }
+    }
+}
 vector<Cliente> client(tamanoCliente);
 
 void mostrarOpcionesCliente(int Set[], int numOpciones)
@@ -346,6 +424,7 @@ void mostrarOpcionesCliente(int Set[], int numOpciones)
     }
     color(7);
 }
+
 void crudCliente()
 {
     bool flag = true;
@@ -442,10 +521,6 @@ void limpiarCliente()
         client[i].fechaNacimientoCliente = "";
         client[i].emailCliente = "";
     }
-}
-
-void actualizarCliente()
-{
 }
 
 #endif // CLIENTES_H

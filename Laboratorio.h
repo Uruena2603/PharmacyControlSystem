@@ -353,7 +353,9 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                 cout << "ACTUALIZAR DIRECCION--->(3)\n";
                 cout << "ACTUALIZAR EMAIL------->(4)\n";
                 cout << "ACTUALIZAR TODO-------->(5)\n";
+                color(12);
                 cout << "SALIR------------------>(6)\n";
+                color(7);
                 cout << "DIGITE UNA OPCION\n";
                 cout << "~ ";
                 cin >> opcion;
@@ -708,11 +710,8 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
 
                     break;
                 }
-
-                default:
-                    cout << "NINGUNA OPCION FUE SELECCIONADA\n";
-                    break;
                 }
+
             } while (opcion >= 1 && opcion < 6);
         }
     }

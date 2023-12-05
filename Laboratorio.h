@@ -349,6 +349,7 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                     cout << "NOMBRE ACTUAL--> " << site[i].nombreLaboratorio << ".\n";
                     cin.get();
                     cout << "INGRESE EL NUEVO NOMBRE\n";
+                    cout << "~ ";
                     while (true)
                     {
                         getline(cin, nombre);
@@ -359,6 +360,7 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                         {
                             system("cls");
                             cout << "EL NOMBRE NO PUEDE ESTAR VACIO\n";
+                            cout << "~ ";
                             nombreValido = false;
                             continue;
                         }
@@ -380,6 +382,7 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                         {
                             system("cls");
                             cout << "NOMBRE NO VALIDADO, INGRESE SOLO LETRAS\n";
+                            cout << "~ ";
                             nombre = "";
                         }
                         else
@@ -400,6 +403,7 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                     cin.get();
                     bool telefonoValido = false;
                     cout << "INGRESE EL NUEVO TELEFONO\n";
+                    cout << "~ ";
                     do
                     {
                         cin >> telefono;
@@ -413,6 +417,7 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                                 system("cls");
                                 digitosValidos = false;
                                 cout << "EL TELEFONO DEBE CONTENER SOLO DIGITOS\n";
+                                cout << "~ ";
                                 continue;
                             }
                         }
@@ -429,11 +434,13 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                             {
                                 system("cls");
                                 cout << "EL TELEFONO DEBE CONTENER SOLO DIGITOS\n";
+                                cout << "~ ";
                             }
                             else
                             {
                                 system("cls");
                                 cout << "EL TELEFONO DEBE CONTENER 10 DIGITOS\n";
+                                cout << "~ ";
                             }
                         }
 
@@ -449,6 +456,7 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                     cin.get();
                     bool direccionValida = false;
                     cout << "INGRESE LA NUEVA DIRECCION\n";
+                    cout << "~ ";
                     do
                     {
                         getline(cin, direccion);
@@ -457,6 +465,7 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                         {
                             system("cls");
                             cout << "LA DIRECCION NO PUEDE ESTAR VACIA\n";
+                            cout << "~ ";
                             continue;
                         }
                         else
@@ -477,6 +486,8 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                     cout << "CORREO ACTUAL--> " << site[i].emailLaboratorio << ".\n";
                     cin.get();
                     bool emailValido = false;
+                    cout << "INGRESE EL CORREO NUEVO.\n";
+                    cout << "~ ";
                     do
                     {
                         cin >> email;
@@ -485,6 +496,7 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                         {
                             system("cls");
                             cout << "EL CORREO ELECTRONICO DEBE CONTENER UN @\n";
+                            cout << "~ ";
                             continue;
                         }
                         if (posArroba != string::npos)
@@ -502,6 +514,7 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                             {
                                 system("cls");
                                 cout << "INGRESE UN CORREO VALIDO\n";
+                                cout << "~ ";
                                 cin.clear();                                                   // Limpiar el estado de error
                                 cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignora entrada adicional en el buffer
                             }
@@ -512,6 +525,164 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                 }
                 case 5:
                 {
+                    system("cls");
+                    string nombre = "";
+                    cout << "NOMBRE ACTUAL--> " << site[i].nombreLaboratorio << ".\n";
+                    cin.get();
+                    cout << "INGRESE EL NUEVO NOMBRE\n";
+                    cout << "~ ";
+                    while (true)
+                    {
+                        getline(cin, nombre);
+                        transform(nombre.begin(), nombre.end(), nombre.begin(), ::tolower);
+                        bool nombreValido = true;
+
+                        if (nombre.empty())
+                        {
+                            system("cls");
+                            cout << "EL NOMBRE NO PUEDE ESTAR VACIO\n";
+                            cout << "~ ";
+                            nombreValido = false;
+                            continue;
+                        }
+
+                        for (int i = 0; i < nombre.size(); i++)
+                        {
+                            if (nombre[i] == 32)
+                            {
+                                continue;
+                            }
+
+                            if (nombre[i] < 97 || nombre[i] > 122)
+                            {
+                                nombreValido = false;
+                                break;
+                            }
+                        }
+                        if (!nombreValido)
+                        {
+                            system("cls");
+                            cout << "NOMBRE NO VALIDADO, INGRESE SOLO LETRAS\n";
+                            cout << "~ ";
+                            nombre = "";
+                        }
+                        else
+                        {
+                            cout << "NOMBRE INGRESADO CORRECTAMENTE\n";
+                            site[i].nombreLaboratorio = nombre;
+                            break;
+                        }
+                    }
+
+                    string telefono = "";
+                    cout << "TELEFONO ACTUAL--> " << site[i].telefonoLaboratorio << ".\n";
+                    bool telefonoValido = false;
+                    cout << "INGRESE EL NUEVO TELEFONO\n";
+                    cout << "~ ";
+                    do
+                    {
+                        cin >> telefono;
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        bool digitosValidos = true;
+
+                        for (char c : telefono)
+                        {
+                            if (!isdigit(c))
+                            {
+                                system("cls");
+                                digitosValidos = false;
+                                cout << "EL TELEFONO DEBE CONTENER SOLO DIGITOS\n";
+                                cout << "~ ";
+                                continue;
+                            }
+                        }
+                        if (digitosValidos && telefono.length() == 10)
+                        {
+                            cout << "TELEFONO INGRESADO CORRECTAMENTE\n";
+                            site[i].telefonoLaboratorio = telefono;
+                            telefonoValido = true;
+                        }
+                        else
+                        {
+                            if (!digitosValidos)
+                            {
+                                system("cls");
+                                cout << "EL TELEFONO DEBE CONTENER SOLO DIGITOS\n";
+                                cout << "~ ";
+                            }
+                            else
+                            {
+                                system("cls");
+                                cout << "EL TELEFONO DEBE CONTENER 10 DIGITOS\n";
+                                cout << "~ ";
+                            }
+                        }
+
+                    } while (!telefonoValido);
+
+                    string direccion = "";
+                    cout << "DIRECCION ACTUAL--> " << site[i].direccionLaboratorio << ".\n";
+                    bool direccionValida = false;
+                    cout << "INGRESE LA NUEVA DIRECCION\n";
+                    cout << "~ ";
+                    do
+                    {
+                        getline(cin, direccion);
+
+                        if (direccion.empty())
+                        {
+                            system("cls");
+                            cout << "LA DIRECCION NO PUEDE ESTAR VACIA\n";
+                            cout << "~ ";
+                            continue;
+                        }
+                        else
+                        {
+                            cout << "DIRECCION INGRESADA CORRECTAMENTE\n";
+                            site[i].direccionLaboratorio = direccion;
+                            direccionValida = true;
+                            break;
+                        }
+                    } while (!direccionValida);
+
+                    string email = "";
+                    cout << "CORREO ACTUAL--> " << site[i].emailLaboratorio << ".\n";
+                    bool emailValido = false;
+                    cout << "INGRESE EL CORREO NUEVO.\n";
+                    cout << "~ ";
+                    do
+                    {
+                        cin >> email;
+                        size_t posArroba = email.find('@');
+                        if (email.find('@') == string::npos)
+                        {
+                            system("cls");
+                            cout << "EL CORREO ELECTRONICO DEBE CONTENER UN @\n";
+                            cout << "~ ";
+                            continue;
+                        }
+                        if (posArroba != string::npos)
+                        {
+                            string dominio = email.substr(posArroba + 1);
+
+                            if (!dominio.empty() && (dominio == "gmail.com" || dominio == "hotmail.com" || dominio == "yahoo.com" || dominio == "email.com" || dominio == "outlook.com"))
+                            {
+                                site[i].emailLaboratorio = email;
+                                cout << "CORREO ELECTRONICO INGRESADO CORRECTAMENTE\n\n";
+                                cout << "ACTUALIZACION COMPLETADA.\n";
+                                system("pause");
+                                emailValido = true;
+                            }
+                            else
+                            {
+                                system("cls");
+                                cout << "INGRESE UN CORREO VALIDO\n";
+                                cout << "~ ";
+                                cin.clear();                                                   // Limpiar el estado de error
+                                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignora entrada adicional en el buffer
+                            }
+                        }
+                    } while (!emailValido);
 
                     break;
                 }

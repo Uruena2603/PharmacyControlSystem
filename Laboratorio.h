@@ -313,6 +313,119 @@ void eliminarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
     }
     system("pause");
 }
+
+void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
+{
+    system("cls");
+    cout << "COMPLETE EL FORMULARIO PARA ACTUALIZAR UN LABORATORIO\n";
+    string codigo = "";
+    cout << "INGRESE EL CODIGO DEL LABORATORIO-->";
+    cin >> codigo;
+
+    for (int i = 0; i < tamanoLaboratorio; i++)
+    {
+        if (codigo != site[i].codigoLaboratorio)
+        {
+            cout << "ESTE LABORATORIO NO ESTA REGISTRADO.\n";
+            system("pause");
+            break;
+        }
+        else
+        {
+            int opcion = 0;
+            do
+            {
+                system("cls");
+                cout << "ACTUALIZAR NOMBRE------>(1)\n";
+                cout << "ACTUALIZAR TELEFONO---->(2)\n";
+                cout << "ACTUALIZAR DIRECCION--->(3)\n";
+                cout << "ACTUALIZAR EMAIL------->(4)\n";
+                cout << "ACTUALIZAR TODO-------->(5)\n";
+                cout << "SALIR------------------>(6)\n";
+                cout << "DIGITE UNA OPCION------>";
+                cin >> opcion;
+
+                switch (opcion)
+                {
+                case 1:
+                {
+                    system("cls");
+                    string nombre = "";
+                    cout << "NOMBRE ACTUAL--> " << site[i].nombreLaboratorio << ".\n";
+                    cin.get();
+                    cout << "INGRESE EL NUEVO NOMBRE\n";
+                    while (true)
+                    {
+                        getline(cin, nombre);
+                        transform(nombre.begin(), nombre.end(), nombre.begin(), ::tolower);
+                        bool nombreValido = true;
+
+                        if (nombre.empty())
+                        {
+                            system("cls");
+                            cout << "EL NOMBRE NO PUEDE ESTAR VACIO\n";
+                            nombreValido = false;
+                            continue;
+                        }
+
+                        for (int i = 0; i < nombre.size(); i++)
+                        {
+                            if (nombre[i] == 32)
+                            {
+                                continue;
+                            }
+
+                            if (nombre[i] < 97 || nombre[i] > 122)
+                            {
+                                nombreValido = false;
+                                break;
+                            }
+                        }
+                        if (!nombreValido)
+                        {
+                            system("cls");
+                            cout << "NOMBRE NO VALIDADO, INGRESE SOLO LETRAS\n";
+                            nombre = "";
+                        }
+                        else
+                        {
+                            cout << "NOMBRE INGRESADO CORRECTAMENTE\n";
+                            site[i].nombreLaboratorio = nombre;
+                            continue;
+                        }
+                    }
+
+                    break;
+                }
+                case 2:
+                {
+
+                    break;
+                }
+                case 3:
+                {
+
+                    break;
+                }
+                case 4:
+                {
+
+                    break;
+                }
+                case 5:
+                {
+
+                    break;
+                }
+
+                default:
+                    break;
+                }
+            } while (opcion >= 1 && opcion >= 5);
+        }
+    }
+}
+
 vector<Laboratorio> site(tamanoLaboratorio);
 
 void mostrarOpcionesLaboratorio(int Set[], int numOpciones)
@@ -397,7 +510,7 @@ void crudLaboratorios()
         }
         case 3:
         {
-            // actualizarLaboratorio();
+            actualizarLaboratorio(site, tamanoLaboratorio);
             flag = false;
             system("cls");
             break;
@@ -438,10 +551,6 @@ void limpiarLaboratorio()
         site[i].direccionLaboratorio = "";
         site[i].emailLaboratorio = "";
     }
-}
-
-void actualizarLaboratorio()
-{
 }
 
 #endif // LABORATORIO_H

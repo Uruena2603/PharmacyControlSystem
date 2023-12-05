@@ -42,7 +42,8 @@ enum tipoMedicamento{
     Inyeccion,
     Pastas,
     Pomada,
-    capsulas,
+    Capsulas,
+    Tabletas,
 };
 struct medicamentoInfo{
     tipoMedicamento categoria;
@@ -125,7 +126,24 @@ Medicamentos stringToEnum(string medicamento)
         return Pseudoefedrina;
     return def;
 }
-
+string obtenerNombreTipo(tipoMedicamento tipo){
+    switch (tipo){
+        case Analgesico:
+            return "Analgesico";
+        case Jarabe:
+            return "Jarabe";
+        case Inyeccion:
+            return "Inyeccion";
+        case Pastas:
+            return "Pastas";
+        case Pomada:
+            return "Pomada";
+        case Capsulas:
+            return "capsulas";
+        default:
+            return "Def";
+    }
+}
 void verMedicamentos(vector<Medicamento> &farmacos, int tamanoMedicamento)
 {
     system("cls");
@@ -141,7 +159,7 @@ void verMedicamentos(vector<Medicamento> &farmacos, int tamanoMedicamento)
             cout << "NOMBRE   MEDICAMENTO-->" << farmacos[i].nombreMedicamento << "\n";
             cout << "STOCK    MINIMO------->" << farmacos[i].stockMinimo << "\n";
             cout << "UNIDADES EXISTENTES--->" << farmacos[i].unidadesExistentes << "\n";
-            cout << "TIPO     MEDICAMENTO--\n" << "EL MEDICAMENTO -> "<<farmacos[i].tipo.second<<" ES DE TIPO -> "<<farmacos[i].tipo.first<<"\n";
+            cout << "TIPO     MEDICAMENTO--\n" << "EL MEDICAMENTO -> "<<farmacos[i].tipo.second<<" ES DE TIPO -> "<<obtenerNombreTipo(farmacos[i].tipo.first)<<"\n";
         }
         else
         {
@@ -157,12 +175,58 @@ string obtenerNombreMedicamento(Medicamentos medicamento) {
             return "Sertralina";
         case Fluoxetina:
             return "Fluoxetina";
-        // ... otros medicamentos
+        case Escitalopram:
+            return "Escitalopram";
+        case Venlafaxina:
+            return "Venlafaxina";
+        case Paroxetina:
+            return "Paroxetina";
+        case Duloxetina:
+            return "Duloxetina";
+        case Citalopram:
+            return "Citalopram";
+        case Bupropion:
+            return "Bupropion";
+        case Mirtazapina:
+            return "Mirtazapina";
+        case Tranilcipromina:
+            return "Tranilcipromina";
+        case Paracetamol:
+            return "Paracetamol";
+        case Ibuprofeno:
+            return "Ibuprofeno";
+        case Aspirina:
+            return "Aspirina";
+        case Dextrometorfano:
+            return "Dextrometorfano";
         case Pseudoefedrina:
             return "Pseudoefedrina";
+        case Guaifenesina:
+            return "Guaifenesina";
+        case Fenilefrina:
+            return "Fenilefrina";
+        case Clorfenamina:
+            return "Clorfenamina";
+        case Loratadina:
+            return "Loratadina";
+        case AcetaminofenConCodeina:
+            return "Acetaminofen";
         default:
-            return "Desconocido";
+            return "Def";
     }
+}
+tipoMedicamento traerTipo(string tipo){
+    if (tipo == "Sertralina" || tipo == "Fenilefrina" || tipo == "Loratadina")
+        return Pastas;
+    if (tipo == "Fluoxetina" || tipo == "Escitalopram" || tipo == "Venlafaxina" || tipo == "Paroxetina" || tipo == "Duloxetina" || tipo == "Citalopram" || tipo == "Bupropion" || tipo == "Mirtazapina" || tipo == "Tranilcipromina" || tipo == "Paracetamol" || tipo == "Clorfenamina" || tipo == "Pseudoefedrina")
+        return Jarabe;
+    if (tipo == "Ibuprofeno" || tipo == "Aspirina" || tipo == "Acetaminofen con codeina")
+        return Analgesico;
+    if (tipo == "Dextrometorfano")
+        return Capsulas;
+    if (tipo == "Guaifenesina")
+        return Tabletas;
+    return deff;
 }
 void crearMedicamento(vector<Medicamento> &farmacos, int tamanoMedicamento)
 {
@@ -178,30 +242,30 @@ void crearMedicamento(vector<Medicamento> &farmacos, int tamanoMedicamento)
     {
         color(14); // Amarillo
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | 14);
-        cout << "+-------------------+----------------------+----------------+\n";
-        cout << "|   MEDICAMENTO     |     CATEGORIA        |   TIPO\t    |\n";
-        cout << "+-------------------+----------------------+----------------+\n";
-        cout << "|   Sertralina      |    Ansiolitico       |   Pastas       |\n";
-        cout << "|   Paracetamol     |    Jarabe            |   Jarabe       |\n";
-        cout << "|   Fluoxetina      |    Ansiolitico       |   Jarabe       |\n";
-        cout << "|   Escitalopram    |    Ansiolitico       |   Jarabe       |\n";
-        cout << "|   Venlafaxina     |    Ansiolitico       |   Jarabe       |\n";
-        cout << "|   Paroxetina      |    Ansiolitico       |   Jarabe       |\n";
-        cout << "|   Duloxetina      |    Ansiolitico       |   Jarabe       |\n";
-        cout << "|   Citalopram      |    Ansiolitico       |   Jarabe       |\n";
-        cout << "|   Bupropion       |    Ansiolitico       |   Jarabe       |\n";
-        cout << "|   Mirtazapina     |    Ansiolitico       |   Jarabe       |\n";
-        cout << "|   Tranilcipromina |    Ansiolitico       |   Jarabe       |\n";
-        cout << "|   Ibuprofeno      |    Antiinflamatorio  |   Analgesico   |\n";
-        cout << "|   Aspirina        |    Antipiretico      |   Analgesico   |\n";
-        cout << "|   Dextrometorfano |    Supresor de tos   |   capsulas     |\n";
-        cout << "|   Guaifenesina    |    Expectorante      |   tabletas     |\n";
-        cout << "|   Fenilefrina     |    Descongestionante |   Pastas       |\n";
-        cout << "|   Clorfenamina    |    Antihistaminico   |   Jarabe       |\n";
-        cout << "|   Loratadina      |    Pastas            |   Pastas       |\n";
-        cout << "|   Acetaminofen    |    Analgesico        |   Analgesico   |\n";
-        cout << "|   Pseudoefedrina  |    Descongestionante |   Jarabe       |\n";
-        cout << "+-------------------+----------------------+----------------+\n";
+        cout << "+-------------------+----------------------+----------------+------------+\n";
+        cout << "|   MEDICAMENTO     |     CATEGORIA        |   TIPO         |   CODIGO   |\n";
+        cout << "+-------------------+----------------------+----------------+------------+\n";
+        cout << "|   Sertralina      |    Ansiolitico       |   Pastas       |    1345    |\n";
+        cout << "|   Paracetamol     |    Jarabe            |   Jarabe       |    1567    |\n";
+        cout << "|   Fluoxetina      |    Ansiolitico       |   Jarabe       |    1820    |\n";
+        cout << "|   Escitalopram    |    Ansiolitico       |   Jarabe       |    5679    |\n";
+        cout << "|   Venlafaxina     |    Ansiolitico       |   Jarabe       |    2265    |\n";
+        cout << "|   Paroxetina      |    Ansiolitico       |   Jarabe       |    4657    |\n";
+        cout << "|   Duloxetina      |    Ansiolitico       |   Jarabe       |    2758    |\n";
+        cout << "|   Citalopram      |    Ansiolitico       |   Jarabe       |    9756    |\n";
+        cout << "|   Bupropion       |    Ansiolitico       |   Jarabe       |    7509    |\n";
+        cout << "|   Mirtazapina     |    Ansiolitico       |   Jarabe       |    2003    |\n";
+        cout << "|   Tranilcipromina |    Ansiolitico       |   Jarabe       |    4389    |\n";
+        cout << "|   Ibuprofeno      |    Antiinflamatorio  |   Analgesico   |    1108    |\n";
+        cout << "|   Aspirina        |    Antipiretico      |   Analgesico   |    5873    |\n";
+        cout << "|   Dextrometorfano |    Supresor de tos   |   capsulas     |    3700    |\n";
+        cout << "|   Guaifenesina    |    Expectorante      |   tabletas     |    0035    |\n";
+        cout << "|   Fenilefrina     |    Descongestionante |   Pastas       |    2004    |\n";
+        cout << "|   Clorfenamina    |    Antihistaminico   |   Jarabe       |    3609    |\n";
+        cout << "|   Loratadina      |    Pastas            |   Pastas       |    3094    |\n";
+        cout << "|   Acetaminofen    |    Analgesico        |   Analgesico   |    2889    |\n";
+        cout << "|   Pseudoefedrina  |    Descongestionante |   Jarabe       |    1017    |\n";
+        cout << "+-------------------+----------------------+----------------+------------+\n";
         color(15);
         cout << "\nINGRESE EL NOMBRE DEL MEDICAMENTO-->";
         cin >> nombre;
@@ -217,14 +281,17 @@ void crearMedicamento(vector<Medicamento> &farmacos, int tamanoMedicamento)
             int numeroDeUnidades = 0;
             numeroDeUnidades = 1 + rand() % (101 - 1);
             farmacos[dato].unidadesExistentes = numeroDeUnidades;
-            string farmacoTmp = "";
-            farmacoTmp = nombre;
-            tipoMedicamento tipoFinal = deff;
-            Medicamentos medicamentoFinal = def;
-            medicamentoFinal = stringToEnum(farmacoTmp);
+            medicamentoInfo info;
+            info.categoria = traerTipo(nombre);
+            info.nombre = stringToEnum(nombre);
+            farmacos[dato].tipo = make_pair(info.categoria,info.nombre);
 
-            farmacos[dato].tipo.first = tipoFinal;
-            farmacos[dato].tipo.second = medicamentoFinal;
+//            tipoMedicamento tipoFinalJarabe = deff;
+//            Medicamentos medicamentoFinal = def;
+//            tipoFinalJarabe = stringToEnum(farmacoTmp);
+//            medicamentoFinal = obtenerNombreMedicamento(medicamentoFinal);
+//            farmacos[dato].tipo.first = tipoFinalJarabe;
+//            farmacos[dato].tipo.second = medicamentoFinal;
         }
         else
         {
@@ -301,7 +368,6 @@ void crudMedicamentos()
     for (int i = 0; i < 20; ++i) {
         cout << "                                         ";  // Espacios en blanco para borrar
     }
-    int opcion = 0;
     switch (counter) {
             case 1:
             {
@@ -320,6 +386,7 @@ void crudMedicamentos()
             case 3:
             {
                 // actualizarMedicamento();
+                flag=false;
                 system("cls");
                 break;
             }

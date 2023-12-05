@@ -78,7 +78,6 @@ void verLaboratorios(vector<Laboratorio> &site, int tamanoLaboratorio)
             break;
         }
     }
-    cin.get();
 }
 
 void crearLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
@@ -232,6 +231,7 @@ void crudLaboratorios()
             case 3:
             {
                 // actualizarLaboratorio();
+                flag=false;
                 system("cls");
                 break;
             }

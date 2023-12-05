@@ -32,13 +32,13 @@ void mostrarOpciones(int Set[], int numOpciones) {
                 cout << "3. ADMINISTRAR CLIENTES\n";
                 break;
             case 4:
-                cout << "4. COMPRAR MEDICAMENTOS\n";
+                cout << "4. COMPRAR $$$ MEDICAMENTOS\n";
                 break;
             case 5:
-                cout << "5. VENDER MEDICAMENTOS\n";
+                cout << "5. VENDER  $$$ MEDICAMENTOS\n";
                 break;
             case 6:
-                cout << "6. HISTORIAL FACTURAS\n";
+                cout << "6. HISTORIAL # FACTURAS\n";
                 break;
             case 7:
                 cout << "7. CONSULTAS\n";
@@ -119,6 +119,7 @@ void menu() {
         case 8:
         {
             system("cls");
+            color(15);
             cout<<"SALIENDO...\n";
             exit(0);
         }

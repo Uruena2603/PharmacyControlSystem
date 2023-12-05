@@ -390,21 +390,123 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                             break;
                         }
                     }
-
                     break;
                 }
                 case 2:
                 {
+                    system("cls");
+                    string telefono = "";
+                    cout << "TELEFONO ACTUAL--> " << site[i].telefonoLaboratorio << ".\n";
+                    cin.get();
+                    bool telefonoValido = false;
+                    cout << "INGRESE EL NUEVO TELEFONO\n";
+                    do
+                    {
+                        cin >> telefono;
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        bool digitosValidos = true;
+
+                        for (char c : telefono)
+                        {
+                            if (!isdigit(c))
+                            {
+                                system("cls");
+                                digitosValidos = false;
+                                cout << "EL TELEFONO DEBE CONTENER SOLO DIGITOS\n";
+                                continue;
+                            }
+                        }
+                        if (digitosValidos && telefono.length() == 10)
+                        {
+                            cout << "TELEFONO INGRESADO CORRECTAMENTE\n";
+                            system("pause");
+                            site[i].telefonoLaboratorio = telefono;
+                            telefonoValido = true;
+                        }
+                        else
+                        {
+                            if (!digitosValidos)
+                            {
+                                system("cls");
+                                cout << "EL TELEFONO DEBE CONTENER SOLO DIGITOS\n";
+                            }
+                            else
+                            {
+                                system("cls");
+                                cout << "EL TELEFONO DEBE CONTENER 10 DIGITOS\n";
+                            }
+                        }
+
+                    } while (!telefonoValido);
 
                     break;
                 }
                 case 3:
                 {
+                    system("cls");
+                    string direccion = "";
+                    cout << "DIRECCION ACTUAL--> " << site[i].direccionLaboratorio << ".\n";
+                    cin.get();
+                    bool direccionValida = false;
+                    cout << "INGRESE LA NUEVA DIRECCION\n";
+                    do
+                    {
+                        getline(cin, direccion);
 
+                        if (direccion.empty())
+                        {
+                            system("cls");
+                            cout << "LA DIRECCION NO PUEDE ESTAR VACIA\n";
+                            continue;
+                        }
+                        else
+                        {
+                            cout << "DIRECCION INGRESADA CORRECTAMENTE\n";
+                            system("pause");
+                            site[i].direccionLaboratorio = direccion;
+                            direccionValida = true;
+                            break;
+                        }
+                    } while (!direccionValida);
                     break;
                 }
                 case 4:
                 {
+                    system("cls");
+                    string email = "";
+                    cout << "CORREO ACTUAL--> " << site[i].emailLaboratorio << ".\n";
+                    cin.get();
+                    bool emailValido = false;
+                    do
+                    {
+                        cin >> email;
+                        size_t posArroba = email.find('@');
+                        if (email.find('@') == string::npos)
+                        {
+                            system("cls");
+                            cout << "EL CORREO ELECTRONICO DEBE CONTENER UN @\n";
+                            continue;
+                        }
+                        if (posArroba != string::npos)
+                        {
+                            string dominio = email.substr(posArroba + 1);
+
+                            if (!dominio.empty() && (dominio == "gmail.com" || dominio == "hotmail.com" || dominio == "yahoo.com" || dominio == "email.com" || dominio == "outlook.com"))
+                            {
+                                site[i].emailLaboratorio = email;
+                                cout << "CORREO ELECTRONICO INGRESADO CORRECTAMENTE\n";
+                                system("pause");
+                                emailValido = true;
+                            }
+                            else
+                            {
+                                system("cls");
+                                cout << "INGRESE UN CORREO VALIDO\n";
+                                cin.clear();                                                   // Limpiar el estado de error
+                                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignora entrada adicional en el buffer
+                            }
+                        }
+                    } while (!emailValido);
 
                     break;
                 }
@@ -415,9 +517,10 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                 }
 
                 default:
+                    cout << "NINGUNA OPCION FUE SELECCIONADA\n";
                     break;
                 }
-            } while (opcion >= 1 && opcion >= 5);
+            } while (opcion >= 1 && opcion < 6);
         }
     }
     if (!laboratorioEncontrado)

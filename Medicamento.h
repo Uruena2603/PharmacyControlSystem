@@ -445,6 +445,7 @@ void limpiarMedicamentos()
 
 void eliminarMedicamento()
 {
+    
 }
 
 void actualizarMedicamento()

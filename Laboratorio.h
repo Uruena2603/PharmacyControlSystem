@@ -725,6 +725,7 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
 vector<Laboratorio> site(tamanoLaboratorio);
 
 void mostrarOpcionesLaboratorio(int Set[], int numOpciones)
+
 {
     gotos(0, 0);
     color(15);
@@ -753,6 +754,7 @@ void mostrarOpcionesLaboratorio(int Set[], int numOpciones)
     }
     color(7);
 }
+
 void crudLaboratorios()
 {
     bool flag = true;

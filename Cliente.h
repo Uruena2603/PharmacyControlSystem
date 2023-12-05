@@ -90,7 +90,7 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
         {
             cin.ignore();
             getline(cin, nombre);
-            transform(nombre.begin(),nombre.end(),nombre.begin(),::tolower);
+            transform(nombre.begin(), nombre.end(), nombre.begin(), ::tolower);
             bool nombreValido = true;
 
             if (nombre.empty())
@@ -101,6 +101,11 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
             }
             for (int i = 0; i < nombre.size(); i++)
             {
+                if (nombre[i] == 32)
+                {
+                    continue;
+                }
+
                 if (nombre[i] < 97 || nombre[i] > 122)
                 {
                     nombreValido = false;
@@ -260,106 +265,116 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
 
 vector<Cliente> client(tamanoCliente);
 
-void mostrarOpcionesCliente(int Set[], int numOpciones) {
+void mostrarOpcionesCliente(int Set[], int numOpciones)
+{
     gotos(0, 0);
     color(15);
     cout << "--MENU DE CLIENTE (CRUD)\n\n";
-    for (int i = 0; i < numOpciones; ++i) {
+    for (int i = 0; i < numOpciones; ++i)
+    {
         color(Set[i]);
-        switch (i + 1) {
-            case 1:
-                cout << "1. CREAR CLIENTE\n";
-                break;
-            case 2:
-                cout << "2. VER CLIENTE\n";
-                break;
-            case 3:
-                cout << "3. ACTUALIZAR CLIENTE\n";
-                break;
-            case 4:
-                cout << "4. ELIMINAR CLIENTE\n";
-                break;
-            case 5:
-                cout << "5. SALIR\n";
-                break;
+        switch (i + 1)
+        {
+        case 1:
+            cout << "1. CREAR CLIENTE\n";
+            break;
+        case 2:
+            cout << "2. VER CLIENTE\n";
+            break;
+        case 3:
+            cout << "3. ACTUALIZAR CLIENTE\n";
+            break;
+        case 4:
+            cout << "4. ELIMINAR CLIENTE\n";
+            break;
+        case 5:
+            cout << "5. SALIR\n";
+            break;
         }
     }
     color(7);
 }
 void crudCliente()
 {
-    bool flag=true;
-    do{
+    bool flag = true;
+    do
+    {
         int Set[] = {15, 15, 15, 15, 15};
         int counter = 0;
         char llave;
 
-        do {
+        do
+        {
             mostrarOpcionesCliente(Set, 5);
 
             llave = _getch();
-            if (llave == 72 && counter > 1) {
+            if (llave == 72 && counter > 1)
+            {
                 Set[counter - 1] = 15;
                 counter--;
             }
-            else if (llave == 80 && counter < 5) {
+            else if (llave == 80 && counter < 5)
+            {
                 Set[counter - 1] = 15;
                 counter++;
             }
-            else if (llave == '\r') {
+            else if (llave == '\r')
+            {
                 break;
             }
             Set[counter - 1] = 12;
         } while (true);
         gotos(0, 9);
-        for (int i = 0; i < 20; ++i) {
-            cout << "                                         ";  // Espacios en blanco para borrar
+        for (int i = 0; i < 20; ++i)
+        {
+            cout << "                                         "; // Espacios en blanco para borrar
         }
         switch (counter)
         {
-            case 1:
-            {
-                crearCliente(client, tamanoCliente);
-                flag=false;
-                system("cls");
-                break;
-            }
-            case 2:
-            {
-                verClientes(client, tamanoCliente);
-                flag=false;
-                system("cls");
-                break;
-            }
-            case 3:
-            {
-                // actualizarCliente();
-                flag=false;
-                system("cls");
-                break;;
-            }
-            case 4:
-            {
-                // eliminarCliente();
-                flag=false;
-                system("cls");
-                break;
-            }
-            case 5:
-            {
-                 system("cls");
-                 color(15);
-                 cout<<"SALIENDO DEL CRUD CLIENTE...\n";
-                 flag=true;
-                 break;
-            }
-            default:
-            {
-                system("cls");
-                color(15);
-                cout << "NINGUNA OPCION FUE SELECCIONADA.\n";
-                break;
-            }
+        case 1:
+        {
+            crearCliente(client, tamanoCliente);
+            flag = false;
+            system("cls");
+            break;
+        }
+        case 2:
+        {
+            verClientes(client, tamanoCliente);
+            flag = false;
+            system("cls");
+            break;
+        }
+        case 3:
+        {
+            // actualizarCliente();
+            flag = false;
+            system("cls");
+            break;
+            ;
+        }
+        case 4:
+        {
+            // eliminarCliente();
+            flag = false;
+            system("cls");
+            break;
+        }
+        case 5:
+        {
+            system("cls");
+            color(15);
+            cout << "SALIENDO DEL CRUD CLIENTE...\n";
+            flag = true;
+            break;
+        }
+        default:
+        {
+            system("cls");
+            color(15);
+            cout << "NINGUNA OPCION FUE SELECCIONADA.\n";
+            break;
+        }
         }
     } while (!flag);
 }

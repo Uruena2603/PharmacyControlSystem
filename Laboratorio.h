@@ -321,17 +321,12 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
     string codigo = "";
     cout << "INGRESE EL CODIGO DEL LABORATORIO-->";
     cin >> codigo;
-
+    bool laboratorioEncontrado = false;
     for (int i = 0; i < tamanoLaboratorio; i++)
     {
-        if (codigo != site[i].codigoLaboratorio)
+        if (codigo == site[i].codigoLaboratorio)
         {
-            cout << "ESTE LABORATORIO NO ESTA REGISTRADO.\n";
-            system("pause");
-            break;
-        }
-        else
-        {
+            laboratorioEncontrado = true;
             int opcion = 0;
             do
             {
@@ -391,6 +386,7 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                         {
                             cout << "NOMBRE INGRESADO CORRECTAMENTE\n";
                             site[i].nombreLaboratorio = nombre;
+                            system("pause");
                             break;
                         }
                     }
@@ -423,6 +419,11 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                 }
             } while (opcion >= 1 && opcion >= 5);
         }
+    }
+    if (!laboratorioEncontrado)
+    {
+        cout << "ESTE LABORATORIO NO ESTA REGISTRADO.\n";
+        system("pause");
     }
 }
 

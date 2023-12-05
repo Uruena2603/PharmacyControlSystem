@@ -4,6 +4,7 @@
 #define CLIENTE_H
 #include "Laboratorio.h"
 #include <vector>
+#include <iomanip>
 #include <string>
 #include <cctype>
 #include <algorithm>
@@ -51,22 +52,30 @@ bool validarCliente(vector<Cliente> &client, int tamanoCliente, string cedulaCli
 void verClientes(vector<Cliente> &client, int tamanoCliente)
 {
     system("cls");
-    cout << "CLIENTES GUARDADOS\n";
+    color(15);
+    cout << "CLIENTES GUARDADOS\n\n";
+    color(10);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | 10);
+    cout << "+-----+-------------+------------------------------+----------------------+-------------+-------------------------+\n";
+    cout << "|  No |   CEDULA    |     NOMBRE DEL CLIENTE       |      DIRECCION       |  # CELULAR  |  @ E-MAIL DEL CLIENTE   |\n";
+    cout << "+-----+-------------+------------------------------+----------------------+-------------+-------------------------+\n";
     for (int i = 0; i < tamanoCliente; i++)
     {
         string cedulaCliente = "";
         cedulaCliente = client[i].cedulaCliente;
         if (!cedulaCliente.empty())
         {
-            cout << "\nCLIENTE #" << i + 1 << "\n";
-            cout << "CEDULA    CLIENTE-->" << client[i].cedulaCliente << "\n";
-            cout << "NOMBRE    CLIENTE-->" << client[i].nombreCliente << "\n";
-            cout << "DIRECCION CLIENTE-->" << client[i].direccionCliente << "\n";
-            cout << "CELULAR   CLIENTE-->" << client[i].celularCliente << "\n";
-            cout << "EMAIL     CLIENTE-->" << client[i].emailCliente << "\n";
+            cout << "| " << setw(2) << i + 1 << "  | " << setw(6) << client[i].cedulaCliente
+             << "  | " << setw(27) << client[i].nombreCliente
+             << "  | " << setw(19) << client[i].direccionCliente
+             << "  | " << setw(8) << client[i].celularCliente
+             << "  | " << setw(22) << client[i].emailCliente
+             << "  |\n";
         }
         else
         {
+    cout << "+-----+-------------+------------------------------+----------------------+-------------+-------------------------+\n";
+            color(15);
             cout << "\nINGRESE MAS CLIENTES. (# DE ESPACIOS DISPONIBLES:" << tamanoCliente - i << ")\n";
             system("pause");
             break;

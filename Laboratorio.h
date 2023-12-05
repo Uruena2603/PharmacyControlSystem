@@ -391,7 +391,7 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                         {
                             cout << "NOMBRE INGRESADO CORRECTAMENTE\n";
                             site[i].nombreLaboratorio = nombre;
-                            continue;
+                            break;
                         }
                     }
 

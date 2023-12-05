@@ -144,31 +144,6 @@ string obtenerNombreTipo(tipoMedicamento tipo){
             return "Def";
     }
 }
-void verMedicamentos(vector<Medicamento> &farmacos, int tamanoMedicamento)
-{
-    system("cls");
-    cout << "MEDICAMENTOS GUARDADOS\n";
-    for (int i = 0; i < tamanoMedicamento; i++)
-    {
-        int codigoMedicamento = 0;
-        codigoMedicamento = farmacos[i].codigoMedicamento;
-        if (codigoMedicamento != 0)
-        {
-            cout << "\nFARMACO #" << i + 1 << "\n";
-            cout << "CODIGO   MEDICAMENTO-->" << farmacos[i].codigoMedicamento << "\n";
-            cout << "NOMBRE   MEDICAMENTO-->" << farmacos[i].nombreMedicamento << "\n";
-            cout << "STOCK    MINIMO------->" << farmacos[i].stockMinimo << "\n";
-            cout << "UNIDADES EXISTENTES--->" << farmacos[i].unidadesExistentes << "\n";
-            cout << "TIPO     MEDICAMENTO--\n" << "EL MEDICAMENTO -> "<<farmacos[i].tipo.second<<" ES DE TIPO -> "<<obtenerNombreTipo(farmacos[i].tipo.first)<<"\n";
-        }
-        else
-        {
-            cout << "\nINGRESE MAS MEDICAMENTOS. ( # DE ESPACIOS DISPONIBLES :" << tamanoMedicamento - i << ")\n";
-            system("pause");
-            break; // Break para romper fors esta brutal.
-        }
-    }
-}
 string obtenerNombreMedicamento(Medicamentos medicamento) {
     switch (medicamento) {
         case Sertralina:
@@ -215,6 +190,32 @@ string obtenerNombreMedicamento(Medicamentos medicamento) {
             return "Def";
     }
 }
+void verMedicamentos(vector<Medicamento> &farmacos, int tamanoMedicamento)
+{
+    system("cls");
+    cout << "MEDICAMENTOS GUARDADOS\n";
+    for (int i = 0; i < tamanoMedicamento; i++)
+    {
+        int codigoMedicamento = 0;
+        codigoMedicamento = farmacos[i].codigoMedicamento;
+        if (codigoMedicamento != 0)
+        {
+            cout << "\nFARMACO #" << i + 1 << "\n";
+            cout << "CODIGO   MEDICAMENTO-->" << farmacos[i].codigoMedicamento << "\n";
+            cout << "NOMBRE   MEDICAMENTO-->" << farmacos[i].nombreMedicamento << "\n";
+            cout << "STOCK    MINIMO------->" << farmacos[i].stockMinimo << "\n";
+            cout << "UNIDADES EXISTENTES--->" << farmacos[i].unidadesExistentes << "\n";
+            cout << "TIPO     MEDICAMENTO--\n" << "EL MEDICAMENTO -> "<<obtenerNombreMedicamento(farmacos[i].tipo.second)<<" ES DE TIPO -> "<<obtenerNombreTipo(farmacos[i].tipo.first)<<"\n";
+        }
+        else
+        {
+            cout << "\nINGRESE MAS MEDICAMENTOS. ( # DE ESPACIOS DISPONIBLES :" << tamanoMedicamento - i << ")\n";
+            system("pause");
+            break; // Break para romper fors esta brutal.
+        }
+    }
+}
+
 tipoMedicamento traerTipo(string tipo){
     if (tipo == "Sertralina" || tipo == "Fenilefrina" || tipo == "Loratadina")
         return Pastas;

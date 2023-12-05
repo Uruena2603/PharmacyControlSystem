@@ -95,7 +95,8 @@ void crearLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
     string nombre = "";
     if (dato >= 0 && dato < tamanoLaboratorio)
     {
-        cout << "INGRESE EL NOMBRE DEL LABORATORIO-->";
+        cout << "INGRESE EL NOMBRE DEL LABORATORIO\n";
+        cout << "~ ";
         while (true)
         {
             getline(cin, nombre);
@@ -106,6 +107,7 @@ void crearLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
             {
                 system("cls");
                 cout << "EL NOMBRE NO PUEDE ESTAR VACIO\n";
+                cout << "~ ";
                 nombreValido = false;
                 continue;
             }
@@ -127,6 +129,7 @@ void crearLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
             {
                 system("cls");
                 cout << "NOMBRE NO VALIDADO, INGRESE SOLO LETRAS\n";
+                cout << "~ ";
                 nombre = "";
             }
             else
@@ -138,7 +141,8 @@ void crearLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
 
         bool codigoValido = false;
         string codigo = "";
-        cout << "INGRESE EL CODIGO DEL LABORATORIO-->";
+        cout << "INGRESE EL CODIGO DEL LABORATORIO\n";
+        cout << "~ ";
         do
         {
             cin >> codigo;
@@ -151,6 +155,7 @@ void crearLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                     system("cls");
                     digitosValidos = false;
                     cout << "EL CODIGO DEBE CONTENER SOLO NUMEROS\n";
+                    cout << "~ ";
                     break;
                 }
                 else if (codigo.length() != 4)
@@ -158,6 +163,7 @@ void crearLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                     system("cls");
                     digitosValidos = false;
                     cout << "EL CODIGO DEBE CONTENER 4 DIGITOS\n";
+                    cout << "~ ";
                     break;
                 }
             }
@@ -176,7 +182,8 @@ void crearLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
 
             bool telefonoValido = false;
             string telefono = "";
-            cout << "INGRESE EL TELEFONO DEL LABORATORIO-->";
+            cout << "INGRESE EL TELEFONO DEL LABORATORIO\n";
+            cout << "~ ";
             do
             {
                 cin >> telefono;
@@ -190,6 +197,7 @@ void crearLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                         system("cls");
                         digitosValidos = false;
                         cout << "EL TELEFONO DEBE CONTENER SOLO DIGITOS\n";
+                        cout << "~ ";
                         continue;
                     }
                 }
@@ -205,18 +213,21 @@ void crearLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                     {
                         system("cls");
                         cout << "EL TELEFONO DEBE CONTENER SOLO DIGITOS\n";
+                        cout << "~ ";
                     }
                     else
                     {
                         system("cls");
                         cout << "EL TELEFONO DEBE CONTENER 10 DIGITOS\n";
+                        cout << "~ ";
                     }
                 }
 
             } while (!telefonoValido);
 
             bool direccionValida = false;
-            cout << "INGRESE LA DIRECCION DEL LABORATORIO-->";
+            cout << "INGRESE LA DIRECCION DEL LABORATORIO\n";
+            cout << "~ ";
             do
             {
                 getline(cin, site[dato].direccionLaboratorio);
@@ -225,6 +236,7 @@ void crearLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                 {
                     system("cls");
                     cout << "LA DIRECCION NO PUEDE ESTAR VACIA\n";
+                    cout << "~ ";
                     continue;
                 }
                 else
@@ -235,7 +247,8 @@ void crearLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                 }
             } while (!direccionValida);
 
-            cout << "INGRESE EL EMAIL DEL LABORATORIO-->";
+            cout << "INGRESE EL EMAIL DEL LABORATORIO\n";
+            cout << "~ ";
             string email = "";
             bool emailValido = false;
 
@@ -247,6 +260,7 @@ void crearLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                 {
                     system("cls");
                     cout << "EL CORREO ELECTRONICO DEBE CONTENER UN @\n";
+                    cout << "~ ";
                     continue;
                 }
                 if (posArroba != string::npos)
@@ -263,6 +277,7 @@ void crearLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                     {
                         system("cls");
                         cout << "INGRESE UN CORREO VALIDO\n";
+                        cout << "~ ";
                         cin.clear();                                                   // Limpiar el estado de error
                         cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignora entrada adicional en el buffer
                     }
@@ -292,7 +307,8 @@ void eliminarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
     system("cls");
     cout << "COMPLETE EL FORMULARIO PARA ELIMINAR UN LABORATORIO\n";
     string codigo = "";
-    cout << "INGRESE EL CODIGO DEL LABORATORIO-->";
+    cout << "INGRESE EL CODIGO DEL LABORATORIO\n";
+    cout << "~ ";
     cin >> codigo;
 
     bool laboratorioEncontrado = false;
@@ -319,7 +335,8 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
     system("cls");
     cout << "COMPLETE EL FORMULARIO PARA ACTUALIZAR UN LABORATORIO\n";
     string codigo = "";
-    cout << "INGRESE EL CODIGO DEL LABORATORIO-->";
+    cout << "INGRESE EL CODIGO DEL LABORATORIO\n";
+    cout << "~ ";
     cin >> codigo;
     bool laboratorioEncontrado = false;
     for (int i = 0; i < tamanoLaboratorio; i++)
@@ -337,7 +354,8 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                 cout << "ACTUALIZAR EMAIL------->(4)\n";
                 cout << "ACTUALIZAR TODO-------->(5)\n";
                 cout << "SALIR------------------>(6)\n";
-                cout << "DIGITE UNA OPCION------>";
+                cout << "DIGITE UNA OPCION\n";
+                cout << "~ ";
                 cin >> opcion;
 
                 switch (opcion)
@@ -387,7 +405,8 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                         }
                         else
                         {
-                            cout << "NOMBRE INGRESADO CORRECTAMENTE\n";
+                            cout << "NOMBRE INGRESADO CORRECTAMENTE\n\n";
+                            cout << "ACTUALIZACION COMPLETADA CON EXITO.\n";
                             site[i].nombreLaboratorio = nombre;
                             system("pause");
                             break;
@@ -423,7 +442,8 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                         }
                         if (digitosValidos && telefono.length() == 10)
                         {
-                            cout << "TELEFONO INGRESADO CORRECTAMENTE\n";
+                            cout << "TELEFONO INGRESADO CORRECTAMENTE\n\n";
+                            cout << "ACTUALIZACION COMPLETADA CON EXITO.\n";
                             system("pause");
                             site[i].telefonoLaboratorio = telefono;
                             telefonoValido = true;
@@ -470,7 +490,8 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                         }
                         else
                         {
-                            cout << "DIRECCION INGRESADA CORRECTAMENTE\n";
+                            cout << "DIRECCION INGRESADA CORRECTAMENTE\n\n";
+                            cout << "ACTUALIZACION COMPLETADA CON EXITO.\n";
                             system("pause");
                             site[i].direccionLaboratorio = direccion;
                             direccionValida = true;
@@ -506,7 +527,8 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                             if (!dominio.empty() && (dominio == "gmail.com" || dominio == "hotmail.com" || dominio == "yahoo.com" || dominio == "email.com" || dominio == "outlook.com"))
                             {
                                 site[i].emailLaboratorio = email;
-                                cout << "CORREO ELECTRONICO INGRESADO CORRECTAMENTE\n";
+                                cout << "CORREO ELECTRONICO INGRESADO CORRECTAMENTE\n\n";
+                                cout << "ACTUALIZACION COMPLETADA CON EXITO.\n";
                                 system("pause");
                                 emailValido = true;
                             }
@@ -669,7 +691,7 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                             {
                                 site[i].emailLaboratorio = email;
                                 cout << "CORREO ELECTRONICO INGRESADO CORRECTAMENTE\n\n";
-                                cout << "ACTUALIZACION COMPLETADA.\n";
+                                cout << "ACTUALIZACION COMPLETADA CON EXITO.\n";
                                 system("pause");
                                 emailValido = true;
                             }

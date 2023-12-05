@@ -291,7 +291,7 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
 void eliminarCliente(vector<Cliente> &client, int tamanoCliente)
 {
     system("cls");
-    cout << "COMPLETE EL FORMULARIO PARA ELIMINAR UN LABORATORIO\n";
+    cout << "COMPLETE EL FORMULARIO PARA ELIMINAR UN CLIENTE\n";
     string cedula = "";
     cout << "INGRESE LA CEDULA DEL CLIENTE-->";
     cin >> cedula;

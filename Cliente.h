@@ -198,6 +198,7 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
             } while (!emailValido);
 
             bool direccionValida = false;
+            cin.get();
             cout << "INGRESE LA DIRECCION DEL CLIENTE-->";
             do
             {
@@ -276,6 +277,33 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
         cout << "SE HA REGISTRADO EL CLIENTE\n";
         system("pause");
     }
+}
+
+void eliminarCliente(vector<Cliente> &client, int tamanoCliente)
+{
+    system("cls");
+    cout << "COMPLETE EL FORMULARIO PARA ELIMINAR UN LABORATORIO\n";
+    string cedula = "";
+    cout << "INGRESE LA CEDULA DEL CLIENTE-->";
+    cin >> cedula;
+
+    bool clienteEncontrado = false;
+
+    for (int i = 0; i < tamanoCliente; i++)
+    {
+        if (cedula == client[i].cedulaCliente)
+        {
+            client.erase(client.begin() + i);
+            cout << "EL CLIENTE HA SIDO ELIMINADO.\n";
+            clienteEncontrado = true;
+            break;
+        }
+    }
+    if (!clienteEncontrado)
+    {
+        cout << "LA CEDULA INGRESADA NO HA SIDO ENCONTRADA.\n";
+    }
+    system("pause");
 }
 
 vector<Cliente> client(tamanoCliente);
@@ -370,7 +398,7 @@ void crudCliente()
         }
         case 4:
         {
-            // eliminarCliente();
+            eliminarCliente(client, tamanoCliente);
             flag = false;
             system("cls");
             break;
@@ -405,10 +433,6 @@ void limpiarCliente()
         client[i].fechaNacimientoCliente = "";
         client[i].emailCliente = "";
     }
-}
-
-void eliminarCliente()
-{
 }
 
 void actualizarCliente()

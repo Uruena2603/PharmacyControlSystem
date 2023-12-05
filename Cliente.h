@@ -88,13 +88,13 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
         cout << "INGRESE EL NOMBRE DEL CLIENTE-->";
         while (true)
         {
-            cin.ignore();
             getline(cin, nombre);
             transform(nombre.begin(), nombre.end(), nombre.begin(), ::tolower);
             bool nombreValido = true;
 
             if (nombre.empty())
             {
+                system("cls");
                 cout << "EL NOMBRE NO PUEDE ESTAR VACIO\n";
                 nombreValido = false;
                 continue;
@@ -136,6 +136,15 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
             {
                 if (!isdigit(c))
                 {
+                    system("cls");
+                    digitosValidos = false;
+                    cout << "LA CEDULA DEBE CONTENER 10 DIGITOS\n";
+                    break;
+                }
+
+                else if (cedula.length() != 10)
+                {
+                    system("cls");
                     digitosValidos = false;
                     cout << "LA CEDULA DEBE CONTENER 10 DIGITOS\n";
                     break;
@@ -164,6 +173,7 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
                 size_t posArroba = email.find('@');  // Busca la posición del '@' en el correo electrónico
                 if (email.find('@') == string::npos) // Verifica si el correo electrónico no contiene el símbolo '@'
                 {
+                    system("cls");
                     cout << "EL CORREO ELECTRONICO DEBE CONTENER UN @\n";
                     continue;
                 }
@@ -179,6 +189,7 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
                     }
                     else
                     {
+                        system("cls");
                         cout << "INGRESE UN CORREO VALIDO\n";
                         cin.clear();                                                   // Limpiar el estado de error
                         cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignora entrada adicional en el buffer
@@ -190,11 +201,12 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
             cout << "INGRESE LA DIRECCION DEL CLIENTE-->";
             do
             {
-                cin.ignore();
+                // cin.ignore();
                 getline(cin, client[dato].direccionCliente); // Permite espacios en la dirección
 
                 if (client[dato].direccionCliente.empty())
                 {
+                    system("cls");
                     cout << "LA DIRECCION NO PUEDE ESTAR VACIA\n";
                     continue;
                 }
@@ -219,6 +231,7 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
                 {
                     if (!isdigit(c))
                     {
+                        system("cls");
                         digitosValidos = false;
                         cout << "EL CELULAR DEBE CONTENER SOLO DIGITOS\n";
                         continue;
@@ -234,10 +247,12 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
                 {
                     if (!digitosValidos)
                     {
+                        system("cls");
                         cout << "EL CELULAR DEBE CONTENER SOLO DIGITOS\n";
                     }
                     else
                     {
+                        system("cls");
                         cout << "EL CELULAR DEBE CONTENER 10 DIGITOS\n";
                     }
                 }

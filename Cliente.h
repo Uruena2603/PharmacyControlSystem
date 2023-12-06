@@ -368,7 +368,9 @@ void eliminarCliente(vector<Cliente> &client, int tamanoCliente)
     }
     system("pause");
 }
-void mostrarOpcionesActualizarCliente(int Set[], int numOpciones) {
+
+void mostrarOpcionesActualizarCliente(int Set[], int numOpciones)
+{
     gotos(0, 0);
     color(15);
     cout << "--ACTUALIZAR CLIENTE (CRUD)\n\n";
@@ -377,28 +379,29 @@ void mostrarOpcionesActualizarCliente(int Set[], int numOpciones) {
         color(Set[i]);
         switch (i + 1)
         {
-            case 1:
-                cout << "1. ACTUALIZAR NOMBRE\n";
+        case 1:
+            cout << "1. ACTUALIZAR NOMBRE\n";
             break;
-            case 2:
-                cout << "2. ACTUALIZAR DIRECCION\n";
+        case 2:
+            cout << "2. ACTUALIZAR DIRECCION\n";
             break;
-            case 3:
-                cout << "3. ACTUALIZAR CELULAR\n";
+        case 3:
+            cout << "3. ACTUALIZAR CELULAR\n";
             break;
-            case 4:
-                cout << "4. ACTUALIZAR EMAIL\n";
+        case 4:
+            cout << "4. ACTUALIZAR EMAIL\n";
             break;
-            case 5:
-                cout << "5. ACTUALIZAR TODO\n";
+        case 5:
+            cout << "5. ACTUALIZAR TODO\n";
             break;
-            case 6:
-                cout << "6. SALIR\n";
+        case 6:
+            cout << "6. SALIR\n";
             break;
         }
     }
 }
-void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &clientes, int tamanoCliente) {
+void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &clientes, int tamanoCliente)
+{
     system("cls");
     color(15);
     cout << "COMPLETE EL FORMULARIO PARA ACTUALIZAR UN CLIENTE\n";
@@ -409,105 +412,483 @@ void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &clientes
     system("cls");
     bool flag = true;
     bool clienteEncontrado = false;
-    for (int i = 0; i < tamanoCliente; i++) {
-        if (cedula == clientes[i].cedulaCliente) {
+    string nombre = "";
+    string direccion = "";
+    string celular = "";
+    string email = "";
+    int indiceCliente = 0;
+    for (int i = 0; i < tamanoCliente; i++)
+    {
+        if (cedula == clientes[i].cedulaCliente)
+        {
+            nombre = clientes[i].nombreCliente;
+            direccion = clientes[i].direccionCliente;
+            indiceCliente = i;
+            celular = clientes[i].celularCliente;
             clienteEncontrado = true;
+            email = clientes[i].emailCliente;
             break;
         }
     }
-    if (clienteEncontrado) {
+    if (clienteEncontrado)
+    {
         char llave;
         int counter = 0;
-        do {
-            do {
+        do
+        {
+            do
+            {
                 mostrarOpcionesActualizarCliente(Set, numOpciones);
                 llave = _getch();
-                if (llave == 72 && counter > 1) {
+                if (llave == 72 && counter > 1)
+                {
                     Set[counter - 1] = 15;
                     counter--;
-                } else if (llave == 80 && counter < 6) {
+                }
+                else if (llave == 80 && counter < 6)
+                {
                     Set[counter - 1] = 15;
                     counter++;
-                } else if (llave == '\r') {
+                }
+                else if (llave == '\r')
+                {
                     break;
                 }
                 Set[counter - 1] = 12;
-                } while (true);
-                gotos(0, 9);
-                for (int i = 0; i < 20; ++i)
+            } while (true);
+            gotos(0, 9);
+            for (int i = 0; i < 20; ++i)
+            {
+                cout << "                                         "; // Espacios en blanco para borrar
+            }
+            switch (counter)
+            {
+            case 1:
+            {
+                system("cls");
+                cout << "NOMBRE ACTUAL--> " << nombre << ".\n";
+                cin.get();
+                cout << "INGRESE EL NUEVO NOMBRE\n";
+                cout << "~ ";
+                while (true)
                 {
-                    cout << "                                         "; // Espacios en blanco para borrar
+                    getline(cin, nombre);
+                    transform(nombre.begin(), nombre.end(), nombre.begin(), ::tolower);
+                    bool nombreValido = true;
+
+                    if (nombre.empty())
+                    {
+                        system("cls");
+                        color(12);
+                        cout << "EL NOMBRE NO PUEDE ESTAR VACIO\n";
+                        color(15);
+                        cout << "~ ";
+                        nombreValido = false;
+                        continue;
+                    }
+
+                    for (int i = 0; i < nombre.size(); i++)
+                    {
+                        if (nombre[i] == 32)
+                        {
+                            continue;
+                        }
+
+                        if (nombre[i] < 97 || nombre[i] > 122)
+                        {
+                            nombreValido = false;
+                            break;
+                        }
+                        else
+                        {
+                            clientes[i].nombreCliente = nombre;
+                        }
+                    }
+                    if (!nombreValido)
+                    {
+                        system("cls");
+                        color(12);
+                        cout << "NOMBRE NO VALIDADO, INGRESE SOLO LETRAS\n";
+                        color(15);
+                        cout << "~ ";
+                        nombre = "";
+                    }
+                    else
+                    {
+                        color(10);
+                        cout << "NOMBRE INGRESADO CORRECTAMENTE\n";
+                        color(15);
+                        break;
+                    }
                 }
-                switch (counter)
+                flag = false;
+                cin.ignore();
+                system("cls");
+                break;
+            }
+            case 2:
+            {
+                system("cls");
+                cout << "DIRECCION ACTUAL--> " << direccion << ".\n";
+                bool direccionValida = false;
+                cout << "INGRESE LA NUEVA DIRECCION\n";
+                cout << "~ ";
+                do
                 {
-                case 1:
+                    getline(cin, direccion);
+
+                    if (direccion.empty())
+                    {
+                        system("cls");
+                        color(12);
+                        cout << "LA DIRECCION NO PUEDE ESTAR VACIA\n";
+                        color(15);
+                        cout << "~ ";
+                        continue;
+                    }
+                    else
+                    {
+                        color(10);
+                        cout << "DIRECCION INGRESADA CORRECTAMENTE\n\n";
+                        cout << "ACTUALIZACION COMPLETADA CON EXITO.\n";
+                        color(15);
+                        system("pause");
+                        clientes[indiceCliente].direccionCliente = direccion;
+                        direccionValida = true;
+                        break;
+                    }
+                } while (!direccionValida);
+
+                flag = false;
+                system("cls");
+                break;
+            }
+            case 3:
+            {
+                system("cls");
+                cout << "CELULAR ACTUAL--> " << celular << ".\n";
+                bool celularValido = false;
+                cout << "INGRESE EL NUEVO CELULAR\n";
+                cout << "~ ";
+                do
                 {
-                    system("cls");
-                    color(12);
-                    cout << "HOLA 1...\n";
-                    flag = false;
-                    color(15);
-                    cin.ignore();
-                    break;
+                    cin >> celular;
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    bool digitosValidos = true;
+
+                    for (char c : celular)
+                    {
+                        if (!isdigit(c))
+                        {
+                            system("cls");
+                            digitosValidos = false;
+                            color(12);
+                            cout << "EL CELULAR DEBE CONTENER SOLO DIGITOS\n";
+                            color(15);
+                            cout << "~ ";
+                            continue;
+                        }
+                    }
+                    if (digitosValidos && celular.length() == 10)
+                    {
+                        color(10);
+                        cout << "CELULAR INGRESADO CORRECTAMENTE\n\n";
+                        cout << "ACTUALIZACION COMPLETADA CON EXITO.\n";
+                        color(15);
+                        system("pause");
+                        clientes[indiceCliente].celularCliente = celular;
+                        celularValido = true;
+                    }
+                    else
+                    {
+                        if (!digitosValidos)
+                        {
+                            system("cls");
+                            color(12);
+                            cout << "EL CELULAR DEBE CONTENER SOLO DIGITOS\n";
+                            color(15);
+                            cout << "~ ";
+                        }
+                        else
+                        {
+                            system("cls");
+                            color(12);
+                            cout << "EL CELULAR DEBE CONTENER 10 DIGITOS\n";
+                            color(15);
+                            cout << "~ ";
+                        }
+                    }
+
+                } while (!celularValido);
+                flag = false;
+                system("cls");
+                break;
+            }
+            case 4:
+            {
+                system("cls");
+                cout << "CORREO ACTUAL--> " << email << ".\n";
+                bool emailValido = false;
+                cout << "INGRESE EL CORREO NUEVO.\n";
+                cout << "~ ";
+                do
+                {
+                    cin >> email;
+                    size_t posArroba = email.find('@');
+                    if (email.find('@') == string::npos)
+                    {
+                        system("cls");
+                        color(12);
+                        cout << "EL CORREO ELECTRONICO DEBE CONTENER UN @\n";
+                        color(15);
+                        cout << "~ ";
+                        continue;
+                    }
+                    if (posArroba != string::npos)
+                    {
+                        string dominio = email.substr(posArroba + 1);
+
+                        if (!dominio.empty() && (dominio == "gmail.com" || dominio == "hotmail.com" || dominio == "yahoo.com" || dominio == "email.com" || dominio == "outlook.com"))
+                        {
+                            clientes[indiceCliente].emailCliente = email;
+                            color(10);
+                            cout << "CORREO ELECTRONICO INGRESADO CORRECTAMENTE\n\n";
+                            cout << "ACTUALIZACION COMPLETADA CON EXITO.\n";
+                            color(15);
+                            system("pause");
+                            emailValido = true;
+                        }
+                        else
+                        {
+                            system("cls");
+                            color(12);
+                            cout << "INGRESE UN CORREO VALIDO\n";
+                            color(15);
+                            cout << "~ ";
+                            cin.clear();                                                   // Limpiar el estado de error
+                            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignora entrada adicional en el buffer
+                        }
+                    }
+                } while (!emailValido);
+                flag = false;
+                cin.ignore();
+                system("cls");
+                break;
+            }
+            case 5:
+            {
+                system("cls");
+                cout << "NOMBRE ACTUAL--> " << nombre << ".\n";
+                cin.get();
+                cout << "INGRESE EL NUEVO NOMBRE\n";
+                cout << "~ ";
+                while (true)
+                {
+                    getline(cin, nombre);
+                    transform(nombre.begin(), nombre.end(), nombre.begin(), ::tolower);
+                    bool nombreValido = true;
+
+                    if (nombre.empty())
+                    {
+                        system("cls");
+                        color(12);
+                        cout << "EL NOMBRE NO PUEDE ESTAR VACIO\n";
+                        color(15);
+                        cout << "~ ";
+                        nombreValido = false;
+                        continue;
+                    }
+
+                    for (int i = 0; i < nombre.size(); i++)
+                    {
+                        if (nombre[i] == 32)
+                        {
+                            continue;
+                        }
+
+                        if (nombre[i] < 97 || nombre[i] > 122)
+                        {
+                            nombreValido = false;
+                            break;
+                        }
+                        else
+                        {
+                            clientes[i].nombreCliente = nombre;
+                        }
+                    }
+                    if (!nombreValido)
+                    {
+                        system("cls");
+                        color(12);
+                        cout << "NOMBRE NO VALIDADO, INGRESE SOLO LETRAS\n";
+                        color(15);
+                        cout << "~ ";
+                        nombre = "";
+                    }
+                    else
+                    {
+                        color(10);
+                        cout << "NOMBRE INGRESADO CORRECTAMENTE\n";
+                        color(15);
+                        break;
+                    }
                 }
-                case 2:
+
+                cout << "DIRECCION ACTUAL--> " << direccion << ".\n";
+                bool direccionValida = false;
+                cout << "INGRESE LA NUEVA DIRECCION\n";
+                cout << "~ ";
+                do
                 {
-                    system("cls");
-                    color(12);
-                    cout << "HOLA 2...\n";
-                    flag = false;
-                    color(15);
-                    cin.ignore();
-                    break;
-                }
-                case 3:
+                    getline(cin, direccion);
+
+                    if (direccion.empty())
+                    {
+                        system("cls");
+                        color(12);
+                        cout << "LA DIRECCION NO PUEDE ESTAR VACIA\n";
+                        color(15);
+                        cout << "~ ";
+                        continue;
+                    }
+                    else
+                    {
+                        color(10);
+                        cout << "DIRECCION INGRESADA CORRECTAMENTE\n";
+                        color(15);
+                        clientes[indiceCliente].direccionCliente = direccion;
+                        direccionValida = true;
+                        break;
+                    }
+                } while (!direccionValida);
+
+                cout << "CELULAR ACTUAL--> " << celular << ".\n";
+                bool celularValido = false;
+                cout << "INGRESE EL NUEVO CELULAR\n";
+                cout << "~ ";
+                do
                 {
-                    system("cls");
-                    color(12);
-                    cout << "HOLA 3...\n";
-                    flag = false;
-                    color(15);
-                    cin.ignore();
-                    break;
-                }
-                case 4:
+                    cin >> celular;
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    bool digitosValidos = true;
+
+                    for (char c : celular)
+                    {
+                        if (!isdigit(c))
+                        {
+                            system("cls");
+                            digitosValidos = false;
+                            color(12);
+                            cout << "EL CELULAR DEBE CONTENER SOLO DIGITOS\n";
+                            color(15);
+                            cout << "~ ";
+                            continue;
+                        }
+                    }
+                    if (digitosValidos && celular.length() == 10)
+                    {
+                        color(10);
+                        cout << "CELULAR INGRESADO CORRECTAMENTE\n";
+                        color(15);
+                        clientes[indiceCliente].celularCliente = celular;
+                        celularValido = true;
+                    }
+                    else
+                    {
+                        if (!digitosValidos)
+                        {
+                            system("cls");
+                            color(12);
+                            cout << "EL CELULAR DEBE CONTENER SOLO DIGITOS\n";
+                            color(15);
+                            cout << "~ ";
+                        }
+                        else
+                        {
+                            system("cls");
+                            color(12);
+                            cout << "EL CELULAR DEBE CONTENER 10 DIGITOS\n";
+                            color(15);
+                            cout << "~ ";
+                        }
+                    }
+
+                } while (!celularValido);
+
+                cout << "CORREO ACTUAL--> " << email << ".\n";
+                bool emailValido = false;
+                cout << "INGRESE EL CORREO NUEVO.\n";
+                cout << "~ ";
+                do
                 {
-                    system("cls");
-                    color(12);
-                    cout << "HOLA 4...\n";
-                    flag = false;
-                    color(15);
-                    cin.ignore();
-                    break;
-                }
-                case 5:
-                {
-                    system("cls");
-                    color(12);
-                    cout << "HOLA 5...\n";
-                    flag = false;
-                    color(15);
-                    cin.ignore();
-                    break;
-                }
-                case 6:
-                {
-                    system("cls");
-                    color(12);
-                    cout << "SALIENDO DE ACTUALIZAR CLIENTE...\n";
-                    flag = true;
-                    color(15);
-                    cin.ignore();
-                    break;
-                }
+                    cin >> email;
+                    size_t posArroba = email.find('@');
+                    if (email.find('@') == string::npos)
+                    {
+                        system("cls");
+                        color(12);
+                        cout << "EL CORREO ELECTRONICO DEBE CONTENER UN @\n";
+                        color(15);
+                        cout << "~ ";
+                        continue;
+                    }
+                    if (posArroba != string::npos)
+                    {
+                        string dominio = email.substr(posArroba + 1);
+
+                        if (!dominio.empty() && (dominio == "gmail.com" || dominio == "hotmail.com" || dominio == "yahoo.com" || dominio == "email.com" || dominio == "outlook.com"))
+                        {
+                            clientes[indiceCliente].emailCliente = email;
+                            color(10);
+                            cout << "CORREO ELECTRONICO INGRESADO CORRECTAMENTE\n";
+                            cout << "ACTUALIZACION COMPLETADA CON EXITO.\n";
+                            color(15);
+                            system("pause");
+                            emailValido = true;
+                        }
+                        else
+                        {
+                            system("cls");
+                            color(12);
+                            cout << "INGRESE UN CORREO VALIDO\n\n";
+                            color(15);
+                            cout << "~ ";
+                            cin.clear();                                                   // Limpiar el estado de error
+                            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignora entrada adicional en el buffer
+                        }
+                    }
+                } while (!emailValido);
+
+                flag = false;
+                cin.ignore();
+                system("cls");
+                break;
+            }
+            case 6:
+            {
+                system("cls");
+                color(12);
+                cout << "SALIENDO DE ACTUALIZAR CLIENTE...\n";
+                flag = true;
+                color(15);
+                system("pause");
+                system("cls");
+                break;
+            }
             }
         } while (!flag);
-    } else {
-        cout << "Cliente no encontrado.\n";
+    }
+    else
+    {
+        color(12);
+        cout << "CLIENTE NO ENCONTRADO.\n";
+        color(15);
+        system("pause");
     }
     color(15);
 }
-void actualizarCliente(vector<Cliente> &clientes, int tamanoCliente) {
+void actualizarCliente(vector<Cliente> &clientes, int tamanoCliente)
+{
     int Set[] = {15, 15, 15, 15, 15, 15};
     actualizarClienteMenu(Set, 6, clientes, tamanoCliente);
 }
@@ -612,8 +993,9 @@ void crudCliente()
         case 5:
         {
             system("cls");
-            color(15);
+            color(12);
             cout << "SALIENDO DEL CRUD CLIENTE...\n";
+            color(15);
             flag = true;
             break;
         }

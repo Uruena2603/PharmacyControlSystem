@@ -371,7 +371,6 @@ void eliminarCliente(vector<Cliente> &client, int tamanoCliente)
 void mostrarOpcionesActualizarCliente(int Set[], int numOpciones) {
     gotos(0, 0);
     color(15);
-    system("cls");
     cout << "--ACTUALIZAR CLIENTE (CRUD)\n\n";
     for (int i = 0; i < numOpciones; ++i)
     {
@@ -448,7 +447,7 @@ void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &clientes
                     cout << "HOLA 1...\n";
                     flag = false;
                     color(15);
-                    system("pause");
+                    cin.ignore();
                     break;
                 }
                 case 2:
@@ -458,7 +457,7 @@ void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &clientes
                     cout << "HOLA 2...\n";
                     flag = false;
                     color(15);
-                    system("pause");
+                    cin.ignore();
                     break;
                 }
                 case 3:
@@ -468,7 +467,7 @@ void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &clientes
                     cout << "HOLA 3...\n";
                     flag = false;
                     color(15);
-                    system("pause");
+                    cin.ignore();
                     break;
                 }
                 case 4:
@@ -478,7 +477,7 @@ void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &clientes
                     cout << "HOLA 4...\n";
                     flag = false;
                     color(15);
-                    system("pause");
+                    cin.ignore();
                     break;
                 }
                 case 5:
@@ -488,7 +487,7 @@ void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &clientes
                     cout << "HOLA 5...\n";
                     flag = false;
                     color(15);
-                    system("pause");
+                    cin.ignore();
                     break;
                 }
                 case 6:
@@ -498,7 +497,7 @@ void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &clientes
                     cout << "SALIENDO DE ACTUALIZAR CLIENTE...\n";
                     flag = true;
                     color(15);
-                    system("pause");
+                    cin.ignore();
                     break;
                 }
             }

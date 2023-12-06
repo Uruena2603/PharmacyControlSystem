@@ -792,6 +792,15 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
 
                     break;
                 }
+                case 6:
+                {
+                    system("cls");
+                    color(12);
+                    cout << "SALIENDO DE ACTUALIZAR LABORATORIO...\n";
+                    color(15);
+                    system("pause");
+                    break;
+                }
                 }
 
             } while (opcion >= 1 && opcion < 6);

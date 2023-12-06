@@ -400,7 +400,7 @@ void mostrarOpcionesActualizarCliente(int Set[], int numOpciones)
         }
     }
 }
-void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &clientes, int tamanoCliente)
+void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &cliente, int tamanoCliente)
 {
     system("cls");
     color(15);
@@ -419,14 +419,10 @@ void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &clientes
     int indiceCliente = 0;
     for (int i = 0; i < tamanoCliente; i++)
     {
-        if (cedula == clientes[i].cedulaCliente)
+        if (cedula == cliente[i].cedulaCliente)
         {
-            nombre = clientes[i].nombreCliente;
-            direccion = clientes[i].direccionCliente;
             indiceCliente = i;
-            celular = clientes[i].celularCliente;
             clienteEncontrado = true;
-            email = clientes[i].emailCliente;
             break;
         }
     }
@@ -466,8 +462,9 @@ void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &clientes
             case 1:
             {
                 system("cls");
-                cout << "NOMBRE ACTUAL--> " << nombre << ".\n";
+                cout << "NOMBRE ACTUAL--> " << cliente[indiceCliente].nombreCliente << ".\n";
                 cin.get();
+                color(15);
                 cout << "INGRESE EL NUEVO NOMBRE\n";
                 cout << "~ ";
                 while (true)
@@ -476,7 +473,7 @@ void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &clientes
                     transform(nombre.begin(), nombre.end(), nombre.begin(), ::tolower);
                     bool nombreValido = true;
 
-                    if (nombre.empty())
+                    if (nombre.empty()|| (nombre.size() == 1 && nombre[0] == '\r'))
                     {
                         system("cls");
                         color(12);
@@ -486,22 +483,16 @@ void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &clientes
                         nombreValido = false;
                         continue;
                     }
-
                     for (int i = 0; i < nombre.size(); i++)
                     {
                         if (nombre[i] == 32)
                         {
                             continue;
                         }
-
                         if (nombre[i] < 97 || nombre[i] > 122)
                         {
                             nombreValido = false;
                             break;
-                        }
-                        else
-                        {
-                            clientes[i].nombreCliente = nombre;
                         }
                     }
                     if (!nombreValido)
@@ -516,7 +507,8 @@ void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &clientes
                     else
                     {
                         color(10);
-                        cout << "NOMBRE INGRESADO CORRECTAMENTE\n";
+                        cliente[indiceCliente].nombreCliente=nombre;
+                        cout << "NOMBRE ACTUALIZADO CORRECTAMENTE\n";
                         color(15);
                         break;
                     }
@@ -529,15 +521,14 @@ void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &clientes
             case 2:
             {
                 system("cls");
-                cout << "DIRECCION ACTUAL--> " << direccion << ".\n";
+                cout << "DIRECCION ACTUAL--> " << cliente[indiceCliente].direccionCliente << ".\n";
                 bool direccionValida = false;
                 cout << "INGRESE LA NUEVA DIRECCION\n";
                 cout << "~ ";
                 do
                 {
                     getline(cin, direccion);
-
-                    if (direccion.empty())
+                    if (direccion.empty() || (direccion.size() == 1 && direccion[0] == '\r'))
                     {
                         system("cls");
                         color(12);
@@ -549,16 +540,14 @@ void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &clientes
                     else
                     {
                         color(10);
-                        cout << "DIRECCION INGRESADA CORRECTAMENTE\n\n";
-                        cout << "ACTUALIZACION COMPLETADA CON EXITO.\n";
+                        cout << "DIRECCION ACTUALIZADA CORRECTAMENTE\n\n";
                         color(15);
                         system("pause");
-                        clientes[indiceCliente].direccionCliente = direccion;
+                        cliente[indiceCliente].direccionCliente = direccion;
                         direccionValida = true;
                         break;
                     }
                 } while (!direccionValida);
-
                 flag = false;
                 system("cls");
                 break;
@@ -566,7 +555,7 @@ void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &clientes
             case 3:
             {
                 system("cls");
-                cout << "CELULAR ACTUAL--> " << celular << ".\n";
+                cout << "CELULAR ACTUAL--> " << cliente[indiceCliente].celularCliente << ".\n";
                 bool celularValido = false;
                 cout << "INGRESE EL NUEVO CELULAR\n";
                 cout << "~ ";
@@ -575,7 +564,6 @@ void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &clientes
                     cin >> celular;
                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     bool digitosValidos = true;
-
                     for (char c : celular)
                     {
                         if (!isdigit(c))
@@ -592,11 +580,10 @@ void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &clientes
                     if (digitosValidos && celular.length() == 10)
                     {
                         color(10);
-                        cout << "CELULAR INGRESADO CORRECTAMENTE\n\n";
-                        cout << "ACTUALIZACION COMPLETADA CON EXITO.\n";
+                        cout << "CELULAR ACTUALIZADO CORRECTAMENTE\n\n";
                         color(15);
                         system("pause");
-                        clientes[indiceCliente].celularCliente = celular;
+                        cliente[indiceCliente].celularCliente = celular;
                         celularValido = true;
                     }
                     else
@@ -606,14 +593,6 @@ void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &clientes
                             system("cls");
                             color(12);
                             cout << "EL CELULAR DEBE CONTENER SOLO DIGITOS\n";
-                            color(15);
-                            cout << "~ ";
-                        }
-                        else
-                        {
-                            system("cls");
-                            color(12);
-                            cout << "EL CELULAR DEBE CONTENER 10 DIGITOS\n";
                             color(15);
                             cout << "~ ";
                         }
@@ -627,7 +606,7 @@ void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &clientes
             case 4:
             {
                 system("cls");
-                cout << "CORREO ACTUAL--> " << email << ".\n";
+                cout << "CORREO ACTUAL--> " << cliente[indiceCliente].emailCliente << ".\n";
                 bool emailValido = false;
                 cout << "INGRESE EL CORREO NUEVO.\n";
                 cout << "~ ";
@@ -650,10 +629,9 @@ void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &clientes
 
                         if (!dominio.empty() && (dominio == "gmail.com" || dominio == "hotmail.com" || dominio == "yahoo.com" || dominio == "email.com" || dominio == "outlook.com"))
                         {
-                            clientes[indiceCliente].emailCliente = email;
+                            cliente[indiceCliente].emailCliente = email;
                             color(10);
-                            cout << "CORREO ELECTRONICO INGRESADO CORRECTAMENTE\n\n";
-                            cout << "ACTUALIZACION COMPLETADA CON EXITO.\n";
+                            cout << "CORREO ELECTRONICO ACTUALIZADO CORRECTAMENTE\n\n";
                             color(15);
                             system("pause");
                             emailValido = true;
@@ -678,7 +656,7 @@ void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &clientes
             case 5:
             {
                 system("cls");
-                cout << "NOMBRE ACTUAL--> " << nombre << ".\n";
+                cout << "NOMBRE ACTUAL--> " << cliente[indiceCliente].nombreCliente << ".\n";
                 cin.get();
                 cout << "INGRESE EL NUEVO NOMBRE\n";
                 cout << "~ ";
@@ -688,7 +666,7 @@ void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &clientes
                     transform(nombre.begin(), nombre.end(), nombre.begin(), ::tolower);
                     bool nombreValido = true;
 
-                    if (nombre.empty())
+                    if (nombre.empty()|| (nombre.size() == 1 && nombre[0] == '\r'))
                     {
                         system("cls");
                         color(12);
@@ -711,10 +689,6 @@ void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &clientes
                             nombreValido = false;
                             break;
                         }
-                        else
-                        {
-                            clientes[i].nombreCliente = nombre;
-                        }
                     }
                     if (!nombreValido)
                     {
@@ -728,13 +702,14 @@ void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &clientes
                     else
                     {
                         color(10);
-                        cout << "NOMBRE INGRESADO CORRECTAMENTE\n";
+                        cliente[indiceCliente].nombreCliente = nombre;
+                        cout << "NOMBRE ACTUALIZADO CORRECTAMENTE\n";
                         color(15);
                         break;
                     }
                 }
 
-                cout << "DIRECCION ACTUAL--> " << direccion << ".\n";
+                cout << "DIRECCION ACTUAL--> " << cliente[indiceCliente].direccionCliente << ".\n";
                 bool direccionValida = false;
                 cout << "INGRESE LA NUEVA DIRECCION\n";
                 cout << "~ ";
@@ -742,7 +717,7 @@ void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &clientes
                 {
                     getline(cin, direccion);
 
-                    if (direccion.empty())
+                    if (direccion.empty()|| (direccion.size() == 1 && direccion[0] == '\r'))
                     {
                         system("cls");
                         color(12);
@@ -756,13 +731,13 @@ void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &clientes
                         color(10);
                         cout << "DIRECCION INGRESADA CORRECTAMENTE\n";
                         color(15);
-                        clientes[indiceCliente].direccionCliente = direccion;
+                        cliente[indiceCliente].direccionCliente = direccion;
                         direccionValida = true;
                         break;
                     }
                 } while (!direccionValida);
 
-                cout << "CELULAR ACTUAL--> " << celular << ".\n";
+                cout << "CELULAR ACTUAL--> " << cliente[indiceCliente].celularCliente << ".\n";
                 bool celularValido = false;
                 cout << "INGRESE EL NUEVO CELULAR\n";
                 cout << "~ ";
@@ -790,7 +765,7 @@ void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &clientes
                         color(10);
                         cout << "CELULAR INGRESADO CORRECTAMENTE\n";
                         color(15);
-                        clientes[indiceCliente].celularCliente = celular;
+                        cliente[indiceCliente].celularCliente = celular;
                         celularValido = true;
                     }
                     else
@@ -803,19 +778,11 @@ void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &clientes
                             color(15);
                             cout << "~ ";
                         }
-                        else
-                        {
-                            system("cls");
-                            color(12);
-                            cout << "EL CELULAR DEBE CONTENER 10 DIGITOS\n";
-                            color(15);
-                            cout << "~ ";
-                        }
                     }
 
                 } while (!celularValido);
 
-                cout << "CORREO ACTUAL--> " << email << ".\n";
+                cout << "CORREO ACTUAL--> " << cliente[indiceCliente].emailCliente << ".\n";
                 bool emailValido = false;
                 cout << "INGRESE EL CORREO NUEVO.\n";
                 cout << "~ ";
@@ -838,10 +805,9 @@ void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &clientes
 
                         if (!dominio.empty() && (dominio == "gmail.com" || dominio == "hotmail.com" || dominio == "yahoo.com" || dominio == "email.com" || dominio == "outlook.com"))
                         {
-                            clientes[indiceCliente].emailCliente = email;
+                            cliente[indiceCliente].emailCliente = email;
                             color(10);
-                            cout << "CORREO ELECTRONICO INGRESADO CORRECTAMENTE\n";
-                            cout << "ACTUALIZACION COMPLETADA CON EXITO.\n";
+                            cout << "CORREO ELECTRONICO ACTUALIZADO CORRECTAMENTE\n";
                             color(15);
                             system("pause");
                             emailValido = true;

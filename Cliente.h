@@ -54,8 +54,8 @@ void verClientes(vector<Cliente> &client, int tamanoCliente)
     system("cls");
     color(15);
     cout << "CLIENTES GUARDADOS\n\n";
-    color(10);
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | 10);
+    color(11);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | 11);
     cout << "+-----+-------------+------------------------------+----------------------+-------------+-------------------------+\n";
     cout << "|  No |   CEDULA    |     NOMBRE DEL CLIENTE       |      DIRECCION       |  # CELULAR  |  @ E-MAIL DEL CLIENTE   |\n";
     cout << "+-----+-------------+------------------------------+----------------------+-------------+-------------------------+\n";

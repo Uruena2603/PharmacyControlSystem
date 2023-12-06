@@ -119,8 +119,9 @@ void menu() {
         case 8:
         {
             system("cls");
-            color(15);
+            color(12);
             cout<<"SALIENDO...\n";
+            color(15);
             exit(0);
         }
     }

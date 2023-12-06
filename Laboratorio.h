@@ -8,6 +8,7 @@
 #include <conio.h>
 #include <stdlib.h>
 #include <algorithm>
+#include <iomanip>
 #ifndef LABORATORIO_H
 #define LABORATORIO_H
 
@@ -64,22 +65,30 @@ bool validarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio, string
 void verLaboratorios(vector<Laboratorio> &site, int tamanoLaboratorio)
 {
     system("cls");
+    color(15);
     cout << "LABORATORIOS GUARDADOS\n";
+    color(11);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | 11);
+    cout << "+---------+--------+--------------------------+--------------+----------------------+----------------------+\n";
+    cout << "| No Lab  | CODIGO |  NOMBRE DEL LABORATORIO  |  TELEFONO #  |  DIRECCION DEL LAB # |  @ E-MAIL DEL LAB    |\n";
+    cout << "+---------+--------+--------------------------+--------------+----------------------+----------------------+\n";
     for (int i = 0; i < tamanoLaboratorio; i++)
     {
         string codigoLaboratorio = "";
         codigoLaboratorio = site[i].codigoLaboratorio;
         if (!codigoLaboratorio.empty())
         {
-            cout << "\nLABORATORIO #" << i + 1 << "\n";
-            cout << "CODIGO    LABORATORIO-->" << site[i].codigoLaboratorio << "\n";
-            cout << "NOMBRE    LABORATORIO-->" << site[i].nombreLaboratorio << "\n";
-            cout << "TELEFONO  LABORATORIO-->" << site[i].telefonoLaboratorio << "\n";
-            cout << "DIRECCION LABORATORIO-->" << site[i].direccionLaboratorio << "\n";
-            cout << "EMAIL     LABORATORIO-->" << site[i].emailLaboratorio << "\n";
+            cout << "| LAB #" << setw(2) << i + 1 << " | " << setw(5) << site[i].codigoLaboratorio
+                 << "  | " << setw(23) << site[i].nombreLaboratorio
+                 << "  | " << setw(11) << site[i].telefonoLaboratorio
+                 << "  | " << setw(19) << site[i].direccionLaboratorio
+                 << "  | " << setw(19) << site[i].emailLaboratorio
+                 << "  |\n";
         }
         else
         {
+            cout << "+---------+--------+--------------------------+--------------+----------------------+----------------------+\n";
+            color(15);
             cout << "\nINGRESE MAS LABORATORIOS. (# DE ESPACIOS DISPONIBLES:" << tamanoLaboratorio - i << ")\n";
             system("pause");
             break;
@@ -90,6 +99,7 @@ void verLaboratorios(vector<Laboratorio> &site, int tamanoLaboratorio)
 void crearLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
 {
     system("cls");
+    color(15);
     cout << "COMPLETE EL FORMULARIO PARA REGISTRAR UN LABORATORIO\n";
     int dato = validarGuardado(site, tamanoLaboratorio);
     string nombre = "";

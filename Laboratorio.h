@@ -106,7 +106,9 @@ void crearLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
             if (nombre.empty())
             {
                 system("cls");
+                color(12);
                 cout << "EL NOMBRE NO PUEDE ESTAR VACIO\n";
+                color(15);
                 cout << "~ ";
                 nombreValido = false;
                 continue;
@@ -128,13 +130,17 @@ void crearLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
             if (!nombreValido)
             {
                 system("cls");
+                color(12);
                 cout << "NOMBRE NO VALIDADO, INGRESE SOLO LETRAS\n";
+                color(15);
                 cout << "~ ";
                 nombre = "";
             }
             else
             {
+                color(10);
                 cout << "NOMBRE INGRESADO CORRECTAMENTE\n";
+                color(15);
                 break;
             }
         }
@@ -154,7 +160,9 @@ void crearLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                 {
                     system("cls");
                     digitosValidos = false;
+                    color(12);
                     cout << "EL CODIGO DEBE CONTENER SOLO NUMEROS\n";
+                    color(15);
                     cout << "~ ";
                     break;
                 }
@@ -162,14 +170,18 @@ void crearLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                 {
                     system("cls");
                     digitosValidos = false;
+                    color(12);
                     cout << "EL CODIGO DEBE CONTENER 4 DIGITOS\n";
+                    color(15);
                     cout << "~ ";
                     break;
                 }
             }
             if (digitosValidos && codigo.length() == 4)
             {
+                color(10);
                 cout << "CODIGO INGRESADO CORRECTAMENTE\n";
+                color(15);
                 codigoValido = true;
                 break;
             }
@@ -196,14 +208,18 @@ void crearLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                     {
                         system("cls");
                         digitosValidos = false;
+                        color(12);
                         cout << "EL TELEFONO DEBE CONTENER SOLO DIGITOS\n";
+                        color(15);
                         cout << "~ ";
                         continue;
                     }
                 }
                 if (digitosValidos && telefono.length() == 10)
                 {
+                    color(10);
                     cout << "TELEFONO INGRESADO CORRECTAMENTE\n";
+                    color(15);
                     site[dato].telefonoLaboratorio = telefono;
                     telefonoValido = true;
                 }
@@ -212,13 +228,17 @@ void crearLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                     if (!digitosValidos)
                     {
                         system("cls");
+                        color(12);
                         cout << "EL TELEFONO DEBE CONTENER SOLO DIGITOS\n";
+                        color(15);
                         cout << "~ ";
                     }
                     else
                     {
                         system("cls");
+                        color(12);
                         cout << "EL TELEFONO DEBE CONTENER 10 DIGITOS\n";
+                        color(15);
                         cout << "~ ";
                     }
                 }
@@ -235,13 +255,17 @@ void crearLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                 if (site[dato].direccionLaboratorio.empty())
                 {
                     system("cls");
+                    color(12);
                     cout << "LA DIRECCION NO PUEDE ESTAR VACIA\n";
+                    color(15);
                     cout << "~ ";
                     continue;
                 }
                 else
                 {
+                    color(10);
                     cout << "DIRECCION INGRESADA CORRECTAMENTE\n";
+                    color(15);
                     direccionValida = true;
                     break;
                 }
@@ -259,7 +283,9 @@ void crearLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                 if (email.find('@') == string::npos)
                 {
                     system("cls");
+                    color(12);
                     cout << "EL CORREO ELECTRONICO DEBE CONTENER UN @\n";
+                    color(15);
                     cout << "~ ";
                     continue;
                 }
@@ -270,13 +296,17 @@ void crearLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                     if (!dominio.empty() && (dominio == "gmail.com" || dominio == "hotmail.com" || dominio == "yahoo.com" || dominio == "email.com" || dominio == "outlook.com"))
                     {
                         site[dato].emailLaboratorio = email;
+                        color(10);
                         cout << "CORREO ELECTRONICO INGRESADO CORRECTAMENTE\n";
+                        color(15);
                         emailValido = true;
                     }
                     else
                     {
                         system("cls");
+                        color(12);
                         cout << "INGRESE UN CORREO VALIDO\n";
+                        color(15);
                         cout << "~ ";
                         cin.clear();                                                   // Limpiar el estado de error
                         cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignora entrada adicional en el buffer
@@ -297,7 +327,9 @@ void crearLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                 }
             }
         }
+        color(10);
         cout << "SE HA REGISTRADO EL LABORATORIO\n";
+        color(15);
         system("pause");
     }
 }
@@ -318,14 +350,18 @@ void eliminarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
         if (codigo == site[i].codigoLaboratorio)
         {
             site.erase(site.begin() + i);
+            color(10);
             cout << "EL LABORATORIO HA SIDO ELIMINADO.\n";
+            color(15);
             laboratorioEncontrado = true;
             break;
         }
     }
     if (!laboratorioEncontrado)
     {
+        color(12);
         cout << "EL CODIGO INGRESADO NO HA SIDO ENCONTRADO.\n";
+        color(15);
     }
     system("pause");
 }
@@ -353,9 +389,7 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                 cout << "ACTUALIZAR DIRECCION--->(3)\n";
                 cout << "ACTUALIZAR EMAIL------->(4)\n";
                 cout << "ACTUALIZAR TODO-------->(5)\n";
-                color(12);
                 cout << "SALIR------------------>(6)\n";
-                color(7);
                 cout << "DIGITE UNA OPCION\n";
                 cout << "~ ";
                 cin >> opcion;
@@ -379,7 +413,9 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                         if (nombre.empty())
                         {
                             system("cls");
+                            color(12);
                             cout << "EL NOMBRE NO PUEDE ESTAR VACIO\n";
+                            color(15);
                             cout << "~ ";
                             nombreValido = false;
                             continue;
@@ -401,14 +437,18 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                         if (!nombreValido)
                         {
                             system("cls");
+                            color(12);
                             cout << "NOMBRE NO VALIDADO, INGRESE SOLO LETRAS\n";
+                            color(15);
                             cout << "~ ";
                             nombre = "";
                         }
                         else
                         {
+                            color(10);
                             cout << "NOMBRE INGRESADO CORRECTAMENTE\n\n";
                             cout << "ACTUALIZACION COMPLETADA CON EXITO.\n";
+                            color(15);
                             site[i].nombreLaboratorio = nombre;
                             system("pause");
                             break;
@@ -437,15 +477,19 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                             {
                                 system("cls");
                                 digitosValidos = false;
+                                color(12);
                                 cout << "EL TELEFONO DEBE CONTENER SOLO DIGITOS\n";
+                                color(15);
                                 cout << "~ ";
                                 continue;
                             }
                         }
                         if (digitosValidos && telefono.length() == 10)
                         {
+                            color(10);
                             cout << "TELEFONO INGRESADO CORRECTAMENTE\n\n";
                             cout << "ACTUALIZACION COMPLETADA CON EXITO.\n";
+                            color(15);
                             system("pause");
                             site[i].telefonoLaboratorio = telefono;
                             telefonoValido = true;
@@ -455,13 +499,17 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                             if (!digitosValidos)
                             {
                                 system("cls");
+                                color(12);
                                 cout << "EL TELEFONO DEBE CONTENER SOLO DIGITOS\n";
+                                color(15);
                                 cout << "~ ";
                             }
                             else
                             {
                                 system("cls");
+                                color(12);
                                 cout << "EL TELEFONO DEBE CONTENER 10 DIGITOS\n";
+                                color(15);
                                 cout << "~ ";
                             }
                         }
@@ -486,14 +534,18 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                         if (direccion.empty())
                         {
                             system("cls");
+                            color(12);
                             cout << "LA DIRECCION NO PUEDE ESTAR VACIA\n";
+                            color(15);
                             cout << "~ ";
                             continue;
                         }
                         else
                         {
+                            color(10);
                             cout << "DIRECCION INGRESADA CORRECTAMENTE\n\n";
                             cout << "ACTUALIZACION COMPLETADA CON EXITO.\n";
+                            color(15);
                             system("pause");
                             site[i].direccionLaboratorio = direccion;
                             direccionValida = true;
@@ -518,7 +570,9 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                         if (email.find('@') == string::npos)
                         {
                             system("cls");
+                            color(12);
                             cout << "EL CORREO ELECTRONICO DEBE CONTENER UN @\n";
+                            color(15);
                             cout << "~ ";
                             continue;
                         }
@@ -529,15 +583,19 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                             if (!dominio.empty() && (dominio == "gmail.com" || dominio == "hotmail.com" || dominio == "yahoo.com" || dominio == "email.com" || dominio == "outlook.com"))
                             {
                                 site[i].emailLaboratorio = email;
+                                color(10);
                                 cout << "CORREO ELECTRONICO INGRESADO CORRECTAMENTE\n\n";
                                 cout << "ACTUALIZACION COMPLETADA CON EXITO.\n";
+                                color(15);
                                 system("pause");
                                 emailValido = true;
                             }
                             else
                             {
                                 system("cls");
+                                color(12);
                                 cout << "INGRESE UN CORREO VALIDO\n";
+                                color(15);
                                 cout << "~ ";
                                 cin.clear();                                                   // Limpiar el estado de error
                                 cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignora entrada adicional en el buffer
@@ -564,7 +622,9 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                         if (nombre.empty())
                         {
                             system("cls");
+                            color(12);
                             cout << "EL NOMBRE NO PUEDE ESTAR VACIO\n";
+                            color(15);
                             cout << "~ ";
                             nombreValido = false;
                             continue;
@@ -586,13 +646,17 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                         if (!nombreValido)
                         {
                             system("cls");
+                            color(12);
                             cout << "NOMBRE NO VALIDADO, INGRESE SOLO LETRAS\n";
+                            color(15);
                             cout << "~ ";
                             nombre = "";
                         }
                         else
                         {
+                            color(10);
                             cout << "NOMBRE INGRESADO CORRECTAMENTE\n";
+                            color(15);
                             site[i].nombreLaboratorio = nombre;
                             break;
                         }
@@ -615,14 +679,18 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                             {
                                 system("cls");
                                 digitosValidos = false;
+                                color(12);
                                 cout << "EL TELEFONO DEBE CONTENER SOLO DIGITOS\n";
+                                color(15);
                                 cout << "~ ";
                                 continue;
                             }
                         }
                         if (digitosValidos && telefono.length() == 10)
                         {
+                            color(10);
                             cout << "TELEFONO INGRESADO CORRECTAMENTE\n";
+                            color(15);
                             site[i].telefonoLaboratorio = telefono;
                             telefonoValido = true;
                         }
@@ -631,13 +699,17 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                             if (!digitosValidos)
                             {
                                 system("cls");
+                                color(12);
                                 cout << "EL TELEFONO DEBE CONTENER SOLO DIGITOS\n";
+                                color(15);
                                 cout << "~ ";
                             }
                             else
                             {
                                 system("cls");
+                                color(12);
                                 cout << "EL TELEFONO DEBE CONTENER 10 DIGITOS\n";
+                                color(15);
                                 cout << "~ ";
                             }
                         }
@@ -656,13 +728,17 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                         if (direccion.empty())
                         {
                             system("cls");
+                            color(12);
                             cout << "LA DIRECCION NO PUEDE ESTAR VACIA\n";
+                            color(15);
                             cout << "~ ";
                             continue;
                         }
                         else
                         {
+                            color(10);
                             cout << "DIRECCION INGRESADA CORRECTAMENTE\n";
+                            color(15);
                             site[i].direccionLaboratorio = direccion;
                             direccionValida = true;
                             break;
@@ -681,7 +757,9 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                         if (email.find('@') == string::npos)
                         {
                             system("cls");
+                            color(12);
                             cout << "EL CORREO ELECTRONICO DEBE CONTENER UN @\n";
+                            color(15);
                             cout << "~ ";
                             continue;
                         }
@@ -692,15 +770,19 @@ void actualizarLaboratorio(vector<Laboratorio> &site, int tamanoLaboratorio)
                             if (!dominio.empty() && (dominio == "gmail.com" || dominio == "hotmail.com" || dominio == "yahoo.com" || dominio == "email.com" || dominio == "outlook.com"))
                             {
                                 site[i].emailLaboratorio = email;
+                                color(10);
                                 cout << "CORREO ELECTRONICO INGRESADO CORRECTAMENTE\n\n";
                                 cout << "ACTUALIZACION COMPLETADA CON EXITO.\n";
+                                color(15);
                                 system("pause");
                                 emailValido = true;
                             }
                             else
                             {
                                 system("cls");
+                                color(12);
                                 cout << "INGRESE UN CORREO VALIDO\n";
+                                color(15);
                                 cout << "~ ";
                                 cin.clear();                                                   // Limpiar el estado de error
                                 cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignora entrada adicional en el buffer

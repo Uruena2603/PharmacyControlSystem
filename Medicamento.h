@@ -26,18 +26,19 @@ enum Medicamentos
     Bupropion,
     Mirtazapina,
     Tranilcipromina,
-    Paracetamol, // jarabe
-    Ibuprofeno, //Analgésico, jarabe
-    Aspirina, //Analgésico
-    Dextrometorfano, //Jarabe, cápsulas
-    Guaifenesina, //Jarabe, tabletas)
-    Fenilefrina, //Pastas, jarabe)
-    Clorfenamina, //Pastas, jarabe)
-    Loratadina, //Pastas, jarabe)
+    Paracetamol,            // jarabe
+    Ibuprofeno,             // Analgésico, jarabe
+    Aspirina,               // Analgésico
+    Dextrometorfano,        // Jarabe, cápsulas
+    Guaifenesina,           // Jarabe, tabletas)
+    Fenilefrina,            // Pastas, jarabe)
+    Clorfenamina,           // Pastas, jarabe)
+    Loratadina,             // Pastas, jarabe)
     AcetaminofenConCodeina, //- Analgésico Pastas
     Pseudoefedrina,
 };
-enum tipoMedicamento{
+enum tipoMedicamento
+{
     deff,
     Analgesico,
     Jarabe,
@@ -47,7 +48,8 @@ enum tipoMedicamento{
     Capsulas,
     Tabletas,
 };
-struct medicamentoInfo{
+struct medicamentoInfo
+{
     tipoMedicamento categoria;
     Medicamentos nombre;
 };
@@ -58,7 +60,7 @@ struct Medicamento
     string nombreMedicamento = "";
     int stockMinimo = 0;
     int unidadesExistentes = 0;
-    pair<tipoMedicamento,Medicamentos> tipo = make_pair(deff,def);
+    pair<tipoMedicamento, Medicamentos> tipo = make_pair(deff, def);
 };
 map<string, int> Medicamento::codigoPorNombre;
 int validarGuardado(vector<Medicamento> &farmacos, int tamanoMedicamento)
@@ -84,7 +86,6 @@ bool validarMedicamento(vector<Medicamento> &farmacos, int tamanoMedicamento, in
     }
     return false;
 }
-
 
 Medicamentos stringToEnum(string medicamento)
 {
@@ -130,69 +131,73 @@ Medicamentos stringToEnum(string medicamento)
         return Pseudoefedrina;
     return def;
 }
-string obtenerNombreTipo(tipoMedicamento tipo){
-    switch (tipo){
-        case Analgesico:
-            return "Analgesico";
-        case Jarabe:
-            return "Jarabe";
-        case Inyeccion:
-            return "Inyeccion";
-        case Pastas:
-            return "Pastas";
-        case Pomada:
-            return "Pomada";
-        case Capsulas:
-            return "capsulas";
-        default:
-            return "Def";
+string obtenerNombreTipo(tipoMedicamento tipo)
+{
+    switch (tipo)
+    {
+    case Analgesico:
+        return "Analgesico";
+    case Jarabe:
+        return "Jarabe";
+    case Inyeccion:
+        return "Inyeccion";
+    case Pastas:
+        return "Pastas";
+    case Pomada:
+        return "Pomada";
+    case Capsulas:
+        return "capsulas";
+    default:
+        return "Def";
     }
 }
 
-string obtenerNombreMedicamento(Medicamentos medicamento) {
-    switch (medicamento) {
-        case Sertralina:
-            return "Sertralina";
-        case Fluoxetina:
-            return "Fluoxetina";
-        case Escitalopram:
-            return "Escitalopram";
-        case Venlafaxina:
-            return "Venlafaxina";
-        case Paroxetina:
-            return "Paroxetina";
-        case Duloxetina:
-            return "Duloxetina";
-        case Citalopram:
-            return "Citalopram";
-        case Bupropion:
-            return "Bupropion";
-        case Mirtazapina:
-            return "Mirtazapina";
-        case Tranilcipromina:
-            return "Tranilcipromina";
-        case Paracetamol:
-            return "Paracetamol";
-        case Ibuprofeno:
-            return "Ibuprofeno";
-        case Aspirina:
-            return "Aspirina";
-        case Dextrometorfano:
-            return "Dextrometorfano";
-        case Pseudoefedrina:
-            return "Pseudoefedrina";
-        case Guaifenesina:
-            return "Guaifenesina";
-        case Fenilefrina:
-            return "Fenilefrina";
-        case Clorfenamina:
-            return "Clorfenamina";
-        case Loratadina:
-            return "Loratadina";
-        case AcetaminofenConCodeina:
-            return "Acetaminofen";
-        default:
-            return "Def";
+string obtenerNombreMedicamento(Medicamentos medicamento)
+{
+    switch (medicamento)
+    {
+    case Sertralina:
+        return "Sertralina";
+    case Fluoxetina:
+        return "Fluoxetina";
+    case Escitalopram:
+        return "Escitalopram";
+    case Venlafaxina:
+        return "Venlafaxina";
+    case Paroxetina:
+        return "Paroxetina";
+    case Duloxetina:
+        return "Duloxetina";
+    case Citalopram:
+        return "Citalopram";
+    case Bupropion:
+        return "Bupropion";
+    case Mirtazapina:
+        return "Mirtazapina";
+    case Tranilcipromina:
+        return "Tranilcipromina";
+    case Paracetamol:
+        return "Paracetamol";
+    case Ibuprofeno:
+        return "Ibuprofeno";
+    case Aspirina:
+        return "Aspirina";
+    case Dextrometorfano:
+        return "Dextrometorfano";
+    case Pseudoefedrina:
+        return "Pseudoefedrina";
+    case Guaifenesina:
+        return "Guaifenesina";
+    case Fenilefrina:
+        return "Fenilefrina";
+    case Clorfenamina:
+        return "Clorfenamina";
+    case Loratadina:
+        return "Loratadina";
+    case AcetaminofenConCodeina:
+        return "Acetaminofen";
+    default:
+        return "Def";
     }
 }
 
@@ -216,12 +221,12 @@ void verMedicamentos(vector<Medicamento> &farmacos, int tamanoMedicamento)
             string clc = farmacos[i].nombreMedicamento;
             int izq = (20 - clc.length()) / 2;
             int der = 20 - izq - clc.length();
-           cout << "| " << setw(2) << i + 1 << "  | " << setw(6) << farmacos[i].codigoMedicamento
-             << "  | " << setw(16) << farmacos[i].nombreMedicamento
-             << "  | " << setw(5) << farmacos[i].stockMinimo
-             << "  | " << setw(8) << farmacos[i].unidadesExistentes
-             << "  | " << setw(10) << obtenerNombreTipo(farmacos[i].tipo.first)
-             << "  |\n";
+            cout << "| " << setw(2) << i + 1 << "  | " << setw(6) << farmacos[i].codigoMedicamento
+                 << "  | " << setw(16) << farmacos[i].nombreMedicamento
+                 << "  | " << setw(5) << farmacos[i].stockMinimo
+                 << "  | " << setw(8) << farmacos[i].unidadesExistentes
+                 << "  | " << setw(10) << obtenerNombreTipo(farmacos[i].tipo.first)
+                 << "  |\n";
         }
         else
         {
@@ -234,7 +239,8 @@ void verMedicamentos(vector<Medicamento> &farmacos, int tamanoMedicamento)
     }
 }
 
-tipoMedicamento traerTipo(string tipo){
+tipoMedicamento traerTipo(string tipo)
+{
     if (tipo == "Sertralina" || tipo == "Fenilefrina" || tipo == "Loratadina")
         return Pastas;
     if (tipo == "Fluoxetina" || tipo == "Escitalopram" || tipo == "Venlafaxina" || tipo == "Paroxetina" || tipo == "Duloxetina" || tipo == "Citalopram" || tipo == "Bupropion" || tipo == "Mirtazapina" || tipo == "Tranilcipromina" || tipo == "Paracetamol" || tipo == "Clorfenamina" || tipo == "Pseudoefedrina")
@@ -247,7 +253,8 @@ tipoMedicamento traerTipo(string tipo){
         return Tabletas;
     return deff;
 }
-void tablaMedicamentos(){
+void tablaMedicamentos()
+{
     cout << "COMPLETE EL FORMULARIO PARA REGISTRAR UN MEDICAMENTO\n\n";
     color(14); // Amarillo
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | 14);
@@ -281,7 +288,7 @@ void crearMedicamento(vector<Medicamento> &farmacos, int tamanoMedicamento)
     system("cls");
     srand(time(0));
     color(15);
-    //cout << "COMPLETE EL FORMULARIO PARA REGISTRAR UN MEDICAMENTO\n\n";
+    // cout << "COMPLETE EL FORMULARIO PARA REGISTRAR UN MEDICAMENTO\n\n";
     int dato = validarGuardado(farmacos, tamanoMedicamento);
     string codigo = "";
     string nombre = "";
@@ -310,10 +317,11 @@ void crearMedicamento(vector<Medicamento> &farmacos, int tamanoMedicamento)
         Medicamento::codigoPorNombre["Acetaminofen"] = 2889;
         Medicamento::codigoPorNombre["Pseudoefedrina"] = 1017;
         color(15);
-        cout << "\nINGRESE EL NOMBRE DEL MEDICAMENTO-->";
+        cout << "\nINGRESE EL NOMBRE DEL MEDICAMENTO\n";
+        cout << "~ ";
         while (true)
         {
-            getline(cin,nombre);
+            getline(cin, nombre);
             transform(nombre.begin(), nombre.end(), nombre.begin(), ::tolower);
             bool nombreValido = true;
 
@@ -324,6 +332,7 @@ void crearMedicamento(vector<Medicamento> &farmacos, int tamanoMedicamento)
                 color(12);
                 cout << "EL NOMBRE DEL MEDICAMENTO NO PUEDE ESTAR VACIO\n";
                 color(15);
+                cout << "~ ";
                 nombreValido = false;
                 continue;
             }
@@ -355,13 +364,15 @@ void crearMedicamento(vector<Medicamento> &farmacos, int tamanoMedicamento)
             primeraLetraMayus = toupper(nombre[0]);
             nombre[0] = primeraLetraMayus;
             auto it = Medicamento::codigoPorNombre.find(nombre);
-            if (it == Medicamento::codigoPorNombre.end()) {
+            if (it == Medicamento::codigoPorNombre.end())
+            {
                 system("cls");
                 color(12);
                 tablaMedicamentos();
                 cout << "EL NOMBRE -> " << nombre << " NO ESTA ASOCIADO AL SISTEMA.\n";
                 nombreValido = false;
                 color(15);
+                cout << "~ ";
                 nombre = "";
             }
             if (!nombreValido)
@@ -371,6 +382,7 @@ void crearMedicamento(vector<Medicamento> &farmacos, int tamanoMedicamento)
                 color(12);
                 cout << "EL NOMBRE DEL MEDICAMENTO NO ES VALIDO, INGRESE SOLO LETRAS\n";
                 color(15);
+                cout << "~ ";
                 nombre = "";
             }
             else
@@ -384,10 +396,12 @@ void crearMedicamento(vector<Medicamento> &farmacos, int tamanoMedicamento)
             }
         }
         bool codigoValido = false;
-        cout << "INGRESE EL CODIGO DEL MEDICAMENTO-->";
+        cout << "INGRESE EL CODIGO DEL MEDICAMENTO\n";
+        ;
+        cout << "~ ";
         do
         {
-            cin >> codigo;///1111
+            cin >> codigo; /// 1111
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             bool digitosValidos = true;
             for (char c : codigo) // Verifica si contiene solo dígitos
@@ -400,9 +414,10 @@ void crearMedicamento(vector<Medicamento> &farmacos, int tamanoMedicamento)
                     color(12);
                     cout << "EL CODIGO DEBE CONTENER 4 DIGITOS, NO INGRESE OTROS CARACTERES\n";
                     color(15);
+                    cout << "~ ";
                     break;
                 }
-                ///1111
+                /// 1111
                 else if (codigo.length() != 4)
                 {
                     system("cls");
@@ -411,43 +426,50 @@ void crearMedicamento(vector<Medicamento> &farmacos, int tamanoMedicamento)
                     digitosValidos = false;
                     cout << "EL CODIGO DEBE CONTENER 4 NUMEROS\n";
                     color(15);
+                    cout << "~ ";
                     break;
                 }
             }
-            ///1111
-            auto it = Medicamento::codigoPorNombre.find(nombre);///sertralina
-            for(int i=0;i<codigo.size();i++){
+            /// 1111
+            auto it = Medicamento::codigoPorNombre.find(nombre); /// sertralina
+            for (int i = 0; i < codigo.size(); i++)
+            {
                 if (codigo[i] == 32)
                 {
                     continue;
                 }
                 if (codigo[i] < 48 || codigo[i] > 57)
                 {
-                    codigoValido=false;
+                    codigoValido = false;
                     system("cls");
                     tablaMedicamentos();
                     color(12);
-                    cout<<"NO INGRESE LETRAS, INGRESE EL CODIGO CORRECTO.\n";
-                    codigo="0000";
+                    cout << "NO INGRESE LETRAS, INGRESE EL CODIGO CORRECTO.\n";
+                    codigo = "0000";
                     color(15);
+                    cout << "~ ";
                     break;
                 }
             }
-            int codigoMedicamento = stoi(codigo);///1111
-            if (it->second != codigoMedicamento) {///1345 !=1111 si
+            int codigoMedicamento = stoi(codigo); /// 1111
+            if (it->second != codigoMedicamento)
+            { /// 1345 !=1111 si
                 system("cls");
                 tablaMedicamentos();
                 color(12);
-                if(codigoMedicamento==0000){
+                if (codigoMedicamento == 0000)
+                {
                     cout << "EL CODIGO INGRESADO NO ESTA ASOCIADO AL SISTEMA, NI AL MEDICAMENTO -> " << nombre << ".\n";
                     color(15);
+                    cout << "~ ";
                 }
-                else{
+                else
+                {
                     color(12);
                     cout << "EL CODIGO -> " << codigo << " NO ESTA ASOCIADO AL MEDICAMENTO -> " << nombre << ".\n";
                     color(15);
+                    cout << "~ ";
                 }
-
             }
             if (digitosValidos && codigo.length() == 4 && it->second == codigoMedicamento)
             {
@@ -471,14 +493,14 @@ void crearMedicamento(vector<Medicamento> &farmacos, int tamanoMedicamento)
             medicamentoInfo info;
             info.categoria = traerTipo(nombre);
             info.nombre = stringToEnum(nombre);
-            farmacos[dato].tipo = make_pair(info.categoria,info.nombre);
+            farmacos[dato].tipo = make_pair(info.categoria, info.nombre);
 
-//            tipoMedicamento tipoFinalJarabe = deff;
-//            Medicamentos medicamentoFinal = def;
-//            tipoFinalJarabe = stringToEnum(farmacoTmp);
-//            medicamentoFinal = obtenerNombreMedicamento(medicamentoFinal);
-//            farmacos[dato].tipo.first = tipoFinalJarabe;
-//            farmacos[dato].tipo.second = medicamentoFinal;
+            //            tipoMedicamento tipoFinalJarabe = deff;
+            //            Medicamentos medicamentoFinal = def;
+            //            tipoFinalJarabe = stringToEnum(farmacoTmp);
+            //            medicamentoFinal = obtenerNombreMedicamento(medicamentoFinal);
+            //            farmacos[dato].tipo.first = tipoFinalJarabe;
+            //            farmacos[dato].tipo.second = medicamentoFinal;
         }
         else
         {
@@ -503,28 +525,31 @@ void crearMedicamento(vector<Medicamento> &farmacos, int tamanoMedicamento)
 }
 
 vector<Medicamento> farmacos(tamanoMedicamento);
-void mostrarOpcionesMedicamento(int Set[], int numOpciones) {
+void mostrarOpcionesMedicamento(int Set[], int numOpciones)
+{
     gotos(0, 0);
     color(15);
     cout << "--MENU DE MEDICAMENTOS (CRUD)\n\n";
-    for (int i = 0; i < numOpciones; ++i) {
+    for (int i = 0; i < numOpciones; ++i)
+    {
         color(Set[i]);
-        switch (i + 1) {
-            case 1:
-                cout << "1. CREAR MEDICAMENTO\n";
-                break;
-            case 2:
-                cout << "2. VER MEDICAMENTO\n";
-                break;
-            case 3:
-                cout << "3. ACTUALIZAR MEDICAMENTO\n";
-                break;
-            case 4:
-                cout << "4. ELIMINAR MEDICAMENTIO\n";
-                break;
-            case 5:
-                cout << "5. SALIR\n";
-                break;
+        switch (i + 1)
+        {
+        case 1:
+            cout << "1. CREAR MEDICAMENTO\n";
+            break;
+        case 2:
+            cout << "2. VER MEDICAMENTO\n";
+            break;
+        case 3:
+            cout << "3. ACTUALIZAR MEDICAMENTO\n";
+            break;
+        case 4:
+            cout << "4. ELIMINAR MEDICAMENTIO\n";
+            break;
+        case 5:
+            cout << "5. SALIR\n";
+            break;
         }
     }
     color(7);
@@ -532,79 +557,86 @@ void mostrarOpcionesMedicamento(int Set[], int numOpciones) {
 
 void crudMedicamentos()
 {
-    bool flag=true;
-    do{
-    int Set[] = {15, 15, 15, 15, 15};
-    int counter = 0;
-    char llave;
+    bool flag = true;
+    do
+    {
+        int Set[] = {15, 15, 15, 15, 15};
+        int counter = 0;
+        char llave;
 
-    do {
-        mostrarOpcionesMedicamento(Set, 5);
+        do
+        {
+            mostrarOpcionesMedicamento(Set, 5);
 
-        llave = _getch();
-        if (llave == 72 && counter > 1) {
-            Set[counter - 1] = 15;
-            counter--;
+            llave = _getch();
+            if (llave == 72 && counter > 1)
+            {
+                Set[counter - 1] = 15;
+                counter--;
+            }
+            else if (llave == 80 && counter < 5)
+            {
+                Set[counter - 1] = 15;
+                counter++;
+            }
+            else if (llave == '\r')
+            {
+                break;
+            }
+            Set[counter - 1] = 12;
+        } while (true);
+        gotos(0, 9);
+        for (int i = 0; i < 20; ++i)
+        {
+            cout << "                                         "; // Espacios en blanco para borrar
         }
-        else if (llave == 80 && counter < 5) {
-            Set[counter - 1] = 15;
-            counter++;
-        }
-        else if (llave == '\r') {
+        switch (counter)
+        {
+        case 1:
+        {
+            crearMedicamento(farmacos, tamanoMedicamento);
+            flag = false;
+            system("cls");
             break;
         }
-        Set[counter - 1] = 12;
-    } while (true);
-    gotos(0, 9);
-    for (int i = 0; i < 20; ++i) {
-        cout << "                                         ";  // Espacios en blanco para borrar
-    }
-    switch (counter) {
-            case 1:
-            {
-                crearMedicamento(farmacos, tamanoMedicamento);
-                flag=false;
-                system("cls");
-                break;
-            }
-            case 2:
-            {
-                verMedicamentos(farmacos, tamanoMedicamento);
-                flag=false;
-                system("cls");
-                break;
-            }
-            case 3:
-            {
-                // actualizarMedicamento();
-                flag=false;
-                system("cls");
-                break;
-            }
-            case 4:
-            {
-                //eliminarMedicamentos(farmacos, tamanoMedicamento);
-                flag=false;
-                system("cls");
-                break;
-            }
-             case 5:
-            {
-                system("cls");
-                color(12);
-                cout<<"SALIENDO DEL CRUD MEDICAMENTO...\n";
-                flag=true;
-                break;
-            }
-            default:
-            {
-                system("cls");
-                color(12);
-                cout << "NINGUNA OPCION FUE SELECCIONADA.\n";
-                break;
-            }
+        case 2:
+        {
+            verMedicamentos(farmacos, tamanoMedicamento);
+            flag = false;
+            system("cls");
+            break;
         }
-    }while(!flag);
+        case 3:
+        {
+            // actualizarMedicamento();
+            flag = false;
+            system("cls");
+            break;
+        }
+        case 4:
+        {
+            // eliminarMedicamentos(farmacos, tamanoMedicamento);
+            flag = false;
+            system("cls");
+            break;
+        }
+        case 5:
+        {
+            system("cls");
+            color(12);
+            cout << "SALIENDO DEL CRUD MEDICAMENTO...\n";
+            flag = true;
+            break;
+        }
+        default:
+        {
+            system("cls");
+            color(12);
+            cout << "NINGUNA OPCION FUE SELECCIONADA.\n";
+            break;
+        }
+        }
+    } while (!flag);
 }
 
 void limpiarMedicamentos()
@@ -622,7 +654,6 @@ void limpiarMedicamentos()
 
 void eliminarMedicamento()
 {
-
 }
 
 void actualizarMedicamento()

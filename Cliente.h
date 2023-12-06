@@ -368,148 +368,149 @@ void eliminarCliente(vector<Cliente> &client, int tamanoCliente)
     }
     system("pause");
 }
-void actualizarClienteMenu(int Set[], int numOpciones,vector<Cliente> &client, int tamanoCliente){
-
+void mostrarOpcionesActualizarCliente(int Set[], int numOpciones) {
+    gotos(0, 0);
+    color(15);
+    system("cls");
+    cout << "--ACTUALIZAR CLIENTE (CRUD)\n\n";
+    for (int i = 0; i < numOpciones; ++i)
+    {
+        color(Set[i]);
+        switch (i + 1)
+        {
+            case 1:
+                cout << "1. ACTUALIZAR NOMBRE\n";
+            break;
+            case 2:
+                cout << "2. ACTUALIZAR DIRECCION\n";
+            break;
+            case 3:
+                cout << "3. ACTUALIZAR CELULAR\n";
+            break;
+            case 4:
+                cout << "4. ACTUALIZAR EMAIL\n";
+            break;
+            case 5:
+                cout << "5. ACTUALIZAR TODO\n";
+            break;
+            case 6:
+                cout << "6. SALIR\n";
+            break;
+        }
+    }
+}
+void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &clientes, int tamanoCliente) {
     system("cls");
     color(15);
     cout << "COMPLETE EL FORMULARIO PARA ACTUALIZAR UN CLIENTE\n";
     string cedula = "";
     cout << "INGRESE LA CEDULA DEL CLIENTE\n";
-    cout << "~";
+    cout << "~ ";
     cin >> cedula;
+    system("cls");
+    bool flag = true;
     bool clienteEncontrado = false;
-    for (int i = 0; i < tamanoCliente; i++)
-    {
-        if (cedula == client[i].cedulaCliente)
-        {
+    for (int i = 0; i < tamanoCliente; i++) {
+        if (cedula == clientes[i].cedulaCliente) {
             clienteEncontrado = true;
+            break;
         }
-
     }
-    if(clienteEncontrado){
-        system("cls");
-        gotos(0, 0);
-        color(15);
-        cout << "--ACTUALIZAR CLIENTE (CRUD)\n\n";
-        for (int i = 0; i < numOpciones; ++i)
-        {
-            color(Set[i]);
-            switch (i + 1)
-            {
+    if (clienteEncontrado) {
+        char llave;
+        int counter = 0;
+        do {
+            do {
+                mostrarOpcionesActualizarCliente(Set, numOpciones);
+                llave = _getch();
+                if (llave == 72 && counter > 1) {
+                    Set[counter - 1] = 15;
+                    counter--;
+                } else if (llave == 80 && counter < 6) {
+                    Set[counter - 1] = 15;
+                    counter++;
+                } else if (llave == '\r') {
+                    break;
+                }
+                Set[counter - 1] = 12;
+                } while (true);
+                gotos(0, 9);
+                for (int i = 0; i < 20; ++i)
+                {
+                    cout << "                                         "; // Espacios en blanco para borrar
+                }
+                switch (counter)
+                {
                 case 1:
-                    cout << "1. ACTUALIZAR NOMBRE\n";
+                {
+                    system("cls");
+                    color(12);
+                    cout << "HOLA 1...\n";
+                    flag = false;
+                    color(15);
+                    system("pause");
                     break;
+                }
                 case 2:
-                    cout << "2. ACTUALIZAR DIRECCION\n";
+                {
+                    system("cls");
+                    color(12);
+                    cout << "HOLA 2...\n";
+                    flag = false;
+                    color(15);
+                    system("pause");
                     break;
+                }
                 case 3:
-                    cout << "3. ACTUALIZAR CELULAR\n";
+                {
+                    system("cls");
+                    color(12);
+                    cout << "HOLA 3...\n";
+                    flag = false;
+                    color(15);
+                    system("pause");
                     break;
+                }
                 case 4:
-                    cout << "4. ACTUALIZAR EMAIL\n";
+                {
+                    system("cls");
+                    color(12);
+                    cout << "HOLA 4...\n";
+                    flag = false;
+                    color(15);
+                    system("pause");
                     break;
+                }
                 case 5:
-                    cout << "5. ACTUALIZAR TODO\n";
+                {
+                    system("cls");
+                    color(12);
+                    cout << "HOLA 5...\n";
+                    flag = false;
+                    color(15);
+                    system("pause");
                     break;
+                }
                 case 6:
-                    cout << "6. SALIR\n";
+                {
+                    system("cls");
+                    color(12);
+                    cout << "SALIENDO DE ACTUALIZAR CLIENTE...\n";
+                    flag = true;
+                    color(15);
+                    system("pause");
                     break;
                 }
             }
+        } while (!flag);
+    } else {
+        cout << "Cliente no encontrado.\n";
     }
     color(15);
 }
-void actualizarCliente(vector<Cliente> &client, int tamanoCliente)
-{
-    bool flag = true;
-    do
-    {
-        int Set[] = {15, 15, 15, 15, 15, 15};
-        int counter = 0;
-        char llave;
-
-        do
-        {
-            actualizarClienteMenu(Set, 6,client,tamanoCliente);
-
-            llave = _getch();
-            if (llave == 72 && counter > 1)
-            {
-                Set[counter - 1] = 15;
-                counter--;
-            }
-            else if (llave == 80 && counter < 6)
-            {
-                Set[counter - 1] = 15;
-                counter++;
-            }
-            else if (llave == '\r')
-            {
-                break;
-            }
-            Set[counter - 1] = 12;
-        } while (true);
-        gotos(0, 9);
-        for (int i = 0; i < 20; ++i)
-        {
-            cout << "                                         "; // Espacios en blanco para borrar
-        }
-        switch (counter)
-        {
-        case 1:
-        {
-
-            flag = false;
-            system("cls");
-            break;
-        }
-        case 2:
-        {
-
-            flag = false;
-            system("cls");
-            break;
-        }
-        case 3:
-        {
-
-            flag = false;
-            system("cls");
-            break;
-            ;
-        }
-        case 4:
-        {
-
-            flag = false;
-            system("cls");
-            break;
-        }
-        case 5:
-        {
-
-            flag = false;
-            system("cls");
-            break;
-        }
-        case 6:
-        {
-            system("cls");
-            color(15);
-            cout << "SALIENDO DE ACTUALIZAR CLIENTE...\n";
-            flag = true;
-            break;
-        }
-        default:
-        {
-            system("cls");
-            color(15);
-            cout << "NINGUNA OPCION FUE SELECCIONADA.\n";
-            break;
-        }
-        }
-    } while (!flag);
-
+void actualizarCliente(vector<Cliente> &clientes, int tamanoCliente) {
+    int Set[] = {15, 15, 15, 15, 15, 15};
+    actualizarClienteMenu(Set, 6, clientes, tamanoCliente);
 }
 vector<Cliente> client(tamanoCliente);
 

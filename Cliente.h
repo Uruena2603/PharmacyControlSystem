@@ -735,7 +735,7 @@ void actualizarClienteMenu(int Set[], int numOpciones, vector<Cliente> &cliente,
                         direccionValida = true;
                         break;
                     }
-                } while (!direccionValida);
+                }while (!direccionValida);
 
                 cout << "CELULAR ACTUAL--> " << cliente[indiceCliente].celularCliente << ".\n";
                 bool celularValido = false;

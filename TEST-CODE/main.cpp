@@ -1,6 +1,5 @@
 #include <iostream>
 #include <windows.h>
-#include <conio.h>
 #include "Laboratorio.h"
 #include "Cliente.h"
 #include "CompraVenta.h"
@@ -18,33 +17,33 @@ void limpiarDatos() {
 void mostrarOpciones(int Set[], int numOpciones) {
     gotos(0, 0);
     color(15);
-    cout << "BIENVENIDO PHARMACY CONTROL SYSTEM\n\n";
+    printf("BIENVENIDO! PHARMACY CONTROL SYSTEM\n\n");
     for (int i = 0; i < numOpciones; ++i) {
         color(Set[i]);
         switch (i + 1) {
             case 1:
-                cout << "1. ADMINISTRAR MEDICAMENTOS\n";
+                printf("1. ADMINISTRAR MEDICAMENTOS\n");
                 break;
             case 2:
-                cout << "2. ADMINISTRAR LABORATORIOS\n";
+                printf("2. ADMINISTRAR LABORATORIOS\n");
                 break;
             case 3:
-                cout << "3. ADMINISTRAR CLIENTES\n";
+                printf("3. ADMINISTRAR CLIENTES\n");
                 break;
             case 4:
-                cout << "4. COMPRAR $$$ MEDICAMENTOS\n";
+                printf("4. COMPRAR $$$ MEDICAMENTOS\n");
                 break;
             case 5:
-                cout << "5. VENDER  $$$ MEDICAMENTOS\n";
+                printf("5. VENDER  $$$ MEDICAMENTOS\n");
                 break;
             case 6:
-                cout << "6. HISTORIAL # FACTURAS\n";
+                printf("6. HISTORIAL # FACTURAS\n");
                 break;
             case 7:
-                cout << "7. CONSULTAS\n";
+                printf("7. CONSULTAS\n");
                 break;
             case 8:
-                cout << "8. CERRAR PROGRAMA\n";
+                printf("8. CERRAR PROGRAMA\n");
                 break;
         }
     }
@@ -75,7 +74,7 @@ void menu() {
     } while (true);
     gotos(0, 9);
     for (int i = 0; i < 20; ++i) {
-        cout << "                                         ";  // Espacios en blanco para borrar
+        printf("                                         ");// Espacios en blanco para borrar
     }
         switch (counter) {
         case 1:
@@ -120,7 +119,7 @@ void menu() {
         {
             system("cls");
             color(12);
-            cout<<"SALIENDO...\n";
+            printf("SALIENDO...\n");
             color(15);
             exit(0);
         }

@@ -5,7 +5,6 @@
 #include <cctype>
 #include <limits>
 #include <windows.h>
-#include <conio.h>
 #include <stdlib.h>
 #include <algorithm>
 #include <iomanip>

@@ -463,15 +463,15 @@ void crearMedicamento(vector<Medicamento> &farmacos, int tamanoMedicamento)
                 color(12);
                 if (codigoMedicamento == 0000)
                 {
-                    cout << "EL CODIGO INGRESADO NO ESTA ASOCIADO AL SISTEMA, NI AL MEDICAMENTO -> " << nombre << ".\n";
+					printf("EL CODIGO INGRESADO NO ESTA ASOCIADO AL SISTEMA, NI AL MEDICAMENTO -> %s.\n", nombre.c_str());
                     color(15);
                     printf("~ ");
                 }
                 else
                 {
                     color(12);
-                    cout << "EL CODIGO -> " << codigo << " NO ESTA ASOCIADO AL MEDICAMENTO -> " << nombre << ".\n";
-                    color(15);
+					printf("EL CODIGO -> %d NO ESTA ASOCIADO AL MEDICAMENTO -> %s.\n", codigo, nombre.c_str());
+	                color(15);
                     printf("~ ");
                 }
             }
@@ -513,7 +513,7 @@ void crearMedicamento(vector<Medicamento> &farmacos, int tamanoMedicamento)
                 if (farmacos[i].codigoMedicamento == codigoMedicamento)
                 {
                     color(12);
-                    cout << "EL MEDICAMENTO-> " << farmacos[i].nombreMedicamento << " CON CODIGO-> " << farmacos[i].codigoMedicamento << " YA ESTA REGISTRADO\n";
+					printf("EL MEDICAMENTO-> %s CON CODIGO-> %d YA ESTA REGISTRADO\n", farmacos[i].nombreMedicamento.c_str(), farmacos[i].codigoMedicamento);
                     color(15);
                     system("pause");
                     break;

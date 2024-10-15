@@ -87,29 +87,29 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
 {
     system("cls");
     color(15);
-    cout << "COMPLETE EL FORMULARIO PARA REGISTRAR UN CLIENTE\n";
+    printf("COMPLETE EL FORMULARIO PARA REGISTRAR UN CLIENTE\n");
     int dato = validarGuardado(client, tamanoCliente);
     string cedula = "";
     string nombre = "";
 
     if (dato >= 0 && dato < tamanoCliente)
     {
-        // Validación del nombre
-        cout << "INGRESE EL NOMBRE DEL CLIENTE\n";
-        cout << "~ ";
+        // Validacion del nombre
+        printf("INGRESE EL NOMBRE DEL CLIENTE\n");
+        printf("~ ");
         while (true)
         {
             getline(cin, nombre);
-            transform(nombre.begin(), nombre.end(), nombre.begin(), ::tolower);
+            transform(nombre.begin(), nombre.end(), nombre.begin(), ::tolower);// Poner minusculas
             bool nombreValido = true;
 
             if (nombre.empty())
             {
                 system("cls");
                 color(12);
-                cout << "EL NOMBRE NO PUEDE ESTAR VACIO\n";
+                printf("EL NOMBRE NO PUEDE ESTAR VACIO\n");
                 color(15);
-                cout << "~ ";
+                printf("~ ");
                 nombreValido = false;
                 continue;
             }
@@ -130,38 +130,39 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
             {
                 system("cls");
                 color(12);
-                cout << "NOMBRE NO VALIDADO, INGRESE SOLO LETRAS\n";
+                printf("NOMBRE NO VALIDADO, INGRESE SOLO LETRAS\n");
                 color(15);
-                cout << "~ ";
+                printf("~ ");
                 nombre = "";
             }
             else
             {
                 color(10);
-                cout << "NOMBRE INGRESADO CORRECTAMENTE\n";
+                printf("NOMBRE INGRESADO CORRECTAMENTE\n");
                 color(15);
                 break;
             }
         }
 
         bool cedulaValida = false;
-        cout << "INGRESE LA CEDULA DEL CLIENTE\n";
-        cout << "~ ";
+        printf("INGRESE LA CEDULA DEL CLIENTE\n~ ");
         do
         {
-            cin >> cedula;
+            //cin >> cedula; 
+            //getline(cin,cedula);
+            scanf("%s", &cedula);
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             bool digitosValidos = true;
-            for (char c : cedula) // Verifica si el número de celular contiene solo dígitos
+            for (char c : cedula) // Verifica si el numero de celular contiene solo digitos
             {
                 if (!isdigit(c))
                 {
                     system("cls");
                     digitosValidos = false;
                     color(12);
-                    cout << "LA CEDULA SOLO DEBE CONTENER DIGITOS\n";
+                    printf("LA CEDULA SOLO DEBE CONTENER DIGITOS\n");
                     color(15);
-                    cout << "~ ";
+                    printf("~ ");
                     break;
                 }
 
@@ -199,8 +200,8 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
             do
             {
                 cin >> email;
-                size_t posArroba = email.find('@');  // Busca la posición del '@' en el correo electrónico
-                if (email.find('@') == string::npos) // Verifica si el correo electrónico no contiene el símbolo '@'
+                size_t posArroba = email.find('@');  // Busca '@' en el correo
+                if (email.find('@') == string::npos) // Verifica si el correo no contiene el '@'
                 {
                     system("cls");
                     color(12);
@@ -209,9 +210,9 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
                     cout << "~ ";
                     continue;
                 }
-                if (posArroba != string::npos) // Verifica si se encontró el símbolo '@' en el correo electrónico
+                if (posArroba != string::npos) // Verifica si se encontruentra el '@' en el correo
                 {
-                    string dominio = email.substr(posArroba + 1); // Extrae el dominio del correo electrónico
+                    string dominio = email.substr(posArroba + 1); // Extrae el dominio del correo
 
                     if (!dominio.empty() && (dominio == "gmail.com" || dominio == "hotmail.com" || dominio == "yahoo.com" || dominio == "email.com" || dominio == "outlook.com"))
                     {
@@ -242,7 +243,7 @@ void crearCliente(vector<Cliente> &client, int tamanoCliente)
             do
             {
                 // cin.ignore();
-                getline(cin, client[dato].direccionCliente); // Permite espacios en la dirección
+                getline(cin, client[dato].direccionCliente); // Permite espacios en la direccion
 
                 if (client[dato].direccionCliente.empty())
                 {

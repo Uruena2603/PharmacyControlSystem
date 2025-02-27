@@ -22,6 +22,7 @@ PharmaControl System es un sistema de gestión de farmacia desarrollado en C++ u
   - Proceso de compra de medicamentos.
 
 - **[Juan David García Acevedo](https://github.com/liandd):**
+- 
 
   - Implementación de las operaciones CRUD para laboratorios.
   - Proceso de venta de medicamentos.
